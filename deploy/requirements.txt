@@ -1,7 +1,6 @@
 gunicorn==23.0.0
 sqlalchemy==2.0.41
 psycopg2-binary==2.9.10
-python-ldap==3.4.4
 requests==2.32.4
 xlsxwriter==3.2.5
 alembic==1.16.2
@@ -15,7 +14,6 @@ mock==5.2.0
 pytest==8.4.1
 pytest-cov==6.2.1
 pycodestyle==2.13.0
-typing==3.7.4.3
 APScheduler==3.10.4
 redis==5.0.1
 celery==5.3.4

@@ -35,11 +35,11 @@ services:
       - ./nath_standalone_flask_template/tests/reset.sql:/docker-entrypoint-initdb.d/init.sql:ro
       - ./deploy/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
     ports:
-      - "5431:5433"
+      - "5433:5432"
     restart: always
     command: postgres -c 'max_connections=100'
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U web -d nsft"]
+      test: [ "CMD-SHELL", "pg_isready -U web -d postgres" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -53,7 +53,7 @@ services:
       - "6380:6379"
     restart: always
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 5s
       timeout: 5s
       retries: 5

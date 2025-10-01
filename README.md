@@ -51,7 +51,7 @@ The script automatically handles all name variations:
 
 
 ### Development Environment Details
-- **Database**: PostgreSQL 15 on port 5431 (container: `nsft_db_dev`)
+- **Database**: PostgreSQL 15 on port 5433 (container: `nsft_db_dev`)
 - **Application**: Flask app on port 8080 (container: `nsft_app_dev`)
 - **Redis**: Redis on port 6380 (container: `nsft_redis_dev`)
 - **Network**: `nsft_network_dev`

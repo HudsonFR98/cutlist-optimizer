@@ -8,48 +8,56 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-15 16:48+0200\n"
+"POT-Creation-Date: 2025-10-01 18:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.8.0\n"
 
-#: nath_standalone_flask_template/templates/base.html:18
-#: nath_standalone_flask_template/templates/base.html:22
+#: nath_standalone_flask_template/templates/base.html:16
+#: nath_standalone_flask_template/templates/base.html:20
 msgid "Nath Standalone Flask Template"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/base.html:44
+#: nath_standalone_flask_template/templates/base.html:42
 msgid "Example"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/base.html:47
+#: nath_standalone_flask_template/templates/base.html:45
 #: nath_standalone_flask_template/templates/login.html:14
 msgid "Login"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/base.html:54
+#: nath_standalone_flask_template/templates/base.html:52
 msgid "Tests"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/base.html:57
+#: nath_standalone_flask_template/templates/base.html:55
 msgid "Coverage"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/base.html:58
+#: nath_standalone_flask_template/templates/base.html:56
 msgid "Test Output"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/base.html:66
+#: nath_standalone_flask_template/templates/base.html:64
 msgid "Administration"
 msgstr ""
 
 #: nath_standalone_flask_template/templates/admin/tasks.html:3
-#: nath_standalone_flask_template/templates/base.html:69
+#: nath_standalone_flask_template/templates/base.html:67
 msgid "Async Tasks"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/base.html:68
+msgid "Users"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/base.html:69
+msgid "Logs"
 msgstr ""
 
 #: nath_standalone_flask_template/templates/base.html:76
@@ -60,14 +68,27 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/base.html:87
+#: nath_standalone_flask_template/templates/base.html:84
+msgid "Toggle theme"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/base.html:93
 msgid "Language"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/base.html:176
+msgid "Switch to light mode"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/base.html:179
+msgid "Switch to dark mode"
 msgstr ""
 
 #: nath_standalone_flask_template/templates/login.html:9
 msgid "User ID"
 msgstr ""
 
+#: nath_standalone_flask_template/templates/admin/users.html:167
 #: nath_standalone_flask_template/templates/login.html:13
 msgid "Password"
 msgstr ""
@@ -80,10 +101,12 @@ msgstr ""
 
 #: nath_standalone_flask_template/templates/admin/logs.html:3
 #: nath_standalone_flask_template/templates/admin/tasks.html:3
+#: nath_standalone_flask_template/templates/admin/users.html:3
 msgid "Admin"
 msgstr ""
 
 #: nath_standalone_flask_template/templates/admin/logs.html:21
+#: nath_standalone_flask_template/templates/admin/tasks.html:173
 msgid "Refresh"
 msgstr ""
 
@@ -91,7 +114,7 @@ msgstr ""
 msgid "Clear Display"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/logs.html:47
+#: nath_standalone_flask_template/templates/admin/logs.html:29
 msgid "No logs available"
 msgstr ""
 
@@ -109,8 +132,7 @@ msgstr ""
 
 #: nath_standalone_flask_template/templates/admin/tasks.html:56
 #: nath_standalone_flask_template/templates/admin/tasks.html:162
-#: nath_standalone_flask_template/templates/admin/tasks.html:195
-#: nath_standalone_flask_template/templates/admin/tasks.html:337
+#: nath_standalone_flask_template/templates/admin/tasks.html:370
 msgid "Failed"
 msgstr ""
 
@@ -123,7 +145,7 @@ msgid "Active Scheduled Tasks"
 msgstr ""
 
 #: nath_standalone_flask_template/templates/admin/tasks.html:98
-#: nath_standalone_flask_template/templates/admin/tasks.html:179
+#: nath_standalone_flask_template/templates/admin/tasks.html:182
 msgid "Task Name"
 msgstr ""
 
@@ -137,7 +159,8 @@ msgstr ""
 
 #: nath_standalone_flask_template/templates/admin/tasks.html:101
 #: nath_standalone_flask_template/templates/admin/tasks.html:133
-#: nath_standalone_flask_template/templates/admin/tasks.html:180
+#: nath_standalone_flask_template/templates/admin/tasks.html:183
+#: nath_standalone_flask_template/templates/admin/users.html:104
 msgid "Status"
 msgstr ""
 
@@ -150,10 +173,14 @@ msgid "Next Run"
 msgstr ""
 
 #: nath_standalone_flask_template/templates/admin/tasks.html:104
+#: nath_standalone_flask_template/templates/admin/users.html:105
 msgid "Actions"
 msgstr ""
 
 #: nath_standalone_flask_template/templates/admin/tasks.html:114
+#: nath_standalone_flask_template/templates/admin/users.html:124
+#: nath_standalone_flask_template/templates/admin/users.html:194
+#: nath_standalone_flask_template/templates/admin/users.html:242
 msgid "Active"
 msgstr ""
 
@@ -174,13 +201,12 @@ msgid "All Status"
 msgstr ""
 
 #: nath_standalone_flask_template/templates/admin/tasks.html:161
-#: nath_standalone_flask_template/templates/admin/tasks.html:182
+#: nath_standalone_flask_template/templates/admin/tasks.html:185
 msgid "Completed"
 msgstr ""
 
 #: nath_standalone_flask_template/templates/admin/tasks.html:163
-#: nath_standalone_flask_template/templates/admin/tasks.html:197
-#: nath_standalone_flask_template/templates/admin/tasks.html:338
+#: nath_standalone_flask_template/templates/admin/tasks.html:373
 msgid "Running"
 msgstr ""
 
@@ -192,38 +218,163 @@ msgstr ""
 msgid "All Tasks"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/tasks.html:181
+#: nath_standalone_flask_template/templates/admin/tasks.html:184
 msgid "Started"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/tasks.html:183
+#: nath_standalone_flask_template/templates/admin/tasks.html:186
 msgid "Duration"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/tasks.html:184
+#: nath_standalone_flask_template/templates/admin/tasks.html:187
 msgid "Result/Error"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/tasks.html:193
-#: nath_standalone_flask_template/templates/admin/tasks.html:336
-msgid "Success"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/tasks.html:242
+#: nath_standalone_flask_template/templates/admin/tasks.html:208
 msgid "Task Status"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/tasks.html:249
-#: nath_standalone_flask_template/templates/admin/tasks.html:268
+#: nath_standalone_flask_template/templates/admin/tasks.html:213
+#: nath_standalone_flask_template/templates/admin/tasks.html:232
 msgid "Loading..."
 msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/tasks.html:253
+#: nath_standalone_flask_template/templates/admin/tasks.html:217
 msgid "Close"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/tasks.html:313
+#: nath_standalone_flask_template/templates/admin/tasks.html:277
 msgid "Failed to load task status"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/tasks.html:367
+msgid "Success"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:3
+#: nath_standalone_flask_template/templates/admin/users.html:10
+msgid "Users Management"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:22
+msgid "Total Users"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:39
+msgid "Active Users"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:56
+msgid "Admin Users"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:73
+msgid "Available Roles"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:90
+msgid "Users List"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:92
+#: nath_standalone_flask_template/templates/admin/users.html:200
+msgid "Create User"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:100
+#: nath_standalone_flask_template/templates/admin/users.html:163
+#: nath_standalone_flask_template/templates/admin/users.html:219
+msgid "Username"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:101
+msgid "Name"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:102
+#: nath_standalone_flask_template/templates/admin/users.html:179
+#: nath_standalone_flask_template/templates/admin/users.html:236
+msgid "Email"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:103
+#: nath_standalone_flask_template/templates/admin/users.html:137
+#: nath_standalone_flask_template/templates/admin/users.html:183
+#: nath_standalone_flask_template/templates/admin/users.html:277
+msgid "Roles"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:119
+msgid "No roles"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:126
+msgid "Left"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:128
+msgid "Inactive"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:134
+msgid "Edit"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:157
+msgid "Create New User"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:171
+#: nath_standalone_flask_template/templates/admin/users.html:228
+msgid "First Name"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:175
+#: nath_standalone_flask_template/templates/admin/users.html:232
+msgid "Last Name"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:189
+#: nath_standalone_flask_template/templates/admin/users.html:283
+msgid "Hold Ctrl/Cmd to select multiple roles"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:199
+#: nath_standalone_flask_template/templates/admin/users.html:253
+#: nath_standalone_flask_template/templates/admin/users.html:287
+msgid "Cancel"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:212
+msgid "Edit User"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:223
+msgid "New Password"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:225
+msgid "Leave empty to keep current password"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:248
+msgid "Has Left"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:254
+msgid "Update User"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:266
+msgid "Manage User Roles"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:273
+msgid "User"
+msgstr ""
+
+#: nath_standalone_flask_template/templates/admin/users.html:288
+msgid "Update Roles"
 msgstr ""
 
 #: nath_standalone_flask_template/templates/dashboard/home.html:5
@@ -234,119 +385,119 @@ msgstr ""
 msgid "Search documentation..."
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:89
+#: nath_standalone_flask_template/templates/doc/index.html:87
 msgid "Overview"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:92
-#: nath_standalone_flask_template/templates/doc/index.html:127
+#: nath_standalone_flask_template/templates/doc/index.html:90
+#: nath_standalone_flask_template/templates/doc/index.html:125
 msgid "User Management"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:95
-#: nath_standalone_flask_template/templates/doc/index.html:138
+#: nath_standalone_flask_template/templates/doc/index.html:93
+#: nath_standalone_flask_template/templates/doc/index.html:136
 msgid "Database"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:98
-#: nath_standalone_flask_template/templates/doc/index.html:149
+#: nath_standalone_flask_template/templates/doc/index.html:96
+#: nath_standalone_flask_template/templates/doc/index.html:147
 msgid "Configuration"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:101
-#: nath_standalone_flask_template/templates/doc/index.html:161
+#: nath_standalone_flask_template/templates/doc/index.html:99
+#: nath_standalone_flask_template/templates/doc/index.html:159
 msgid "Deployment"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:115
+#: nath_standalone_flask_template/templates/doc/index.html:113
 msgid "Welcome to the Nath Standalone Flask Template Documentation"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:117
+#: nath_standalone_flask_template/templates/doc/index.html:115
 msgid ""
-"This documentation provides information about the Nath Standalone Flask Template "
-"application, its features, and how to use it."
+"This documentation provides information about the Nath Standalone Flask "
+"Template application, its features, and how to use it."
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:120
+#: nath_standalone_flask_template/templates/doc/index.html:118
 msgid "Note"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:121
+#: nath_standalone_flask_template/templates/doc/index.html:119
 msgid ""
 "This documentation is customizable and can be edited to include specific "
 "information about your implementation."
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:128
+#: nath_standalone_flask_template/templates/doc/index.html:126
 msgid ""
 "The application includes a comprehensive user management system with "
 "role-based permissions:"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:130
+#: nath_standalone_flask_template/templates/doc/index.html:128
 msgid "User authentication and authorization"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:131
+#: nath_standalone_flask_template/templates/doc/index.html:129
 msgid "Role-based access control"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:132
+#: nath_standalone_flask_template/templates/doc/index.html:130
 msgid "Permission management"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:139
+#: nath_standalone_flask_template/templates/doc/index.html:137
 msgid ""
 "The application uses PostgreSQL as its database with Alembic for "
 "migrations:"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:141
+#: nath_standalone_flask_template/templates/doc/index.html:139
 msgid "Automatic database migrations"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:142
+#: nath_standalone_flask_template/templates/doc/index.html:140
 msgid "SQLAlchemy ORM for database access"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:143
+#: nath_standalone_flask_template/templates/doc/index.html:141
 msgid "Efficient data management"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:150
+#: nath_standalone_flask_template/templates/doc/index.html:148
 msgid "The application supports multiple environments:"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:152
+#: nath_standalone_flask_template/templates/doc/index.html:150
 msgid "Development"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:153
+#: nath_standalone_flask_template/templates/doc/index.html:151
 msgid "Testing"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:154
+#: nath_standalone_flask_template/templates/doc/index.html:152
 msgid "Demo"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:155
+#: nath_standalone_flask_template/templates/doc/index.html:153
 msgid "Production"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:162
+#: nath_standalone_flask_template/templates/doc/index.html:160
 msgid "The application can be deployed using Docker:"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:164
+#: nath_standalone_flask_template/templates/doc/index.html:162
 msgid "Docker Compose for local development"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:165
+#: nath_standalone_flask_template/templates/doc/index.html:163
 msgid "Ansible for production deployment"
 msgstr ""
 
-#: nath_standalone_flask_template/templates/doc/index.html:166
+#: nath_standalone_flask_template/templates/doc/index.html:164
 msgid "CI/CD pipeline integration"
 msgstr ""
 

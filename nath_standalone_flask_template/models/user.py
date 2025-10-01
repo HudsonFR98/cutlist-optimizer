@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Table
 from sqlalchemy.orm import relationship, validates
 from sqlalchemy.ext.declarative import declared_attr
 from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from nath_standalone_flask_template.lib.database import Base, DBSession
 
@@ -84,9 +85,9 @@ class User(Base, UserMixin):
     
     @validates('pwd')
     def _hash_password(self, key, password):
-        """Hash the password before storing it"""
-        if password and not password.startswith('sha256$'):
-            return hashlib.sha256(password.encode()).hexdigest()
+        """Hash the password using Werkzeug's secure password hashing"""
+        if password and not password.startswith('pbkdf2:') and not password.startswith('sha256$'):
+            return generate_password_hash(password)
         return password
     
     def __init__(self, ide, pwd, first_name=None, last_name=None, email=None, 
@@ -146,12 +147,27 @@ class User(Base, UserMixin):
             self.roles.remove(role)
             self._permissions = None  # Reset permissions cache
     
+    def check_password(self, password: str) -> bool:
+        """Check if the provided password matches the stored hash"""
+        # Check if password is in old SHA256 format
+        if self.pwd.startswith('sha256$'):
+            # Legacy format - check against SHA256 hash
+            hashed_password = hashlib.sha256(password.encode()).hexdigest()
+            if self.pwd == f'sha256${hashed_password}':
+                # Migrate to new format on successful login
+                self.pwd = generate_password_hash(password)
+                DBSession.commit()
+                return True
+            return False
+        else:
+            # New format - use Werkzeug's check_password_hash
+            return check_password_hash(self.pwd, password)
+    
     @classmethod
     def authenticate(cls, username: str, password: str) -> Optional['User']:
         """Authenticate a user with username and password"""
-        hashed_password = hashlib.sha256(password.encode()).hexdigest()
-        user = cls.query.filter_by(ide=username, pwd=hashed_password, active=True).first()
-        if user:
+        user = cls.query.filter_by(ide=username, active=True).first()
+        if user and user.check_password(password):
             return user
         raise Exception("Invalid username or password")
     

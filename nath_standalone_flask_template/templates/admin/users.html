@@ -1,0 +1,277 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Users Management') }} - {{ _('Admin') }}{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="h3 mb-4">{{ _('Users Management') }}</h1>
+        </div>
+    </div>
+
+    <!-- Create User Button -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUserModal">
+                <i class="fas fa-plus"></i> {{ _('Create New User') }}
+            </button>
+        </div>
+    </div>
+
+    <!-- Users Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{{ _('Users List') }}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" width="100%" cellspacing="0" id="usersTable">
+                            <thead>
+                                <tr>
+                                    <th>{{ _('Username') }}</th>
+                                    <th>{{ _('First Name') }}</th>
+                                    <th>{{ _('Last Name') }}</th>
+                                    <th>{{ _('Email') }}</th>
+                                    <th>{{ _('Roles') }}</th>
+                                    <th>{{ _('Status') }}</th>
+                                    <th>{{ _('Actions') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in users %}
+                                <tr>
+                                    <td>{{ user.ide }}</td>
+                                    <td>{{ user.first_name or '-' }}</td>
+                                    <td>{{ user.last_name or '-' }}</td>
+                                    <td>{{ user.email or '-' }}</td>
+                                    <td>
+                                        {% for role in user.roles %}
+                                        <span class="badge bg-primary me-1">{{ role.name }}</span>
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% if user.active and not user.has_left %}
+                                        <span class="badge bg-success">{{ _('Active') }}</span>
+                                        {% elif user.has_left %}
+                                        <span class="badge bg-secondary">{{ _('Left') }}</span>
+                                        {% else %}
+                                        <span class="badge bg-danger">{{ _('Inactive') }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-sm btn-info edit-user-btn"
+                                                data-user-id="{{ user.id }}">
+                                                <i class="fas fa-edit"></i> {{ _('Edit') }}
+                                            </button>
+                                            {% if user.id != current_user.id %}
+                                            <button class="btn btn-sm btn-warning toggle-user-btn"
+                                                data-user-id="{{ user.id }}" data-active="{{ user.active }}">
+                                                {% if user.active %}
+                                                <i class="fas fa-user-times"></i> {{ _('Deactivate') }}
+                                                {% else %}
+                                                <i class="fas fa-user-check"></i> {{ _('Activate') }}
+                                                {% endif %}
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create User Modal -->
+<div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="createUserForm" method="POST" action="{{ url_for('admin.create_user') }}">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createUserModalLabel">{{ _('Create New User') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">{{ _('Username') }} <span
+                                class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">{{ _('Password') }} <span
+                                class="text-danger">*</span></label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="first_name" class="form-label">{{ _('First Name') }}</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">{{ _('Last Name') }}</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">{{ _('Email') }}</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="roles" class="form-label">{{ _('Roles') }}</label>
+                        <select class="form-select" id="roles" name="roles" multiple>
+                            {% for role in available_roles %}
+                            <option value="{{ role.id }}">{{ role.name }} - {{ role.description }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-text">{{ _('Hold Ctrl/Cmd to select multiple roles') }}</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Cancel') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ _('Create User') }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit User Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="editUserForm" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalLabel">{{ _('Edit User') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit_user_id" name="user_id">
+                    <div class="mb-3">
+                        <label for="edit_username" class="form-label">{{ _('Username') }} <span
+                                class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="edit_username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_password" class="form-label">{{ _('New Password') }}</label>
+                        <input type="password" class="form-control" id="edit_password" name="password">
+                        <div class="form-text">{{ _('Leave blank to keep current password') }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_first_name" class="form-label">{{ _('First Name') }}</label>
+                        <input type="text" class="form-control" id="edit_first_name" name="first_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_last_name" class="form-label">{{ _('Last Name') }}</label>
+                        <input type="text" class="form-control" id="edit_last_name" name="last_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_email" class="form-label">{{ _('Email') }}</label>
+                        <input type="email" class="form-control" id="edit_email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_roles" class="form-label">{{ _('Roles') }}</label>
+                        <select class="form-select" id="edit_roles" name="roles" multiple>
+                            {% for role in available_roles %}
+                            <option value="{{ role.id }}">{{ role.name }} - {{ role.description }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-text">{{ _('Hold Ctrl/Cmd to select multiple roles') }}</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Cancel') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ _('Update User') }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Edit user button click handler
+        document.querySelectorAll('.edit-user-btn').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var userId = this.getAttribute('data-user-id');
+                var modal = document.getElementById('editUserModal');
+                var form = document.getElementById('editUserForm');
+
+                // Set the form action
+                form.action = '{{ url_for("admin.edit_user") }}';
+
+                // Fetch user data and populate form
+                fetch('/admin/api/user/' + userId)
+                    .then(function (response) {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        document.getElementById('edit_user_id').value = data.id;
+                        document.getElementById('edit_username').value = data.ide;
+                        document.getElementById('edit_first_name').value = data.first_name || '';
+                        document.getElementById('edit_last_name').value = data.last_name || '';
+                        document.getElementById('edit_email').value = data.email || '';
+
+                        // Set selected roles
+                        var roleSelect = document.getElementById('edit_roles');
+                        for (var i = 0; i < roleSelect.options.length; i++) {
+                            roleSelect.options[i].selected = data.roles.includes(parseInt(roleSelect.options[i].value));
+                        }
+
+                        var bootstrapModal = new bootstrap.Modal(modal);
+                        bootstrapModal.show();
+                    })
+                    .catch(function (error) {
+                        console.error('Error loading user data:', error);
+                        alert('{{ _("Failed to load user data") }}');
+                    });
+            });
+        });
+
+        // Toggle user status button click handler
+        document.querySelectorAll('.toggle-user-btn').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var userId = this.getAttribute('data-user-id');
+                var isActive = this.getAttribute('data-active') === 'True';
+                var action = isActive ? 'deactivate' : 'activate';
+                var confirmMessage = isActive ? '{{ _("Are you sure you want to deactivate this user?") }}' : '{{ _("Are you sure you want to activate this user?") }}';
+
+                if (confirm(confirmMessage)) {
+                    fetch('/admin/api/user/' + userId + '/toggle', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    })
+                        .then(function (response) {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(function (data) {
+                            if (data.success) {
+                                location.reload();
+                            } else {
+                                alert(data.message || '{{ _("Failed to update user status") }}');
+                            }
+                        })
+                        .catch(function (error) {
+                            console.error('Error updating user status:', error);
+                            alert('{{ _("Failed to update user status") }}');
+                        });
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
