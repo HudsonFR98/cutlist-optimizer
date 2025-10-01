@@ -7,89 +7,95 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-01 18:44+0200\n"
+"POT-Creation-Date: 2025-10-01 19:49+0200\n"
 "PO-Revision-Date: 2025-07-07 15:40+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
 "Language-Team: fr <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: nath_standalone_flask_template/templates/base.html:16
-#: nath_standalone_flask_template/templates/base.html:20
+#: nath_standalone_flask_template/templates/base.html:17
 msgid "Nath Standalone Flask Template"
 msgstr "Projet de reference flask de Nath"
 
-#: nath_standalone_flask_template/templates/base.html:42
+#: nath_standalone_flask_template/templates/base.html:22
+#, fuzzy
+msgid ""
+"Nath Standalone\n"
+"      Flask Template"
+msgstr "Projet de reference flask de Nath"
+
+#: nath_standalone_flask_template/templates/base.html:44
 msgid "Example"
 msgstr "Exemple"
 
-#: nath_standalone_flask_template/templates/base.html:45
+#: nath_standalone_flask_template/templates/base.html:47
 #: nath_standalone_flask_template/templates/login.html:14
 msgid "Login"
 msgstr "Connexion"
 
-#: nath_standalone_flask_template/templates/base.html:52
+#: nath_standalone_flask_template/templates/base.html:54
 msgid "Tests"
 msgstr "Tests"
 
-#: nath_standalone_flask_template/templates/base.html:55
+#: nath_standalone_flask_template/templates/base.html:57
 msgid "Coverage"
 msgstr "Couverture"
 
-#: nath_standalone_flask_template/templates/base.html:56
+#: nath_standalone_flask_template/templates/base.html:58
 msgid "Test Output"
 msgstr "Sortie des Tests"
 
-#: nath_standalone_flask_template/templates/base.html:64
+#: nath_standalone_flask_template/templates/base.html:66
 msgid "Administration"
 msgstr "Administration"
 
+#: nath_standalone_flask_template/templates/base.html:69
+msgid "Users"
+msgstr "Utilisateurs"
+
 #: nath_standalone_flask_template/templates/admin/tasks.html:3
-#: nath_standalone_flask_template/templates/base.html:67
+#: nath_standalone_flask_template/templates/base.html:70
 msgid "Async Tasks"
 msgstr "Tâches Asynchrones"
 
-#: nath_standalone_flask_template/templates/base.html:68
-msgid "Users"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/base.html:69
+#: nath_standalone_flask_template/templates/base.html:71
 msgid "Logs"
-msgstr ""
+msgstr "Journaux"
 
-#: nath_standalone_flask_template/templates/base.html:76
+#: nath_standalone_flask_template/templates/base.html:78
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: nath_standalone_flask_template/templates/base.html:80
+#: nath_standalone_flask_template/templates/base.html:83
 msgid "Help"
 msgstr "Aide"
 
-#: nath_standalone_flask_template/templates/base.html:84
+#: nath_standalone_flask_template/templates/base.html:87
 msgid "Toggle theme"
-msgstr ""
+msgstr "Basculer le thème"
 
-#: nath_standalone_flask_template/templates/base.html:93
+#: nath_standalone_flask_template/templates/base.html:96
 msgid "Language"
 msgstr "Langue"
 
-#: nath_standalone_flask_template/templates/base.html:176
+#: nath_standalone_flask_template/templates/base.html:183
 msgid "Switch to light mode"
-msgstr ""
+msgstr "Passer en mode clair"
 
-#: nath_standalone_flask_template/templates/base.html:179
+#: nath_standalone_flask_template/templates/base.html:186
 msgid "Switch to dark mode"
-msgstr ""
+msgstr "Passer en mode sombre"
 
 #: nath_standalone_flask_template/templates/login.html:9
 msgid "User ID"
 msgstr "Identifiant"
 
-#: nath_standalone_flask_template/templates/admin/users.html:167
+#: nath_standalone_flask_template/templates/admin/users.html:110
 #: nath_standalone_flask_template/templates/login.html:13
 msgid "Password"
 msgstr "Mot de passe"
@@ -161,7 +167,7 @@ msgstr "Planification"
 #: nath_standalone_flask_template/templates/admin/tasks.html:101
 #: nath_standalone_flask_template/templates/admin/tasks.html:133
 #: nath_standalone_flask_template/templates/admin/tasks.html:183
-#: nath_standalone_flask_template/templates/admin/users.html:104
+#: nath_standalone_flask_template/templates/admin/users.html:40
 msgid "Status"
 msgstr "Statut"
 
@@ -174,14 +180,12 @@ msgid "Next Run"
 msgstr "Prochaine Exécution"
 
 #: nath_standalone_flask_template/templates/admin/tasks.html:104
-#: nath_standalone_flask_template/templates/admin/users.html:105
+#: nath_standalone_flask_template/templates/admin/users.html:41
 msgid "Actions"
 msgstr "Actions"
 
 #: nath_standalone_flask_template/templates/admin/tasks.html:114
-#: nath_standalone_flask_template/templates/admin/users.html:124
-#: nath_standalone_flask_template/templates/admin/users.html:194
-#: nath_standalone_flask_template/templates/admin/users.html:242
+#: nath_standalone_flask_template/templates/admin/users.html:58
 msgid "Active"
 msgstr "Actif"
 
@@ -255,128 +259,113 @@ msgstr "Succès"
 #: nath_standalone_flask_template/templates/admin/users.html:3
 #: nath_standalone_flask_template/templates/admin/users.html:10
 msgid "Users Management"
-msgstr ""
+msgstr "Gestion des Utilisateurs"
 
-#: nath_standalone_flask_template/templates/admin/users.html:22
-msgid "Total Users"
-msgstr ""
+#: nath_standalone_flask_template/templates/admin/users.html:18
+#: nath_standalone_flask_template/templates/admin/users.html:100
+msgid "Create New User"
+msgstr "Créer un Nouvel Utilisateur"
+
+#: nath_standalone_flask_template/templates/admin/users.html:28
+msgid "Users List"
+msgstr "Liste des Utilisateurs"
+
+#: nath_standalone_flask_template/templates/admin/users.html:35
+#: nath_standalone_flask_template/templates/admin/users.html:105
+#: nath_standalone_flask_template/templates/admin/users.html:157
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: nath_standalone_flask_template/templates/admin/users.html:36
+#: nath_standalone_flask_template/templates/admin/users.html:115
+#: nath_standalone_flask_template/templates/admin/users.html:167
+msgid "First Name"
+msgstr "Prénom"
+
+#: nath_standalone_flask_template/templates/admin/users.html:37
+#: nath_standalone_flask_template/templates/admin/users.html:119
+#: nath_standalone_flask_template/templates/admin/users.html:171
+msgid "Last Name"
+msgstr "Nom de famille"
+
+#: nath_standalone_flask_template/templates/admin/users.html:38
+#: nath_standalone_flask_template/templates/admin/users.html:123
+#: nath_standalone_flask_template/templates/admin/users.html:175
+msgid "Email"
+msgstr "Email"
 
 #: nath_standalone_flask_template/templates/admin/users.html:39
-msgid "Active Users"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/users.html:56
-msgid "Admin Users"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/users.html:73
-msgid "Available Roles"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/users.html:90
-msgid "Users List"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/users.html:92
-#: nath_standalone_flask_template/templates/admin/users.html:200
-msgid "Create User"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/users.html:100
-#: nath_standalone_flask_template/templates/admin/users.html:163
-#: nath_standalone_flask_template/templates/admin/users.html:219
-msgid "Username"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/users.html:101
-msgid "Name"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/users.html:102
+#: nath_standalone_flask_template/templates/admin/users.html:127
 #: nath_standalone_flask_template/templates/admin/users.html:179
-#: nath_standalone_flask_template/templates/admin/users.html:236
-msgid "Email"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/users.html:103
-#: nath_standalone_flask_template/templates/admin/users.html:137
-#: nath_standalone_flask_template/templates/admin/users.html:183
-#: nath_standalone_flask_template/templates/admin/users.html:277
 msgid "Roles"
-msgstr ""
+msgstr "Rôles"
 
-#: nath_standalone_flask_template/templates/admin/users.html:119
-msgid "No roles"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/users.html:126
+#: nath_standalone_flask_template/templates/admin/users.html:60
 msgid "Left"
-msgstr ""
+msgstr "Parti"
 
-#: nath_standalone_flask_template/templates/admin/users.html:128
+#: nath_standalone_flask_template/templates/admin/users.html:62
 msgid "Inactive"
-msgstr ""
+msgstr "Inactif"
 
-#: nath_standalone_flask_template/templates/admin/users.html:134
+#: nath_standalone_flask_template/templates/admin/users.html:69
 msgid "Edit"
-msgstr ""
+msgstr "Modifier"
 
-#: nath_standalone_flask_template/templates/admin/users.html:157
-msgid "Create New User"
-msgstr ""
+#: nath_standalone_flask_template/templates/admin/users.html:75
+msgid "Deactivate"
+msgstr "Désactiver"
 
-#: nath_standalone_flask_template/templates/admin/users.html:171
-#: nath_standalone_flask_template/templates/admin/users.html:228
-msgid "First Name"
-msgstr ""
+#: nath_standalone_flask_template/templates/admin/users.html:77
+msgid "Activate"
+msgstr "Activer"
 
-#: nath_standalone_flask_template/templates/admin/users.html:175
-#: nath_standalone_flask_template/templates/admin/users.html:232
-msgid "Last Name"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/users.html:189
-#: nath_standalone_flask_template/templates/admin/users.html:283
+#: nath_standalone_flask_template/templates/admin/users.html:133
+#: nath_standalone_flask_template/templates/admin/users.html:185
 msgid "Hold Ctrl/Cmd to select multiple roles"
-msgstr ""
+msgstr "Maintenez Ctrl/Cmd pour sélectionner plusieurs rôles"
 
-#: nath_standalone_flask_template/templates/admin/users.html:199
-#: nath_standalone_flask_template/templates/admin/users.html:253
-#: nath_standalone_flask_template/templates/admin/users.html:287
+#: nath_standalone_flask_template/templates/admin/users.html:137
+#: nath_standalone_flask_template/templates/admin/users.html:189
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
-#: nath_standalone_flask_template/templates/admin/users.html:212
+#: nath_standalone_flask_template/templates/admin/users.html:138
+msgid "Create User"
+msgstr "Créer l'Utilisateur"
+
+#: nath_standalone_flask_template/templates/admin/users.html:151
 msgid "Edit User"
-msgstr ""
+msgstr "Modifier l'Utilisateur"
 
-#: nath_standalone_flask_template/templates/admin/users.html:223
+#: nath_standalone_flask_template/templates/admin/users.html:162
 msgid "New Password"
-msgstr ""
+msgstr "Nouveau Mot de Passe"
 
-#: nath_standalone_flask_template/templates/admin/users.html:225
-msgid "Leave empty to keep current password"
-msgstr ""
+#: nath_standalone_flask_template/templates/admin/users.html:164
+msgid "Leave blank to keep current password"
+msgstr "Laisser vide pour conserver le mot de passe actuel"
 
-#: nath_standalone_flask_template/templates/admin/users.html:248
-msgid "Has Left"
-msgstr ""
-
-#: nath_standalone_flask_template/templates/admin/users.html:254
+#: nath_standalone_flask_template/templates/admin/users.html:190
 msgid "Update User"
-msgstr ""
+msgstr "Mettre à Jour l'Utilisateur"
 
-#: nath_standalone_flask_template/templates/admin/users.html:266
-msgid "Manage User Roles"
-msgstr ""
+#: nath_standalone_flask_template/templates/admin/users.html:235
+msgid "Failed to load user data"
+msgstr "Échec du chargement des données utilisateur"
 
-#: nath_standalone_flask_template/templates/admin/users.html:273
-msgid "User"
-msgstr ""
+#: nath_standalone_flask_template/templates/admin/users.html:246
+msgid "Are you sure you want to deactivate this user?"
+msgstr "Êtes-vous sûr de vouloir désactiver cet utilisateur ?"
 
-#: nath_standalone_flask_template/templates/admin/users.html:288
-msgid "Update Roles"
-msgstr ""
+#: nath_standalone_flask_template/templates/admin/users.html:246
+msgid "Are you sure you want to activate this user?"
+msgstr "Êtes-vous sûr de vouloir activer cet utilisateur ?"
+
+#: nath_standalone_flask_template/templates/admin/users.html:265
+#: nath_standalone_flask_template/templates/admin/users.html:270
+msgid "Failed to update user status"
+msgstr "Échec de la mise à jour du statut utilisateur"
 
 #: nath_standalone_flask_template/templates/dashboard/home.html:5
 msgid "Welcome to the Dashboard"
@@ -393,7 +382,7 @@ msgstr "Vue d'ensemble"
 #: nath_standalone_flask_template/templates/doc/index.html:90
 #: nath_standalone_flask_template/templates/doc/index.html:125
 msgid "User Management"
-msgstr "Gestion des utilinsfteurs"
+msgstr "Gestion des Utilisateurs"
 
 #: nath_standalone_flask_template/templates/doc/index.html:93
 #: nath_standalone_flask_template/templates/doc/index.html:136
@@ -419,8 +408,8 @@ msgid ""
 "This documentation provides information about the Nath Standalone Flask "
 "Template application, its features, and how to use it."
 msgstr ""
-"Cette documentation fournit des informations sur l'application Fair3r "
-"Custom Overlay, ses fonctionnalités et son utilinsftion."
+"Cette documentation fournit des informations sur l'application Nath "
+"Standalone Flask Template, ses fonctionnalités et son utilisation."
 
 #: nath_standalone_flask_template/templates/doc/index.html:118
 msgid "Note"
@@ -439,12 +428,12 @@ msgid ""
 "The application includes a comprehensive user management system with "
 "role-based permissions:"
 msgstr ""
-"L'application inclut un système complet de gestion des utilinsfteurs avec"
+"L'application inclut un système complet de gestion des utilisateurs avec"
 " des permissions basées sur les rôles :"
 
 #: nath_standalone_flask_template/templates/doc/index.html:128
 msgid "User authentication and authorization"
-msgstr "Authentification et autorinsftion des utilinsfteurs"
+msgstr "Authentification et autorisation des utilisateurs"
 
 #: nath_standalone_flask_template/templates/doc/index.html:129
 msgid "Role-based access control"
@@ -510,171 +499,72 @@ msgstr "Ansible pour le déploiement en production"
 msgid "CI/CD pipeline integration"
 msgstr "Intégration de la chaîne CI/CD"
 
-#: nath_standalone_flask_template/templates/base.html:69
-msgid "Users"
-msgstr "Utilisateurs"
+#~ msgid "Total Users"
+#~ msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/users.html:6
-msgid "Users Management"
-msgstr "Gestion des Utilisateurs"
+#~ msgid "Active Users"
+#~ msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/users.html:13
-msgid "Create New User"
-msgstr "Créer un Nouvel Utilisateur"
+#~ msgid "Admin Users"
+#~ msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/users.html:20
-msgid "Users List"
-msgstr "Liste des Utilisateurs"
+#~ msgid "Available Roles"
+#~ msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/users.html:25
-msgid "Username"
-msgstr "Nom d'utilisateur"
+#~ msgid "Name"
+#~ msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/users.html:26
-msgid "First Name"
-msgstr "Prénom"
+#~ msgid "No roles"
+#~ msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/users.html:27
-msgid "Last Name"
-msgstr "Nom de famille"
+#~ msgid "Leave empty to keep current password"
+#~ msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/users.html:28
-msgid "Email"
-msgstr "Email"
+#~ msgid "Has Left"
+#~ msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/users.html:29
-msgid "Roles"
-msgstr "Rôles"
+#~ msgid "Manage User Roles"
+#~ msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/users.html:30
-msgid "Status"
-msgstr "Statut"
+#~ msgid "User"
+#~ msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/users.html:31
-msgid "Actions"
-msgstr "Actions"
+#~ msgid "Update Roles"
+#~ msgstr ""
 
-#: nath_standalone_flask_template/templates/admin/users.html:50
-msgid "Active"
-msgstr "Actif"
+#~ msgid "Username and password are required."
+#~ msgstr "Le nom d'utilisateur et le mot de passe sont requis."
 
-#: nath_standalone_flask_template/templates/admin/users.html:52
-msgid "Left"
-msgstr "Parti"
+#~ msgid "Username already exists."
+#~ msgstr "Le nom d'utilisateur existe déjà."
 
-#: nath_standalone_flask_template/templates/admin/users.html:54
-msgid "Inactive"
-msgstr "Inactif"
+#~ msgid "User created successfully."
+#~ msgstr "Utilisateur créé avec succès."
 
-#: nath_standalone_flask_template/templates/admin/users.html:58
-msgid "Edit"
-msgstr "Modifier"
+#~ msgid "Error creating user. Please try again."
+#~ msgstr "Erreur lors de la création de l'utilisateur. Veuillez réessayer."
 
-#: nath_standalone_flask_template/templates/admin/users.html:61
-msgid "Deactivate"
-msgstr "Désactiver"
+#~ msgid "User ID is required."
+#~ msgstr "L'ID utilisateur est requis."
 
-#: nath_standalone_flask_template/templates/admin/users.html:63
-msgid "Activate"
-msgstr "Activer"
+#~ msgid "User not found."
+#~ msgstr "Utilisateur non trouvé."
 
-#: nath_standalone_flask_template/templates/admin/users.html:75
-msgid "Create New User"
-msgstr "Créer un Nouvel Utilisateur"
+#~ msgid "Username is required."
+#~ msgstr "Le nom d'utilisateur est requis."
 
-#: nath_standalone_flask_template/templates/admin/users.html:80
-msgid "Password"
-msgstr "Mot de passe"
+#~ msgid "User updated successfully."
+#~ msgstr "Utilisateur mis à jour avec succès."
 
-#: nath_standalone_flask_template/templates/admin/users.html:95
-msgid "Hold Ctrl/Cmd to select multiple roles"
-msgstr "Maintenez Ctrl/Cmd pour sélectionner plusieurs rôles"
+#~ msgid "Error updating user. Please try again."
+#~ msgstr "Erreur lors de la mise à jour de l'utilisateur. Veuillez réessayer."
 
-#: nath_standalone_flask_template/templates/admin/users.html:100
-msgid "Cancel"
-msgstr "Annuler"
+#~ msgid "Error loading users data. Please check database connection."
+#~ msgstr ""
+#~ "Erreur lors du chargement des données"
+#~ " utilisateur. Veuillez vérifier la "
+#~ "connexion à la base de données."
 
-#: nath_standalone_flask_template/templates/admin/users.html:101
-msgid "Create User"
-msgstr "Créer l'Utilisateur"
-
-#: nath_standalone_flask_template/templates/admin/users.html:108
-msgid "Edit User"
-msgstr "Modifier l'Utilisateur"
-
-#: nath_standalone_flask_template/templates/admin/users.html:115
-msgid "New Password"
-msgstr "Nouveau Mot de passe"
-
-#: nath_standalone_flask_template/templates/admin/users.html:116
-msgid "Leave blank to keep current password"
-msgstr "Laisser vide pour conserver le mot de passe actuel"
-
-#: nath_standalone_flask_template/templates/admin/users.html:140
-msgid "Update User"
-msgstr "Mettre à jour l'Utilisateur"
-
-#: nath_standalone_flask_template/blueprints/admin.py:264
-msgid "Username and password are required."
-msgstr "Le nom d'utilisateur et le mot de passe sont requis."
-
-#: nath_standalone_flask_template/blueprints/admin.py:269
-msgid "Username already exists."
-msgstr "Le nom d'utilisateur existe déjà."
-
-#: nath_standalone_flask_template/blueprints/admin.py:296
-msgid "User created successfully."
-msgstr "Utilisateur créé avec succès."
-
-#: nath_standalone_flask_template/blueprints/admin.py:300
-msgid "Error creating user. Please try again."
-msgstr "Erreur lors de la création de l'utilisateur. Veuillez réessayer."
-
-#: nath_standalone_flask_template/blueprints/admin.py:321
-msgid "User ID is required."
-msgstr "L'ID utilisateur est requis."
-
-#: nath_standalone_flask_template/blueprints/admin.py:325
-msgid "User not found."
-msgstr "Utilisateur non trouvé."
-
-#: nath_standalone_flask_template/blueprints/admin.py:331
-msgid "Username is required."
-msgstr "Le nom d'utilisateur est requis."
-
-#: nath_standalone_flask_template/blueprints/admin.py:336
-msgid "Username already exists."
-msgstr "Le nom d'utilisateur existe déjà."
-
-#: nath_standalone_flask_template/blueprints/admin.py:361
-msgid "User updated successfully."
-msgstr "Utilisateur mis à jour avec succès."
-
-#: nath_standalone_flask_template/blueprints/admin.py:365
-msgid "Error updating user. Please try again."
-msgstr "Erreur lors de la mise à jour de l'utilisateur. Veuillez réessayer."
-
-#: nath_standalone_flask_template/blueprints/admin.py:243
-msgid "Error loading users data. Please check database connection."
-msgstr "Erreur lors du chargement des données utilisateur. Veuillez vérifier la connexion à la base de données."
-
-#: nath_standalone_flask_template/templates/admin/users.html:200
-msgid "Failed to load user data"
-msgstr "Échec du chargement des données utilisateur"
-
-#: nath_standalone_flask_template/templates/admin/users.html:210
-msgid "Are you sure you want to deactivate this user?"
-msgstr "Êtes-vous sûr de vouloir désactiver cet utilisateur ?"
-
-#: nath_standalone_flask_template/templates/admin/users.html:210
-msgid "Are you sure you want to activate this user?"
-msgstr "Êtes-vous sûr de vouloir activer cet utilisateur ?"
-
-#: nath_standalone_flask_template/templates/admin/users.html:220
-msgid "Failed to update user status"
-msgstr "Échec de la mise à jour du statut utilisateur"
-
-#: nath_standalone_flask_template/models/user.py:88
-msgid "Password hashing uses secure PBKDF2 with SHA256"
-msgstr "Le hachage des mots de passe utilise PBKDF2 sécurisé avec SHA256"
+#~ msgid "Password hashing uses secure PBKDF2 with SHA256"
+#~ msgstr "Le hachage des mots de passe utilise PBKDF2 sécurisé avec SHA256"
 
