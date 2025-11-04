@@ -30,6 +30,25 @@ print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
+# Cross-platform sed -i helper (GNU/BSD)
+sed_inplace() {
+    # Usage: sed_inplace 's/old/new/g' file
+    if sed --version >/dev/null 2>&1; then
+        sed -i "$1" "$2"
+    else
+        sed -i '' "$1" "$2"
+    fi
+}
+
+# Title-case converter using python3 for portability
+to_title_case() {
+    python3 - "$1" <<'PY'
+import sys, string
+s = sys.argv[1]
+print(string.capwords(s.replace('-', ' ')))
+PY
+}
+
 # Function to validate input
 validate_input() {
     local input="$1"
@@ -87,8 +106,8 @@ main() {
     local new_name_underscore=$(echo "$new_name" | tr '-' '_')
     local old_name_upper=$(echo "$old_name_underscore" | tr '[:lower:]' '[:upper:]')
     local new_name_upper=$(echo "$new_name_underscore" | tr '[:lower:]' '[:upper:]')
-    local old_name_title=$(echo "$old_name" | sed 's/-/ /g' | sed 's/\b\w/\U&/g')
-    local new_name_title=$(echo "$new_name" | sed 's/-/ /g' | sed 's/\b\w/\U&/g')
+    local old_name_title=$(to_title_case "$old_name")
+    local new_name_title=$(to_title_case "$new_name")
     
     echo ""
     echo "=========================================="
@@ -125,23 +144,38 @@ main() {
     
     # Step 1: Replace content in all text files
     print_info "Replacing content in files..."
-    local files=$(find . -type f 2>/dev/null | grep -v "/.git/" | grep -v "/backup_" | grep -v "/node_modules/" | grep -v "/__pycache__/" | grep -v "/.pytest_cache/" | grep -v "/.coverage" | grep -v "/.DS_Store" | grep -v "/Thumbs.db" | sort)
+    local files=$(find . \
+        \( -path "./.git" -o -path "./.git/*" -o \
+           -path "./node_modules" -o -path "./node_modules/*" -o \
+           -path "./__pycache__" -o -path "./**/__pycache__" -o \
+           -path "./.pytest_cache" -o -path "./.pytest_cache/*" -o \
+           -name "backup_*" -o -path "./backup_*/*" -o \
+           -name ".DS_Store" -o -name "Thumbs.db" -o \
+           -name ".coverage" \) -prune -o \
+        -type f -print 2>/dev/null | sort)
     
     echo "$files" | while read -r file; do
-        if [[ -f "$file" ]] && file "$file" | grep -q "text\|empty"; then
+        if [[ -f "$file" ]] && file "$file" | grep -Eq 'text|empty'; then
             # Replace all variations in file content
-            sed -i "s/$old_short/$new_short/g" "$file" 2>/dev/null || true
-            sed -i "s/$old_name/$new_name/g" "$file" 2>/dev/null || true
-            sed -i "s/$old_name_underscore/$new_name_underscore/g" "$file" 2>/dev/null || true
-            sed -i "s/$old_name_upper/$new_name_upper/g" "$file" 2>/dev/null || true
-            sed -i "s/$old_name_title/$new_name_title/g" "$file" 2>/dev/null || true
+            sed_inplace "s/$old_short/$new_short/g" "$file" 2>/dev/null || true
+            sed_inplace "s/$old_name/$new_name/g" "$file" 2>/dev/null || true
+            sed_inplace "s/$old_name_underscore/$new_name_underscore/g" "$file" 2>/dev/null || true
+            sed_inplace "s/$old_name_upper/$new_name_upper/g" "$file" 2>/dev/null || true
+            sed_inplace "s/$old_name_title/$new_name_title/g" "$file" 2>/dev/null || true
         fi
     done
     print_success "Content replacement completed"
     
     # Step 2: Rename files and directories
     print_info "Renaming files and directories..."
-    local items_to_rename=$(find . -name "*$old_short*" -o -name "*$old_name*" -o -name "*$old_name_underscore*" -o -name "*$old_name_title*" 2>/dev/null | grep -v "/.git/" | grep -v "/backup_" | grep -v "/node_modules/" | grep -v "/__pycache__/" | grep -v "/.pytest_cache/" | sort -r)
+    local items_to_rename=$(find . \
+        \( -path "./.git" -o -path "./.git/*" -o \
+           -path "./node_modules" -o -path "./node_modules/*" -o \
+           -path "./__pycache__" -o -path "./**/__pycache__" -o \
+           -path "./.pytest_cache" -o -path "./.pytest_cache/*" -o \
+           -name "backup_*" -o -path "./backup_*/*" \) -prune -o \
+        \( -name "*$old_short*" -o -name "*$old_name*" -o -name "*$old_name_underscore*" -o -name "*$old_name_title*" \) \
+        -print 2>/dev/null | sort -r)
     
     echo "$items_to_rename" | while read -r item; do
         if [[ -e "$item" ]]; then
