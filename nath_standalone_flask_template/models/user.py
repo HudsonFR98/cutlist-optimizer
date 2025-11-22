@@ -66,7 +66,7 @@ class User(Base, UserMixin):
     
     id = Column(Integer, primary_key=True)
     ide = Column(String(50), unique=True, nullable=False)  # Username
-    pwd = Column(String(128), nullable=False)  # Hashed password
+    pwd = Column(String(255), nullable=False)  # Hashed password
     first_name = Column(String(50))
     last_name = Column(String(50))
     email = Column(String(100))

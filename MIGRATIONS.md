@@ -22,7 +22,7 @@ When you make changes to your models (add/modify/remove tables, columns, etc.), 
 
 3. Generate a new migration script:
    ```bash
-   NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev DB_IP=nsft_db_dev alembic revision --autogenerate -m "Description of your changes"
+   NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev DB_IP=nsft_db_dev /opt/env3/nath_standalone_flask_template/bin/alembic revision --autogenerate -m "Description of your changes"
    ```
 
    This command will:
@@ -48,7 +48,7 @@ Migrations are automatically applied when the application container starts, than
 
 3. Apply all pending migrations:
    ```bash
-   NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev DB_IP=nsft_db_dev alembic upgrade head
+   NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev DB_IP=nsft_db_dev /opt/env3/nath_standalone_flask_template/bin/alembic upgrade head
    ```
 
 ## Initial Database Setup
@@ -84,7 +84,7 @@ If you encounter issues with migrations:
    ```bash
    docker exec -it nsft_app_dev bash
    cd /opt/nath-standalone-flask-template
-   NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev DB_IP=nsft_db_dev alembic upgrade head --verbose
+   NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev DB_IP=nsft_db_dev /opt/env3/nath_standalone_flask_template/bin/alembic upgrade head --verbose
    ```
 
 ## Best Practices
