@@ -9,17 +9,8 @@
     - "{{ container_name }}"
     - "{{ nginx_container_name }}"
     - "{{ redis_container_name }}"
-  ignore_errors: yes
-
-- name: Stop and remove database and redis containers (only for deploy action)
-  docker_container:
-    name: "{{ item }}"
-    state: absent
-  with_items:
     - "{{ db_container_name }}"
-    - "{{ redis_container_name }}"
   ignore_errors: yes
-  when: action == 'deploy'
 
 - name: Create Docker network
   community.docker.docker_network:
@@ -49,7 +40,7 @@
       POSTGRES_PASSWORD: nsft2025_x
       POSTGRES_DB: postgres
     volumes:
-      - /opt/nath_standalone_flask_template_data/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - /opt/nath_standalone_flask_template_data/postgresql/15/main:/var/lib/postgresql/data
       - /opt/nath_standalone_flask_template_data/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
     command: postgres -c 'max_connections=100'
     networks:
@@ -59,7 +50,6 @@
       interval: 5s
       timeout: 5s
       retries: 5
-  when: action == 'deploy'
 
 - name: Wait for database container to be healthy
   docker_container_info:
@@ -68,7 +58,6 @@
   until: db_info.container.State.Health.Status == "healthy"
   retries: 10
   delay: 3
-  when: action == 'deploy'
 
 - name: Pull Redis Docker image
   docker_image:
@@ -102,12 +91,11 @@
   docker_container_info:
     name: "{{ db_container_name }}"
   register: db_container_info
-  when: action == 'update'
 
 - name: Fail if database container is not running during update
   fail:
     msg: "Database container '{{ db_container_name }}' is not running. Please ensure it exists and is healthy before updating."
-  when: action == 'update' and (db_container_info.exists is not defined or not db_container_info.exists or db_container_info.container.State.Status != 'running')
+  when: (db_container_info.exists is not defined or not db_container_info.exists or db_container_info.container.State.Status != 'running')
 
 - name: Wait for existing database container to be healthy (for updates)
   docker_container_info:
@@ -116,7 +104,6 @@
   until: db_info.container.State.Health.Status == "healthy"
   retries: 10
   delay: 3
-  when: action == 'update'
 
 - name: Pull Docker image
   docker_image:
@@ -138,7 +125,7 @@
     volumes:
       - /var/log/nath_standalone_flask_template:/var/log/nath_standalone_flask_template
       - /opt/nath_standalone_flask_template_data:/opt/nath_standalone_flask_template_data
-      - /var/backup:/var/backup
+      - /var/backups/nath_standalone_flask_template:/var/backup
     networks:
       - name: "{{ network_name }}"
     network_mode: bridge

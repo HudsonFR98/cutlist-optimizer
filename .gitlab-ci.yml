@@ -133,25 +133,6 @@ deploy_demo:
   tags:
     - docker-runner
 
-update_demo:
-  stage: demo
-  <<: *ssh_setup_template
-  variables:
-    SSH_HOST: serv-nsft-d-01
-    BUILD_DATE: $CI_PIPELINE_CREATED_AT
-  script:
-    - python3 deploy/ansible_deploy.py --action update --env demo --docker-image $DOCKER_IMAGE --docker-registry $CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX --registry-username $CI_REGISTRY_USER --registry-password $CI_REGISTRY_PASSWORD --container-registry-server $CI_REGISTRY --dependency-proxy-server $CI_DEPENDENCY_PROXY_SERVER --dependency-proxy-username $CI_DEPENDENCY_PROXY_USER --dependency-proxy-password $CI_DEPENDENCY_PROXY_PASSWORD
-  when: manual
-  environment:
-    name: staging
-    url: http://serv-nsft-d-01:8080/
-  needs:
-    - build_docker
-    - pytest
-  when: manual
-  tags:
-    - docker-runner
-
 deploy_prod:
   stage: prod
   <<: *ssh_setup_template
@@ -160,23 +141,6 @@ deploy_prod:
     BUILD_DATE: $CI_PIPELINE_CREATED_AT
   script:
     - python3 deploy/ansible_deploy.py --action deploy --env prod --docker-image $DOCKER_IMAGE --docker-registry $CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX --registry-username $CI_REGISTRY_USER --registry-password $CI_REGISTRY_PASSWORD --container-registry-server $CI_REGISTRY --dependency-proxy-server $CI_DEPENDENCY_PROXY_SERVER --dependency-proxy-username $CI_DEPENDENCY_PROXY_USER --dependency-proxy-password $CI_DEPENDENCY_PROXY_PASSWORD
-  when: manual
-  environment:
-    name: prod
-    url: http://nath-server.local:8080/
-  needs:
-    - build_docker #could also need pytest
-  tags:
-    - docker-runner
-
-update_prod:
-  stage: prod
-  <<: *ssh_setup_template
-  variables:
-    SSH_HOST: nath-server.local
-    BUILD_DATE: $CI_PIPELINE_CREATED_AT
-  script:
-    - python3 deploy/ansible_deploy.py --action update --env prod --docker-image $DOCKER_IMAGE --docker-registry $CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX --registry-username $CI_REGISTRY_USER --registry-password $CI_REGISTRY_PASSWORD --container-registry-server $CI_REGISTRY --dependency-proxy-server $CI_DEPENDENCY_PROXY_SERVER --dependency-proxy-username $CI_DEPENDENCY_PROXY_USER --dependency-proxy-password $CI_DEPENDENCY_PROXY_PASSWORD
   when: manual
   environment:
     name: prod

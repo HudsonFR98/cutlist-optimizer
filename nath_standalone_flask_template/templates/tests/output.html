@@ -10,14 +10,14 @@
                 </div>
                 <div class="card-body">
                     {% if has_output %}
-                        <div class="test-output-container">
-                            <pre class="test-output">{{ test_output }}</pre>
-                        </div>
+                    <div class="test-output-container">
+                        <pre class="test-output">{{ test_output }}</pre>
+                    </div>
                     {% else %}
-                        <div class="alert alert-info">
-                            <i class="fas fa-info-circle"></i>
-                            {{ test_output }}
-                        </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        {{ test_output }}
+                    </div>
                     {% endif %}
                 </div>
             </div>
@@ -25,5 +25,3 @@
     </div>
 </div>
 {% endblock %}
-
-{% endblock %} 

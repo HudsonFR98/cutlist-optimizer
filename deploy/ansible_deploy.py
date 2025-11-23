@@ -6,7 +6,7 @@ import sys
 
 def main():
     parser = argparse.ArgumentParser(description='Deploy nath_standalone_flask_template using Ansible')
-    parser.add_argument('--action', choices=['deploy', 'update'], required=True, help='Action to perform')
+    parser.add_argument('--action', choices=['deploy'], default='deploy', help='Action to perform (default: deploy)')
     parser.add_argument('--env', choices=['test', 'demo', 'prod'], required=True, help='Environment to deploy to')
     parser.add_argument('--docker-image', required=True, help='Docker image to deploy')
     parser.add_argument('--docker-registry', default='registry.gitlab.com', help='Docker registry')

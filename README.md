@@ -55,7 +55,9 @@ The script automatically handles all name variations:
 - **Application**: Flask app on port 8080 (container: `nsft_app_dev`)
 - **Redis**: Redis on port 6380 (container: `nsft_redis_dev`)
 - **Network**: `nsft_network_dev`
-- **Logs**: Stored in `./logs/` directory
+- **Logs**: Stored in `/var/log/nath_standalone_flask_template/` directory
+- **Backups**: Stored in `/var/backups/nath_standalone_flask_template/` directory
+- **Database Data**: Stored in `/opt/nath_standalone_flask_template_data/postgresql/15/main/` directory
 - **User**: Container runs as UID 1000 for proper file permissions
 
 
@@ -97,7 +99,7 @@ If you need to reset all development data (for example, after changing the datab
 - If you change the password, update it everywhere (see `docker-compose.yml`, `.gitlab-ci.yml`, `nath_standalone_flask_template/lib/_config.py`, and deployment scripts).
 
 ### Restoring Database from Backup
-If you need to restore your development database from a backup file in the `backups` directory:
+If you need to restore your development database from a backup file in the `/var/backups/nath_standalone_flask_template/` directory:
 
 1. **Stop your application container to prevent data corruption:**
    ```bash
@@ -127,12 +129,12 @@ If you need to restore your development database from a backup file in the `back
 
 6. **Restore from your chosen backup file. For example, to restore from the most recent backup:**
    ```bash
-   docker exec -i nsft_db_dev psql -U web -d nsft < backups/nsft_backup_YYYYMMDD_HHMMSS.sql
+   docker exec -i sat_db_dev psql -U web -d sat < /var/backups/nath_standalone_flask_template/sat_backup_YYYYMMDD_HHMMSS.sql
    ```
 
    Or if you want to restore to the `postgres` database (which is the default):
    ```bash
-   docker exec -i nsft_db_dev psql -U web -d postgres < backups/nsft_backup_YYYYMMDD_HHMMSS.sql
+   docker exec -i nsft_db_dev psql -U web -d postgres < /var/backups/nath_standalone_flask_template/nsft_backup_YYYYMMDD_HHMMSS.sql
    ```
 
 7. **Start your application container:**
