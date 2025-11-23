@@ -19,6 +19,7 @@ def before_request():
 
     g.user = current_user
     if current_user.is_authenticated:
+        log.debug(f"User authenticated: {current_user.ide}")
         current_user.reload_permissions()
 
 
