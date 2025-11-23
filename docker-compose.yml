@@ -1,3 +1,6 @@
+# Docker Compose file format version 3.8 for compatibility with Docker Compose 2.35.1
+version: '3.8'
+
 services:
   app:
     build: .
@@ -29,6 +32,7 @@ services:
       - POSTGRES_DB=postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./nath_standalone_flask_template/tests/reset.sql:/docker-entrypoint-initdb.d/init.sql:ro
       - ./deploy/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
     ports:
       - "5433:5432"
@@ -63,8 +67,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /var/log/nath_standalone_flask_template
+      device: ./logs
   backup_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./backups
 networks:
   nsft_network_dev:
     driver: bridge
