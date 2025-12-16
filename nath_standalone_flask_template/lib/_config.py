@@ -111,7 +111,7 @@ class Config(object):
     - When HTTPS is enabled, update SESSION_COOKIE_SECURE to True
     """
 
-    EMAIL_DEV = 'debannen@igbmc.fr'
+    EMAIL_DEV = 'natha.debanne@gmail.com'
     SETTINGS = None
     STATIC_URI = '/static'
     SECRET_KEY = 'rzfrfr55eeee85s6zzjkncw###hjciksd'
@@ -122,11 +122,11 @@ class Config(object):
     TELEGRAM_CHAT_ID = "6440591299"
 
     # (Legacy) Email settings kept for backward compatibility, no longer used for errors
-    ERROR_EMAIL_FROM = 'ics@igbmc.fr'
+    ERROR_EMAIL_FROM = ''
     ERROR_EMAIL_TO = EMAIL_DEV
-    ERROR_EMAIL_SMTP_SERVER = 'serv-hub.igbmc.u-strasbg.fr'
-    ERROR_EMAIL_SMTP_USER = 'nath'
-    ERROR_EMAIL_SMTP_PASSWORD = 'icsdev#67'
+    ERROR_EMAIL_SMTP_SERVER = ''
+    ERROR_EMAIL_SMTP_USER = ''
+    ERROR_EMAIL_SMTP_PASSWORD = ''
     ERROR_EMAIL_SMTP_PORT = 587  # Standard SMTP port, adjust if needed
 
     # Session configuration (base settings, overridden by environment classes)
