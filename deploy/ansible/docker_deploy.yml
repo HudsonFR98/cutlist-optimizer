@@ -1,7 +1,7 @@
 ---
-# Ansible playbook to deploy nath_standalone_flask_template using Docker
+# Ansible playbook to deploy cutlist_optimizer using Docker
 
-- name: Deploy nath_standalone_flask_template using Docker
+- name: Deploy cutlist_optimizer using Docker
   hosts: "{{ target_host }}"
   remote_user: nath
   become: yes
@@ -9,7 +9,7 @@
     action: "{{ action | default('deploy') }}"
     context: "{{ context | default('demo') }}"
     docker_image: "{{ docker_image }}"
-    app_name: "nsft"  # Short name for nath_standalone_flask_template
+    app_name: "cutopt"  # Short name for cutlist_optimizer
     container_name: "{{ app_name }}_app_{{ context }}"
     nginx_container_name: "{{ app_name }}_nginx_{{ context }}"
     db_container_name: "{{ app_name }}_db_{{ context }}"

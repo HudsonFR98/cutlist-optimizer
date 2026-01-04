@@ -5,7 +5,7 @@ import os
 import sys
 
 def main():
-    parser = argparse.ArgumentParser(description='Deploy nath_standalone_flask_template using Ansible')
+    parser = argparse.ArgumentParser(description='Deploy cutlist_optimizer using Ansible')
     parser.add_argument('--action', choices=['deploy', 'update'], required=True, help='Action to perform')
     parser.add_argument('--env', choices=['test', 'demo', 'prod'], required=True, help='Environment to deploy to')
     parser.add_argument('--docker-image', required=True, help='Docker image to deploy')

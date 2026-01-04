@@ -43,14 +43,14 @@
     state: started
     restart_policy: always
     ports:
-      - "5433:5432"
+      - "5437:5432"
     env:
       POSTGRES_USER: web
-      POSTGRES_PASSWORD: nsft2025_x
+      POSTGRES_PASSWORD: cutopt2025_x
       POSTGRES_DB: postgres
     volumes:
-      - /opt/nath_standalone_flask_template_data/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
-      - /opt/nath_standalone_flask_template_data/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
+      - /opt/cutlist_optimizer_data/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - /opt/cutlist_optimizer_data/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
     command: postgres -c 'max_connections=100'
     networks:
       - name: "{{ network_name }}"
@@ -132,12 +132,12 @@
     restart_policy: always
     # No external port mapping - only accessible via Nginx
     env:
-      NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT: "{{ context }}"
+      CUTLIST_OPTIMIZER_CONTEXT: "{{ context }}"
       DB_IP: "{{ db_container_name }}"
       BUILD_DATE: "{{ ansible_date_time.iso8601 | regex_replace('T', '.') | regex_replace(':', '.') | regex_replace('-', '.') | regex_replace('Z', '') }}"
     volumes:
-      - /var/log/nath_standalone_flask_template:/var/log/nath_standalone_flask_template
-      - /opt/nath_standalone_flask_template_data:/opt/nath_standalone_flask_template_data
+      - /var/log/cutlist_optimizer:/var/log/cutlist_optimizer
+      - /opt/cutlist_optimizer_data:/opt/cutlist_optimizer_data
       - /var/backup:/var/backup
     networks:
       - name: "{{ network_name }}"
@@ -169,7 +169,7 @@
     ports:
       - "8128:8128"
     volumes:
-      - /opt/nath_standalone_flask_template_data/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /opt/cutlist_optimizer_data/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - /var/log/nginx:/var/log/nginx
     networks:
       - name: "{{ network_name }}" 

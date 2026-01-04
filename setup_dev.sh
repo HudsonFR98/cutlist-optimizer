@@ -8,8 +8,8 @@ mkdir -p logs
 chmod 775 logs
 mkdir -p backups
 chmod 775 backups
-touch logs/nath_standalone_flask_template.log
-chmod 664 logs/nath_standalone_flask_template.log
+touch logs/cutlist_optimizer.log
+chmod 664 logs/cutlist_optimizer.log
 
 # Set ownership to match the container user (UID 1000)
 if command -v sudo >/dev/null 2>&1; then

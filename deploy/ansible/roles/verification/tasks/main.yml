@@ -3,7 +3,7 @@
 
 - name: Verify network connectivity
   shell: |
-    docker exec {{ container_name }} curl -I http://{{ db_container_name }}:5433
+    docker exec {{ container_name }} curl -I http://{{ db_container_name }}:5437
   register: curl_result
   changed_when: false
   failed_when: false
@@ -12,9 +12,9 @@
   community.docker.docker_container_exec:
     container: "{{ container_name }}"
     command: >
-      bash -c "NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=test DB_IP={{ db_container_name }}
-      /opt/env3/nath_standalone_flask_template/bin/python
-      nath_standalone_flask_template/tests/run_tests.py"
+      bash -c "CUTLIST_OPTIMIZER_CONTEXT=test DB_IP={{ db_container_name }}
+      /opt/env3/cutlist_optimizer/bin/python
+      cutlist_optimizer/tests/run_tests.py"
   register: pytest_result
   when: context == 'test'
 

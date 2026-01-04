@@ -2,7 +2,7 @@
 .pytest_cache
 .vscode
 .coverage
-nath_standalone_flask_template.egg-info
+cutlist_optimizer.egg-info
 data
 celerybeat-schedule
 syntax: glob

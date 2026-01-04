@@ -4,38 +4,38 @@ version: '3.8'
 services:
   app:
     build: .
-    container_name: nsft_app_dev
+    container_name: cutopt_app_dev
     ports:
-      - "8080:8080"
+      - "8084:8080"
     environment:
-      - NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev
-      - DB_IP=nsft_db_dev
+      - CUTLIST_OPTIMIZER_CONTEXT=dev
+      - DB_IP=cutopt_db_dev
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_healthy
     volumes:
-      - ./:/opt/nath_standalone_flask_template:cached
-      - app_logs:/var/log/nath_standalone_flask_template
-      - backup_data:/var/backup
+      - ./:/opt/cutlist_optimizer:cached
+      - app_logs:/var/log/cutlist_optimizer
+      - ./backups:/var/backup
     restart: always
     networks:
-      - nsft_network_dev
+      - cutopt_network_dev
 
   db:
     image: postgres:15
-    container_name: nsft_db_dev
+    container_name: cutopt_db_dev
     environment:
       - POSTGRES_USER=web
-      - POSTGRES_PASSWORD=nsft2025_x
+      - POSTGRES_PASSWORD=cutopt2025_x
       - POSTGRES_DB=postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./nath_standalone_flask_template/tests/reset.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./cutlist_optimizer/tests/reset.sql:/docker-entrypoint-initdb.d/init.sql:ro
       - ./deploy/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
     ports:
-      - "5433:5432"
+      - "5437:5432"
     restart: always
     command: postgres -c 'max_connections=100'
     healthcheck:
@@ -44,13 +44,13 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - nsft_network_dev
+      - cutopt_network_dev
 
   redis:
     image: redis:7-alpine
-    container_name: nsft_redis_dev
+    container_name: cutopt_redis_dev
     ports:
-      - "6380:6379"
+      - "6382:6379"
     restart: always
     healthcheck:
       test: [ "CMD", "redis-cli", "ping" ]
@@ -58,7 +58,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - nsft_network_dev
+      - cutopt_network_dev
 
 volumes:
   postgres_data:
@@ -68,12 +68,6 @@ volumes:
       type: none
       o: bind
       device: ./logs
-  backup_data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./backups
 networks:
-  nsft_network_dev:
+  cutopt_network_dev:
     driver: bridge

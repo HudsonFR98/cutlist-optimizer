@@ -1,8 +1,8 @@
-NATH_STANDALONE_FLASK_TEMPLATE
+CUTLIST_OPTIMIZER
 ============================
 
 
-# Technical documentation for the Nath Standalone Flask Template Application
+# Technical documentation for the Cutlist Optimizer Application
 
 The application's CI/CD pipeline is organized through GitLab CI/CD, with distinct stages for different environments. Here's a step-by-step breakdown of how it works:
 
@@ -21,15 +21,15 @@ If you're starting a new project based on this template, you'll want to rename t
 ```
 
 The script will prompt you for:
-- **Old names**: The current template names (e.g., `nsft`, `nath-standalone-flask-template`)
+- **Old names**: The current template names (e.g., `cutopt`, `cutlist-optimizer`)
 - **New names**: Your desired project names (e.g., `myapp`, `my-awesome-application`)
 
 The script automatically handles all name variations:
-- Short name: `nsft` → `myapp`
-- Full name with hyphens: `nath-standalone-flask-template` → `my-awesome-application`
-- Full name with underscores: `nath_standalone_flask_template` → `my_awesome_application`
-- Full name in uppercase: `NATH_STANDALONE_FLASK_TEMPLATE` → `MY_AWESOME_APPLICATION`
-- Full name in title case: `Nath Standalone Flask Template` → `My Awesome Application`
+- Short name: `cutopt` → `myapp`
+- Full name with hyphens: `cutlist-optimizer` → `my-awesome-application`
+- Full name with underscores: `cutlist_optimizer` → `my_awesome_application`
+- Full name in uppercase: `CUTLIST_OPTIMIZER` → `MY_AWESOME_APPLICATION`
+- Full name in title case: `Cutlist Optimizer` → `My Awesome Application`
 
 **Important:** Run this script before making any other changes to the project, as it will rename the entire application structure.
 
@@ -51,10 +51,10 @@ The script automatically handles all name variations:
 
 
 ### Development Environment Details
-- **Database**: PostgreSQL 15 on port 5433 (container: `nsft_db_dev`)
-- **Application**: Flask app on port 8080 (container: `nsft_app_dev`)
-- **Redis**: Redis on port 6380 (container: `nsft_redis_dev`)
-- **Network**: `nsft_network_dev`
+- **Database**: PostgreSQL 15 on port 5437 (container: `cutopt_db_dev`)
+- **Application**: Flask app on port 8080 (container: `cutopt_app_dev`)
+- **Redis**: Redis on port 6382 (container: `cutopt_redis_dev`)
+- **Network**: `cutopt_network_dev`
 - **Logs**: Stored in `./logs/` directory
 - **User**: Container runs as UID 1000 for proper file permissions
 
@@ -73,7 +73,7 @@ The script automatically handles all name variations:
 
 **Run test in development**
    ```
-   docker exec -it nsft_app_dev bash -c "NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev DB_IP=nsft_db_dev /opt/env3/nath_standalone_flask_template/bin/python nath_standalone_flask_template/tests/run_tests.py"
+   docker exec -it cutopt_app_dev bash -c "CUTLIST_OPTIMIZER_CONTEXT=dev DB_IP=cutopt_db_dev /opt/env3/cutlist_optimizer/bin/python cutlist_optimizer/tests/run_tests.py"
    ```
 
 ### Resetting Development Database or Changing Database Password
@@ -94,7 +94,7 @@ If you need to reset all development data (for example, after changing the datab
 **Note:**
 - The database password is set in `docker-compose.yml` under the `POSTGRES_PASSWORD` environment variable for the `db` service.
 - The application and all configuration files must use the same password as set in the database container.
-- If you change the password, update it everywhere (see `docker-compose.yml`, `.gitlab-ci.yml`, `nath_standalone_flask_template/lib/_config.py`, and deployment scripts).
+- If you change the password, update it everywhere (see `docker-compose.yml`, `.gitlab-ci.yml`, `cutlist_optimizer/lib/_config.py`, and deployment scripts).
 
 ### Restoring Database from Backup
 If you need to restore your development database from a backup file in the `backups` directory:
@@ -112,7 +112,7 @@ If you need to restore your development database from a backup file in the `back
 
 3. **Remove the database volume to ensure a clean restore:**
    ```bash
-   docker volume rm nath-standalone-flask-template_postgres_data
+   docker volume rm cutlist-optimizer_postgres_data
    ```
 
 4. **Start the database container fresh:**
@@ -127,12 +127,12 @@ If you need to restore your development database from a backup file in the `back
 
 6. **Restore from your chosen backup file. For example, to restore from the most recent backup:**
    ```bash
-   docker exec -i nsft_db_dev psql -U web -d nsft < backups/nsft_backup_YYYYMMDD_HHMMSS.sql
+   docker exec -i cutopt_db_dev psql -U web -d cutopt < backups/cutopt_backup_YYYYMMDD_HHMMSS.sql
    ```
 
    Or if you want to restore to the `postgres` database (which is the default):
    ```bash
-   docker exec -i nsft_db_dev psql -U web -d postgres < backups/nsft_backup_YYYYMMDD_HHMMSS.sql
+   docker exec -i cutopt_db_dev psql -U web -d postgres < backups/cutopt_backup_YYYYMMDD_HHMMSS.sql
    ```
 
 7. **Start your application container:**
@@ -145,7 +145,7 @@ If you need to restore your development database from a backup file in the `back
 
 The application uses a consolidated testing approach with organized, easily editable test data.
 
-Test data is organized in the `nath_standalone_flask_template/tests/fixtures/` directory
+Test data is organized in the `cutlist_optimizer/tests/fixtures/` directory
 
 ### Test Runner
 
@@ -170,22 +170,22 @@ The pipeline is defined in `.gitlab-ci.yml` and consists of six stages:
 
 The application uses environment variables to determine which configuration to use:
 
-- `NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT`: Specifies the environment (dev, test, demo, prod)
+- `CUTLIST_OPTIMIZER_CONTEXT`: Specifies the environment (dev, test, demo, prod)
 - `DB_IP`: Required for dev and test environments to specify the database IP
 
-These configurations are defined in `nath_standalone_flask_template/lib/_config.py` with specific classes for each environment:
+These configurations are defined in `cutlist_optimizer/lib/_config.py` with specific classes for each environment:
 
 ### DEV Environment
 - **Purpose**: Local development
 - **Configuration**: `DevConfig` class
-- **Database**: Uses a local database specified by `DB_IP` environment variable (defaults to `nsft_db_dev`)
+- **Database**: Uses a local database specified by `DB_IP` environment variable (defaults to `cutopt_db_dev`)
 - **Run Command**: `docker compose up --build`
 - **Deployment**: Docker containers with volume mounts for development
 
 ### PROD Environment
 - **Purpose**: Production deployment
 - **Configuration**: `ProdConfig` class
-- **Database**: Uses a prod database (`nsft`) on the `nsft_db_prod` container
+- **Database**: Uses a prod database (`cutopt`) on the `cutopt_db_prod` container
 - **Deployment**:
   - Triggered manually in GitLab CI
   - Uses Ansible to deploy Docker containers to `nath-server.local` server
@@ -231,11 +231,11 @@ This comprehensive CI/CD setup ensures that code is properly tested before being
 The test, demo, and production environments now use a modern Nginx reverse proxy:
 
 ### Architecture
-- **Nginx Container**: Handles HTTP traffic on port 80 (e.g., `nsft_nginx_test`)
-- **Application Container**: Runs Gunicorn on internal port 8080 (not exposed externally) (e.g., `nsft_app_test`)
-- **Database Container**: PostgreSQL 15 on internal port 5433 (e.g., `nsft_db_test`)
-- **Redis Container**: Redis cache on internal port 6379 (e.g., `nsft_redis_test`)
-- **Network**: Isolated Docker network per environment (e.g., `nsft_network_test`)
+- **Nginx Container**: Handles HTTP traffic on port 80 (e.g., `cutopt_nginx_test`)
+- **Application Container**: Runs Gunicorn on internal port 8084 (not exposed externally) (e.g., `cutopt_app_test`)
+- **Database Container**: PostgreSQL 15 on internal port 5437 (e.g., `cutopt_db_test`)
+- **Redis Container**: Redis cache on internal port 6379 (e.g., `cutopt_redis_test`)
+- **Network**: Isolated Docker network per environment (e.g., `cutopt_network_test`)
 
 ### Features
 - **Modern Security Headers**: X-Frame-Options, X-Content-Type-Options, X-XSS-Protection
@@ -265,7 +265,7 @@ The application now supports internationalization with English and French transl
 
 ### Translation Management
 
-The application uses Flask-Babel for internationalization. Translation files are located in `nath_standalone_flask_template/translations/`.
+The application uses Flask-Babel for internationalization. Translation files are located in `cutlist_optimizer/translations/`.
 
 #### Adding New Translations
 
@@ -294,8 +294,8 @@ When you add new translatable strings to the application:
    ```
 
 5. **Edit the translation files**:
-   - English: `nath_standalone_flask_template/translations/en/LC_MESSAGES/messages.po`
-   - French: `nath_standalone_flask_template/translations/fr/LC_MESSAGES/messages.po`
+   - English: `cutlist_optimizer/translations/en/LC_MESSAGES/messages.po`
+   - French: `cutlist_optimizer/translations/fr/LC_MESSAGES/messages.po`
 
 6. **Compile the translations**:
    ```bash
@@ -311,7 +311,7 @@ To add support for a new language (e.g., Spanish):
    python manage_translations.py init es
    ```
 
-2. **Add the language to the configuration** in `nath_standalone_flask_template/lib/_config.py`:
+2. **Add the language to the configuration** in `cutlist_optimizer/lib/_config.py`:
    ```python
    LANGUAGES = {
        'en': 'English',
@@ -320,12 +320,12 @@ To add support for a new language (e.g., Spanish):
    }
    ```
 
-3. **Add the language to the navbar** in `nath_standalone_flask_template/templates/base.html`:
+3. **Add the language to the navbar** in `cutlist_optimizer/templates/base.html`:
    ```html
    <a class="dropdown-item" href="{{ url_for('i18n.set_language', language='es') }}">Español</a>
    ```
 
-4. **Translate the strings** in `nath_standalone_flask_template/translations/es/LC_MESSAGES/messages.po`
+4. **Translate the strings** in `cutlist_optimizer/translations/es/LC_MESSAGES/messages.po`
 
 5. **Compile the translations**:
    ```bash

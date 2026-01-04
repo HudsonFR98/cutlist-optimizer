@@ -1,0 +1,564 @@
+# English translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-10-01 19:49+0200\n"
+"PO-Revision-Date: 2025-07-07 15:40+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: cutlist_optimizer/templates/base.html:17
+msgid "Cutlist Optimizer"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:22
+msgid ""
+"Nath Standalone\n"
+"      Flask Template"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:44
+msgid "Example"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:47
+#: cutlist_optimizer/templates/login.html:14
+msgid "Login"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:54
+msgid "Tests"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:57
+msgid "Coverage"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:58
+msgid "Test Output"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:66
+msgid "Administration"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:69
+msgid "Users"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:3
+#: cutlist_optimizer/templates/base.html:70
+msgid "Async Tasks"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:71
+msgid "Logs"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:78
+msgid "Logout"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:83
+msgid "Help"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:87
+msgid "Toggle theme"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:96
+msgid "Language"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:183
+msgid "Switch to light mode"
+msgstr ""
+
+#: cutlist_optimizer/templates/base.html:186
+msgid "Switch to dark mode"
+msgstr ""
+
+#: cutlist_optimizer/templates/login.html:9
+msgid "User ID"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:110
+#: cutlist_optimizer/templates/login.html:13
+msgid "Password"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/logs.html:3
+#: cutlist_optimizer/templates/admin/logs.html:10
+#: cutlist_optimizer/templates/admin/logs.html:18
+msgid "Application Logs"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/logs.html:3
+#: cutlist_optimizer/templates/admin/tasks.html:3
+#: cutlist_optimizer/templates/admin/users.html:3
+msgid "Admin"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/logs.html:21
+#: cutlist_optimizer/templates/admin/tasks.html:173
+msgid "Refresh"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/logs.html:24
+msgid "Clear Display"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/logs.html:29
+msgid "No logs available"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:10
+msgid "Async Tasks Management"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:22
+msgid "Total Executions"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:39
+msgid "Successful"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:56
+#: cutlist_optimizer/templates/admin/tasks.html:162
+#: cutlist_optimizer/templates/admin/tasks.html:370
+msgid "Failed"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:73
+msgid "Success Rate"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:90
+msgid "Active Scheduled Tasks"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:98
+#: cutlist_optimizer/templates/admin/tasks.html:182
+msgid "Task Name"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:99
+msgid "Description"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:100
+msgid "Schedule"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:101
+#: cutlist_optimizer/templates/admin/tasks.html:133
+#: cutlist_optimizer/templates/admin/tasks.html:183
+#: cutlist_optimizer/templates/admin/users.html:40
+msgid "Status"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:102
+msgid "Last Run"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:103
+msgid "Next Run"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:104
+#: cutlist_optimizer/templates/admin/users.html:41
+msgid "Actions"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:114
+#: cutlist_optimizer/templates/admin/users.html:58
+msgid "Active"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:120
+msgid "Never"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:143
+msgid "No active scheduled tasks found."
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:157
+msgid "Task Execution History"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:160
+msgid "All Status"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:161
+#: cutlist_optimizer/templates/admin/tasks.html:185
+msgid "Completed"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:163
+#: cutlist_optimizer/templates/admin/tasks.html:373
+msgid "Running"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:164
+msgid "Pending"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:167
+msgid "All Tasks"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:184
+msgid "Started"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:186
+msgid "Duration"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:187
+msgid "Result/Error"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:208
+msgid "Task Status"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:213
+#: cutlist_optimizer/templates/admin/tasks.html:232
+msgid "Loading..."
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:217
+msgid "Close"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:277
+msgid "Failed to load task status"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:367
+msgid "Success"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:3
+#: cutlist_optimizer/templates/admin/users.html:10
+msgid "Users Management"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:18
+#: cutlist_optimizer/templates/admin/users.html:100
+msgid "Create New User"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:28
+msgid "Users List"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:35
+#: cutlist_optimizer/templates/admin/users.html:105
+#: cutlist_optimizer/templates/admin/users.html:157
+msgid "Username"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:36
+#: cutlist_optimizer/templates/admin/users.html:115
+#: cutlist_optimizer/templates/admin/users.html:167
+msgid "First Name"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:37
+#: cutlist_optimizer/templates/admin/users.html:119
+#: cutlist_optimizer/templates/admin/users.html:171
+msgid "Last Name"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:38
+#: cutlist_optimizer/templates/admin/users.html:123
+#: cutlist_optimizer/templates/admin/users.html:175
+msgid "Email"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:39
+#: cutlist_optimizer/templates/admin/users.html:127
+#: cutlist_optimizer/templates/admin/users.html:179
+msgid "Roles"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:60
+msgid "Left"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:62
+msgid "Inactive"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:69
+msgid "Edit"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:75
+msgid "Deactivate"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:77
+msgid "Activate"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:133
+#: cutlist_optimizer/templates/admin/users.html:185
+msgid "Hold Ctrl/Cmd to select multiple roles"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:137
+#: cutlist_optimizer/templates/admin/users.html:189
+msgid "Cancel"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:138
+msgid "Create User"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:151
+msgid "Edit User"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:162
+msgid "New Password"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:164
+msgid "Leave blank to keep current password"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:190
+msgid "Update User"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:235
+msgid "Failed to load user data"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:246
+msgid "Are you sure you want to deactivate this user?"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:246
+msgid "Are you sure you want to activate this user?"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:265
+#: cutlist_optimizer/templates/admin/users.html:270
+msgid "Failed to update user status"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:5
+msgid "Welcome to the Dashboard"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:79
+msgid "Search documentation..."
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:87
+msgid "Overview"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:90
+#: cutlist_optimizer/templates/doc/index.html:125
+msgid "User Management"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:93
+#: cutlist_optimizer/templates/doc/index.html:136
+msgid "Database"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:96
+#: cutlist_optimizer/templates/doc/index.html:147
+msgid "Configuration"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:99
+#: cutlist_optimizer/templates/doc/index.html:159
+msgid "Deployment"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:113
+msgid "Welcome to the Cutlist Optimizer Documentation"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:115
+msgid ""
+"This documentation provides information about the Nath Standalone Flask "
+"Template application, its features, and how to use it."
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:118
+msgid "Note"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:119
+msgid ""
+"This documentation is customizable and can be edited to include specific "
+"information about your implementation."
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:126
+msgid ""
+"The application includes a comprehensive user management system with "
+"role-based permissions:"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:128
+msgid "User authentication and authorization"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:129
+msgid "Role-based access control"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:130
+msgid "Permission management"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:137
+msgid ""
+"The application uses PostgreSQL as its database with Alembic for "
+"migrations:"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:139
+msgid "Automatic database migrations"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:140
+msgid "SQLAlchemy ORM for database access"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:141
+msgid "Efficient data management"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:148
+msgid "The application supports multiple environments:"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:150
+msgid "Development"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:151
+msgid "Testing"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:152
+msgid "Demo"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:153
+msgid "Production"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:160
+msgid "The application can be deployed using Docker:"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:162
+msgid "Docker Compose for local development"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:163
+msgid "Ansible for production deployment"
+msgstr ""
+
+#: cutlist_optimizer/templates/doc/index.html:164
+msgid "CI/CD pipeline integration"
+msgstr ""
+
+#~ msgid "Cutlist Optimizer"
+#~ msgstr "Cutlist Optimizer"
+
+#~ msgid "Example"
+#~ msgstr "Example"
+
+#~ msgid "Login"
+#~ msgstr "Login"
+
+#~ msgid "Tests"
+#~ msgstr "Tests"
+
+#~ msgid "Coverage"
+#~ msgstr "Coverage"
+
+#~ msgid "Test Output"
+#~ msgstr "Test Output"
+
+#~ msgid "Logout"
+#~ msgstr "Logout"
+
+#~ msgid "Help"
+#~ msgstr "Help"
+
+#~ msgid "Language"
+#~ msgstr "Language"
+
+#~ msgid "User ID"
+#~ msgstr "User ID"
+
+#~ msgid "Password"
+#~ msgstr "Password"
+
+#~ msgid "Welcome to the Dashboard"
+#~ msgstr "Welcome to the Dashboard"
+
+#~ msgid "Documentation"
+#~ msgstr ""
+
+#~ msgid "Total Users"
+#~ msgstr ""
+
+#~ msgid "Active Users"
+#~ msgstr ""
+
+#~ msgid "Admin Users"
+#~ msgstr ""
+
+#~ msgid "Available Roles"
+#~ msgstr ""
+
+#~ msgid "Name"
+#~ msgstr ""
+
+#~ msgid "No roles"
+#~ msgstr ""
+
+#~ msgid "Leave empty to keep current password"
+#~ msgstr ""
+
+#~ msgid "Has Left"
+#~ msgstr ""
+
+#~ msgid "Manage User Roles"
+#~ msgstr ""
+
+#~ msgid "User"
+#~ msgstr ""
+
+#~ msgid "Update Roles"
+#~ msgstr ""
+

@@ -1,15 +1,12 @@
 variables:
-  NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT: test
+  CUTLIST_OPTIMIZER_CONTEXT: test
   DB_IP: localhost
-  PGPASSWORD: nsft2025_x
+  PGPASSWORD: cutopt2025_x
   DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
 
 stages:
   - populate-proxy
   - docker
-  - test
-  - build
-  - demo
   - prod
 
 # Reusable job templates
@@ -82,76 +79,6 @@ build_docker:
   tags:
     - docker-runner
 
-pytest:
-  stage: test
-  <<: *ssh_setup_template
-  variables:
-    SSH_HOST: serv-nsft-t-01
-    BUILD_DATE: $CI_PIPELINE_CREATED_AT
-  script:
-    - python3 deploy/ansible_deploy.py --action deploy --env test --docker-image $DOCKER_IMAGE --docker-registry $CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX --registry-username $CI_REGISTRY_USER --registry-password $CI_REGISTRY_PASSWORD --container-registry-server $CI_REGISTRY --dependency-proxy-server $CI_DEPENDENCY_PROXY_SERVER --dependency-proxy-username $CI_DEPENDENCY_PROXY_USER --dependency-proxy-password $CI_DEPENDENCY_PROXY_PASSWORD
-  environment:
-    name: test
-    url: http://serv-nsft-t-01:8080/
-  needs:
-    - build_docker
-  when: manual
-  tags:
-    - docker-runner
-
-pep8:
-  stage: test
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/python:3.10
-  script:
-    - pip install flake8
-    - flake8 nath_standalone_flask_template | tee pep8.out || true
-  allow_failure: true
-  artifacts:
-    paths:
-      - pep8.out
-    expire_in: 1 week
-  when: manual
-  tags:
-    - docker-runner
-
-deploy_demo:
-  stage: demo
-  <<: *ssh_setup_template
-  variables:
-    SSH_HOST: serv-nsft-d-01
-    BUILD_DATE: $CI_PIPELINE_CREATED_AT
-  script:
-    - python3 deploy/ansible_deploy.py --action deploy --env demo --docker-image $DOCKER_IMAGE --docker-registry $CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX --registry-username $CI_REGISTRY_USER --registry-password $CI_REGISTRY_PASSWORD --container-registry-server $CI_REGISTRY --dependency-proxy-server $CI_DEPENDENCY_PROXY_SERVER --dependency-proxy-username $CI_DEPENDENCY_PROXY_USER --dependency-proxy-password $CI_DEPENDENCY_PROXY_PASSWORD
-  when: manual
-  environment:
-    name: staging
-    url: http://serv-nsft-d-01:8080/
-  needs:
-    - build_docker
-    - pytest
-  when: manual
-  tags:
-    - docker-runner
-
-update_demo:
-  stage: demo
-  <<: *ssh_setup_template
-  variables:
-    SSH_HOST: serv-nsft-d-01
-    BUILD_DATE: $CI_PIPELINE_CREATED_AT
-  script:
-    - python3 deploy/ansible_deploy.py --action update --env demo --docker-image $DOCKER_IMAGE --docker-registry $CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX --registry-username $CI_REGISTRY_USER --registry-password $CI_REGISTRY_PASSWORD --container-registry-server $CI_REGISTRY --dependency-proxy-server $CI_DEPENDENCY_PROXY_SERVER --dependency-proxy-username $CI_DEPENDENCY_PROXY_USER --dependency-proxy-password $CI_DEPENDENCY_PROXY_PASSWORD
-  when: manual
-  environment:
-    name: staging
-    url: http://serv-nsft-d-01:8080/
-  needs:
-    - build_docker
-    - pytest
-  when: manual
-  tags:
-    - docker-runner
-
 deploy_prod:
   stage: prod
   <<: *ssh_setup_template
@@ -163,7 +90,7 @@ deploy_prod:
   when: manual
   environment:
     name: prod
-    url: http://nath-server.local:8080/
+    url: http://nath-server.local:8084/
   needs:
     - build_docker #could also need pytest
   tags:
@@ -180,7 +107,7 @@ update_prod:
   when: manual
   environment:
     name: prod
-    url: http://nath-server.local:8080/
+    url: http://nath-server.local:8084/
   needs:
     - build_docker #could also need pytest
   tags:

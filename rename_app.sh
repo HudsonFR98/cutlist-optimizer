@@ -77,8 +77,8 @@ main() {
     
     # Get old names
     echo "Please provide the OLD names:"
-    read -p "Old short name (e.g., nsft): " old_short
-    read -p "Old full name (e.g., nath-standalone-flask-template): " old_name
+    read -p "Old short name (e.g., cutopt): " old_short
+    read -p "Old full name (e.g., cutlist-optimizer): " old_name
     
     # Validate old names
     if ! validate_input "$old_short" "Old short name"; then

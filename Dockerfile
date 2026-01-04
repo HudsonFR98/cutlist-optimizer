@@ -1,11 +1,11 @@
-# Dockerfile for nath_standalone_flask_template
+# Dockerfile for cutlist_optimizer
 ARG BASE_IMAGE=python:3.11-slim
 FROM ${BASE_IMAGE}
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-ENV NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev
+ENV CUTLIST_OPTIMIZER_CONTEXT=dev
 ENV DB_IP=db
 
 # Install system dependencies
@@ -31,27 +31,27 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN groupadd -g 1000 web && useradd -r -g web -u 1000 -m -s /bin/bash web
 
 # Create necessary directories with correct permissions
-RUN mkdir -p /var/log/nath_standalone_flask_template /opt/nath_standalone_flask_template_docs /var/backup \
-    && chown -R web:web /var/log/nath_standalone_flask_template /opt/nath_standalone_flask_template_docs /var/backup \
-    && chmod 775 /var/log/nath_standalone_flask_template /var/backup \
-    && touch /var/log/nath_standalone_flask_template/nath_standalone_flask_template.log \
-    && chown web:web /var/log/nath_standalone_flask_template/nath_standalone_flask_template.log \
-    && chmod 664 /var/log/nath_standalone_flask_template/nath_standalone_flask_template.log
+RUN mkdir -p /var/log/cutlist_optimizer /opt/cutlist_optimizer_docs /var/backup \
+    && chown -R web:web /var/log/cutlist_optimizer /opt/cutlist_optimizer_docs /var/backup \
+    && chmod 775 /var/log/cutlist_optimizer /var/backup \
+    && touch /var/log/cutlist_optimizer/cutlist_optimizer.log \
+    && chown web:web /var/log/cutlist_optimizer/cutlist_optimizer.log \
+    && chmod 664 /var/log/cutlist_optimizer/cutlist_optimizer.log
 
 # Set working directory
-WORKDIR /opt/nath_standalone_flask_template
+WORKDIR /opt/cutlist_optimizer
 
 # Copy application code
-COPY --chown=web:web . /opt/nath_standalone_flask_template/
+COPY --chown=web:web . /opt/cutlist_optimizer/
 
 # Create and activate virtual environment
-RUN python -m venv /opt/env3/nath_standalone_flask_template \
-    && chown -R web:web /opt/env3/nath_standalone_flask_template
+RUN python -m venv /opt/env3/cutlist_optimizer \
+    && chown -R web:web /opt/env3/cutlist_optimizer
 
 # Install Python dependencies
-RUN /opt/env3/nath_standalone_flask_template/bin/pip install --upgrade pip setuptools \
-    && /opt/env3/nath_standalone_flask_template/bin/pip install -r deploy/requirements.txt \
-    && /opt/env3/nath_standalone_flask_template/bin/pip install -e .
+RUN /opt/env3/cutlist_optimizer/bin/pip install --upgrade pip setuptools \
+    && /opt/env3/cutlist_optimizer/bin/pip install -r deploy/requirements.txt \
+    && /opt/env3/cutlist_optimizer/bin/pip install -e .
 
 # Expose port
 EXPOSE 8080

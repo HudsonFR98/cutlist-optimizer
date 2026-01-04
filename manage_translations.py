@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Translation management script for Nath Standalone Flask Template application.
+Translation management script for Cutlist Optimizer application.
 
 This script helps with:
 1. Extracting translatable strings from the codebase
@@ -38,7 +38,7 @@ def run_command(cmd, description):
 def extract_strings():
     """Extract translatable strings from the codebase"""
     return run_command(
-        "pybabel extract -F babel.cfg -k _ -o nath_standalone_flask_template/translations/messages.pot nath_standalone_flask_template",
+        "pybabel extract -F babel.cfg -k _ -o cutlist_optimizer/translations/messages.pot cutlist_optimizer",
         "Extracting translatable strings"
     )
 
@@ -47,10 +47,10 @@ def update_translations():
     """Update existing translation files with new strings"""
     success = True
     for lang in ['en', 'fr']:
-        lang_dir = f"nath_standalone_flask_template/translations/{lang}/LC_MESSAGES"
+        lang_dir = f"cutlist_optimizer/translations/{lang}/LC_MESSAGES"
         if os.path.exists(lang_dir):
             success &= run_command(
-                f"pybabel update -i nath_standalone_flask_template/translations/messages.pot -d nath_standalone_flask_template/translations -l {lang}",
+                f"pybabel update -i cutlist_optimizer/translations/messages.pot -d cutlist_optimizer/translations -l {lang}",
                 f"Updating {lang} translations"
             )
     return success
@@ -59,7 +59,7 @@ def update_translations():
 def compile_translations():
     """Compile all translation files"""
     return run_command(
-        "pybabel compile -d nath_standalone_flask_template/translations",
+        "pybabel compile -d cutlist_optimizer/translations",
         "Compiling translation files"
     )
 
@@ -71,12 +71,12 @@ def init_language(lang):
         return False
     
     # Create language directory
-    lang_dir = f"nath_standalone_flask_template/translations/{lang}/LC_MESSAGES"
+    lang_dir = f"cutlist_optimizer/translations/{lang}/LC_MESSAGES"
     os.makedirs(lang_dir, exist_ok=True)
     
     # Initialize translation file
     return run_command(
-        f"pybabel init -i nath_standalone_flask_template/translations/messages.pot -d nath_standalone_flask_template/translations -l {lang}",
+        f"pybabel init -i cutlist_optimizer/translations/messages.pot -d cutlist_optimizer/translations -l {lang}",
         f"Initializing {lang} translation file"
     )
 

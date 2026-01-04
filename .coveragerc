@@ -1,2 +1,2 @@
 [run]
-omit = nath_standalone_flask_template/tests/*
+omit = cutlist_optimizer/tests/*

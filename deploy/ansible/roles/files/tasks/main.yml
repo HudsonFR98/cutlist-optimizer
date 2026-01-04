@@ -4,17 +4,17 @@
 - name: Copy init-db.sh script to remote
   copy:
     src: ../init-db.sh
-    dest: /opt/nath_standalone_flask_template_data/init-db.sh
+    dest: /opt/cutlist_optimizer_data/init-db.sh
     mode: '0755'
 
 - name: Copy reset.sql script to remote
   copy:
-    src: ../../nath_standalone_flask_template/tests/reset.sql
-    dest: /opt/nath_standalone_flask_template_data/init.sql
+    src: ../../cutlist_optimizer/tests/reset.sql
+    dest: /opt/cutlist_optimizer_data/init.sql
     mode: '0644'
 
 - name: Copy Nginx configuration
   copy:
     src: "../nginx_{{ context }}.conf"
-    dest: "/opt/nath_standalone_flask_template_data/nginx.conf"
+    dest: "/opt/cutlist_optimizer_data/nginx.conf"
     mode: '0644' 

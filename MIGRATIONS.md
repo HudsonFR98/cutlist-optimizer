@@ -1,6 +1,6 @@
 # Database Migrations in a Containerized Environment
 
-This document explains how to manage database migrations for the Nath Standalone Flask Template application when running in Docker containers.
+This document explains how to manage database migrations for the Cutlist Optimizer application when running in Docker containers.
 
 ## Understanding Alembic Migrations
 
@@ -12,17 +12,17 @@ When you make changes to your models (add/modify/remove tables, columns, etc.), 
 
 1. Connect to the running application container:
    ```bash
-   docker exec -it nsft_app_dev bash
+   docker exec -it cutopt_app_dev bash
    ```
 
 2. Navigate to the application directory:
    ```bash
-   cd /opt/nath-standalone-flask-template
+   cd /opt/cutlist-optimizer
    ```
 
 3. Generate a new migration script:
    ```bash
-   NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev DB_IP=nsft_db_dev alembic revision --autogenerate -m "Description of your changes"
+   CUTLIST_OPTIMIZER_CONTEXT=dev DB_IP=cutopt_db_dev alembic revision --autogenerate -m "Description of your changes"
    ```
 
    This command will:
@@ -38,17 +38,17 @@ Migrations are automatically applied when the application container starts, than
 
 1. Connect to the running application container:
    ```bash
-   docker exec -it nsft_app_dev bash
+   docker exec -it cutopt_app_dev bash
    ```
 
 2. Navigate to the application directory:
    ```bash
-   cd /opt/nath-standalone-flask-template
+   cd /opt/cutlist-optimizer
    ```
 
 3. Apply all pending migrations:
    ```bash
-   NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev DB_IP=nsft_db_dev alembic upgrade head
+   CUTLIST_OPTIMIZER_CONTEXT=dev DB_IP=cutopt_db_dev alembic upgrade head
    ```
 
 ## Initial Database Setup
@@ -70,7 +70,7 @@ If you encounter issues with migrations:
 
 1. Check the application logs:
    ```bash
-   docker logs nsft_app_dev
+   docker logs cutopt_app_dev
    ```
 
 2. Ensure the database container is running and accessible:
@@ -82,9 +82,9 @@ If you encounter issues with migrations:
 
 4. If migrations fail, you can try to run them manually with more verbose output:
    ```bash
-   docker exec -it nsft_app_dev bash
-   cd /opt/nath-standalone-flask-template
-   NATH_STANDALONE_FLASK_TEMPLATE_CONTEXT=dev DB_IP=nsft_db_dev alembic upgrade head --verbose
+   docker exec -it cutopt_app_dev bash
+   cd /opt/cutlist-optimizer
+   CUTLIST_OPTIMIZER_CONTEXT=dev DB_IP=cutopt_db_dev alembic upgrade head --verbose
    ```
 
 ## Best Practices
