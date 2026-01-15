@@ -16,7 +16,7 @@ from .blueprints.coverage import coverage
 from .blueprints.tests import test_output
 from .blueprints.i18n import i18n
 from .blueprints.admin import admin
-# from .blueprints.rest import rest
+from .blueprints.rest import rest
 
 
 def create_app():
@@ -224,6 +224,6 @@ def create_app():
     if config.CONTEXT in ['test', 'dev']:
         app.register_blueprint(coverage, url_prefix='/coverage/')
     app.register_blueprint(test_output, url_prefix='/tests/')
-    # app.register_blueprint(rest, url_prefix='/rest')
+    app.register_blueprint(rest, url_prefix='/rest')
 
     return app

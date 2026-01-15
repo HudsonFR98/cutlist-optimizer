@@ -372,3 +372,30 @@ body {
     border-color: var(--border-color);
     color: var(--text-color);
 }
+
+/* Cutlist Optimizer Styles */
+.piece-item,
+.stock-sheet-item {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+}
+
+.piece-item .card-body,
+.stock-sheet-item .card-body {
+    background-color: var(--bg-color);
+}
+
+.sheet-canvas {
+    display: block;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+[data-bs-theme="dark"] .sheet-canvas {
+    background-color: #2d3436;
+}
+
+#visualizationContainer {
+    overflow: visible;
+}

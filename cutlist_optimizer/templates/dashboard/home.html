@@ -2,6 +2,575 @@
 
 {% block body %}
 <div class="container mt-4">
-    <h2>{{ _('Welcome to the Dashboard') }}</h2>
+    <h2>{{ _('Optimize your cutting layout to minimize waste') }}</h2>
+    <br>
+
+    <div class="row">
+        <div class="col-12">
+            <!-- Statistics -->
+            <div id="statsContainer" style="display: none;">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-chart-bar"></i> {{ _('Statistics') }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <strong>{{ _('Sheets Used:') }}</strong>
+                                <span id="statSheetsUsed" class="badge bg-primary ms-2">0</span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong>{{ _('Pieces Placed:') }}</strong>
+                                <span id="statPiecesPlaced" class="badge bg-success ms-2">0</span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong>{{ _('Efficiency:') }}</strong>
+                                <span id="statEfficiency" class="badge bg-info ms-2">0%</span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong>{{ _('Waste:') }}</strong>
+                                <span id="statWaste" class="badge bg-warning ms-2">0%</span>
+                            </div>
+                            <div class="col-md-12 mb-3" id="savedCutlistRow" style="display: none;">
+                                <strong>{{ _('Saved Cutlist ID:') }}</strong>
+                                <span id="statCutlistId" class="badge bg-secondary ms-2">-</span>
+                            </div>
+                        </div>
+                        <div id="unplacedAlert" class="alert alert-warning mt-2" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-cog"></i> {{ _('Configuration') }}</h5>
+                </div>
+                <div class="card-body">
+                    <form id="optimizeForm">
+                        <!-- Saved Cutlists -->
+                        <div class="mb-3">
+                            <label class="form-label">{{ _('Saved Cutlists') }}</label>
+                            <div class="input-group">
+                                <select class="form-select" id="savedCutlistSelect">
+                                    <option value="">{{ _('Select saved cutlist') }}</option>
+                                </select>
+                                <button type="button" class="btn btn-outline-secondary" id="loadSavedCutlistBtn">
+                                    {{ _('Load') }}
+                                </button>
+                            </div>
+                            <small class="text-muted">{{ _('Saved locally in this browser') }}</small>
+                        </div>
+
+                        <hr>
+
+                        <!-- Stock Sheets -->
+                        <div class="mb-3">
+                            <label class="form-label">{{ _('Stock Sheets') }}</label>
+                            <div id="stockSheetsContainer">
+                                <!-- Stock sheets will be added here dynamically -->
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addStockSheetBtn">
+                                <i class="fas fa-plus"></i> {{ _('Add Stock Sheet') }}
+                            </button>
+                        </div>
+
+                        <hr>
+
+                        <!-- Pieces to Cut -->
+                        <div class="mb-3">
+                            <label class="form-label">{{ _('Pieces to Cut') }}</label>
+                            <div id="piecesContainer">
+                                <!-- Pieces will be added here dynamically -->
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addPieceBtn">
+                                <i class="fas fa-plus"></i> {{ _('Add Piece') }}
+                            </button>
+                        </div>
+
+                        <hr>
+
+                        <!-- Save Cutlist -->
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="saveCutlist">
+                                <label class="form-check-label" for="saveCutlist">
+                                    {{ _('Save cutlist') }}
+                                </label>
+                            </div>
+                            <input type="text" class="form-control mt-2" id="cutlistName" placeholder="{{ _('Cutlist name') }}" disabled>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-calculator"></i> {{ _('Optimize') }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Visualization -->
+            <div id="visualizationContainerWrapper" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-drafting-compass"></i> {{ _('Layout Visualization') }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="visualizationContainer">
+                            <!-- Canvas elements will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loadingContainer" style="display: none;" class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">{{ _('Loading...') }}</span>
+                </div>
+                <p class="mt-3">{{ _('Optimizing layout...') }}</p>
+            </div>
+
+            <div id="errorContainer" style="display: none;" class="alert alert-danger" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> <span id="errorMessage"></span>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Stock Sheet Template (hidden) -->
+<template id="stockSheetTemplate">
+    <div class="stock-sheet-item card mb-2">
+        <div class="card-body p-2">
+            <div class="row g-2">
+                <div class="col-4">
+                    <input type="number" class="form-control form-control-sm sheet-width" placeholder="{{ _('Width') }}" min="1" step="0.01" required>
+                </div>
+                <div class="col-4">
+                    <input type="number" class="form-control form-control-sm sheet-height" placeholder="{{ _('Height') }}" min="1" step="0.01" required>
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control form-control-sm sheet-quantity" placeholder="{{ _('Qty') }}" value="1" min="1" required>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-sm btn-outline-danger remove-sheet">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Piece Template (hidden) -->
+<template id="pieceTemplate">
+    <div class="piece-item card mb-2">
+        <div class="card-body p-2">
+            <div class="row g-2">
+                <div class="col-4">
+                    <input type="number" class="form-control form-control-sm piece-width" placeholder="{{ _('Width') }}" min="1" step="0.01" required>
+                </div>
+                <div class="col-4">
+                    <input type="number" class="form-control form-control-sm piece-height" placeholder="{{ _('Height') }}" min="1" step="0.01" required>
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control form-control-sm piece-quantity" placeholder="{{ _('Qty') }}" value="1" min="1" required>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-sm btn-outline-danger remove-piece">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+{% endblock %}
+
+{% block js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let pieceCounter = 0;
+    let stockSheetCounter = 0;
+    let lastRequestData = null;
+
+    // Add initial stock sheet and piece
+    addStockSheet();
+    addPiece();
+
+    // Load saved cutlists
+    loadSavedCutlists();
+
+    // Add stock sheet button handler
+    document.getElementById('addStockSheetBtn').addEventListener('click', function() {
+        addStockSheet();
+    });
+
+    // Add piece button handler
+    document.getElementById('addPieceBtn').addEventListener('click', function() {
+        addPiece();
+    });
+
+    // Save cutlist toggle
+    document.getElementById('saveCutlist').addEventListener('change', function(e) {
+        document.getElementById('cutlistName').disabled = !e.target.checked;
+    });
+
+    // Load saved cutlist
+    document.getElementById('loadSavedCutlistBtn').addEventListener('click', function() {
+        const select = document.getElementById('savedCutlistSelect');
+        const selectedId = select.value;
+        if (!selectedId) {
+            showError('{{ _("Please select a saved cutlist") }}');
+            return;
+        }
+        const saved = getSavedCutlists().find(item => item.id === selectedId);
+        if (!saved) {
+            showError('{{ _("Saved cutlist not found") }}');
+            return;
+        }
+        applySavedCutlist(saved);
+    });
+
+    // Form submission handler
+    document.getElementById('optimizeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        optimizeCutlist();
+    });
+
+    // Add stock sheet function
+    function addStockSheet(values) {
+        const template = document.getElementById('stockSheetTemplate');
+        const clone = template.content.cloneNode(true);
+        const sheetItem = clone.querySelector('.stock-sheet-item');
+        sheetItem.dataset.sheetId = stockSheetCounter++;
+
+        if (values) {
+            sheetItem.querySelector('.sheet-width').value = values.width;
+            sheetItem.querySelector('.sheet-height').value = values.height;
+            sheetItem.querySelector('.sheet-quantity').value = values.quantity || 1;
+        }
+        
+        // Remove button handler
+        clone.querySelector('.remove-sheet').addEventListener('click', function() {
+            sheetItem.remove();
+        });
+
+        document.getElementById('stockSheetsContainer').appendChild(clone);
+    }
+
+    // Add piece function
+    function addPiece(values) {
+        const template = document.getElementById('pieceTemplate');
+        const clone = template.content.cloneNode(true);
+        const pieceItem = clone.querySelector('.piece-item');
+        pieceItem.dataset.pieceId = pieceCounter++;
+
+        if (values) {
+            pieceItem.querySelector('.piece-width').value = values.width;
+            pieceItem.querySelector('.piece-height').value = values.height;
+            pieceItem.querySelector('.piece-quantity').value = values.quantity || 1;
+        }
+        
+        // Remove button handler
+        clone.querySelector('.remove-piece').addEventListener('click', function() {
+            pieceItem.remove();
+        });
+
+        document.getElementById('piecesContainer').appendChild(clone);
+    }
+
+    function clearContainers() {
+        document.getElementById('stockSheetsContainer').innerHTML = '';
+        document.getElementById('piecesContainer').innerHTML = '';
+    }
+
+    function applySavedCutlist(saved) {
+        clearContainers();
+        stockSheetCounter = 0;
+        pieceCounter = 0;
+        saved.stock_sheets.forEach(sheet => addStockSheet(sheet));
+        saved.pieces.forEach(piece => addPiece(piece));
+        document.getElementById('saveCutlist').checked = false;
+        document.getElementById('cutlistName').value = saved.name || '';
+        document.getElementById('cutlistName').disabled = true;
+    }
+
+    function loadSavedCutlists() {
+        const select = document.getElementById('savedCutlistSelect');
+        const saved = getSavedCutlists();
+        select.innerHTML = `<option value="">{{ _('Select saved cutlist') }}</option>`;
+        saved.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.id;
+            option.textContent = item.name || (`{{ _('Cutlist') }} #${item.id}`);
+            select.appendChild(option);
+        });
+    }
+
+    function getSavedCutlists() {
+        try {
+            const raw = localStorage.getItem('cutlist_saved_items');
+            return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function saveCutlistLocal(cutlistId, requestData) {
+        const saved = getSavedCutlists();
+        const existing = saved.find(item => item.id === String(cutlistId));
+        const entry = {
+            id: String(cutlistId),
+            name: requestData.cutlist_name || '',
+            stock_sheets: requestData.stock_sheets || [],
+            pieces: requestData.pieces || [],
+            saved_at: new Date().toISOString()
+        };
+        if (existing) {
+            Object.assign(existing, entry);
+        } else {
+            saved.unshift(entry);
+        }
+        localStorage.setItem('cutlist_saved_items', JSON.stringify(saved.slice(0, 20)));
+        loadSavedCutlists();
+    }
+
+    // Optimize cutlist
+    function optimizeCutlist() {
+        // Hide previous results
+        document.getElementById('statsContainer').style.display = 'none';
+        document.getElementById('visualizationContainerWrapper').style.display = 'none';
+        document.getElementById('errorContainer').style.display = 'none';
+        document.getElementById('loadingContainer').style.display = 'block';
+
+        // Collect form data
+        const stockSheets = [];
+        const sheetItems = document.querySelectorAll('.stock-sheet-item');
+        
+        sheetItems.forEach(function(item) {
+            const width = parseFloat(item.querySelector('.sheet-width').value);
+            const height = parseFloat(item.querySelector('.sheet-height').value);
+            const quantity = parseInt(item.querySelector('.sheet-quantity').value);
+            
+            if (width && height && quantity) {
+                stockSheets.push({
+                    width: width,
+                    height: height,
+                    quantity: quantity,
+                    id: item.dataset.sheetId
+                });
+            }
+        });
+
+        if (stockSheets.length === 0) {
+            showError('{{ _("Please add at least one stock sheet") }}');
+            return;
+        }
+
+        const pieces = [];
+        const pieceItems = document.querySelectorAll('.piece-item');
+        
+        pieceItems.forEach(function(item) {
+            const width = parseFloat(item.querySelector('.piece-width').value);
+            const height = parseFloat(item.querySelector('.piece-height').value);
+            const quantity = parseInt(item.querySelector('.piece-quantity').value);
+            
+            if (width && height && quantity) {
+                pieces.push({
+                    width: width,
+                    height: height,
+                    quantity: quantity,
+                    id: item.dataset.pieceId
+                });
+            }
+        });
+
+        if (pieces.length === 0) {
+            showError('{{ _("Please add at least one piece to cut") }}');
+            return;
+        }
+
+        const saveCutlist = document.getElementById('saveCutlist').checked;
+        const cutlistName = document.getElementById('cutlistName').value;
+
+        // Prepare request
+        const requestData = {
+            stock_sheets: stockSheets,
+            pieces: pieces,
+            save_cutlist: saveCutlist,
+            cutlist_name: cutlistName
+        };
+        lastRequestData = requestData;
+
+        // Call API
+        fetch('{{ url_for("rest.optimize_cutlist") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => {
+                    throw new Error(err.description || '{{ _("Optimization failed") }}');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            displayResults(data);
+        })
+        .catch(error => {
+            showError(error.message);
+        })
+        .finally(() => {
+            document.getElementById('loadingContainer').style.display = 'none';
+        });
+    }
+
+    // Display results
+    function displayResults(data) {
+        // Update statistics
+        document.getElementById('statSheetsUsed').textContent = data.statistics.total_sheets_used;
+        document.getElementById('statPiecesPlaced').textContent = data.statistics.total_pieces_placed;
+        document.getElementById('statEfficiency').textContent = data.statistics.efficiency_percentage.toFixed(2) + '%';
+        document.getElementById('statWaste').textContent = data.statistics.total_waste_percentage.toFixed(2) + '%';
+
+        // Saved cutlist info
+        if (data.saved_cutlist_id) {
+            document.getElementById('statCutlistId').textContent = data.saved_cutlist_id;
+            document.getElementById('savedCutlistRow').style.display = 'block';
+            if (lastRequestData) {
+                saveCutlistLocal(data.saved_cutlist_id, lastRequestData);
+            }
+        } else {
+            document.getElementById('savedCutlistRow').style.display = 'none';
+        }
+
+        // Unplaced pieces warning
+        if (data.unplaced_pieces && data.unplaced_pieces.length > 0) {
+            const unplacedAlert = document.getElementById('unplacedAlert');
+            unplacedAlert.textContent = '{{ _("Some pieces could not be placed on available stock sheets.") }}';
+            unplacedAlert.style.display = 'block';
+        } else {
+            document.getElementById('unplacedAlert').style.display = 'none';
+        }
+
+        // Clear previous visualization
+        const container = document.getElementById('visualizationContainer');
+        container.innerHTML = '';
+
+        // Group placements by sheet
+        const sheets = {};
+        data.placements.forEach(function(placement) {
+            if (!sheets[placement.sheet_index]) {
+                sheets[placement.sheet_index] = [];
+            }
+            sheets[placement.sheet_index].push(placement);
+        });
+
+        const palette = [
+            '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8',
+            '#F7DC6F', '#BB8FCE', '#85C1E2', '#F8B739', '#52BE80'
+        ];
+        const colorMap = {};
+
+        // Create canvas for each sheet
+        Object.keys(sheets).sort().forEach(function(sheetIndex) {
+            const sheetIdx = parseInt(sheetIndex);
+            // Find sheet data by index
+            const sheetData = data.sheets.find(s => s.index === sheetIdx);
+            const placements = sheets[sheetIndex];
+            
+            if (!sheetData) return; // Skip if sheet data not found
+            
+            const sheetDiv = document.createElement('div');
+            sheetDiv.className = 'mb-4';
+            
+            const efficiency = 100 - sheetData.waste_percentage;
+            const sheetTitle = document.createElement('h6');
+            sheetTitle.className = 'mb-2';
+            sheetTitle.innerHTML = `{{ _('Sheet') }} ${sheetIdx + 1} - ` +
+                `{{ _('Efficiency') }}: ${efficiency.toFixed(2)}% ` +
+                `({{ _('Waste') }}: ${sheetData.waste_area.toFixed(2)} mm²)`;
+            sheetDiv.appendChild(sheetTitle);
+
+            const canvas = document.createElement('canvas');
+            canvas.className = 'sheet-canvas border';
+            canvas.style.maxWidth = '100%';
+            canvas.style.height = 'auto';
+            
+            // Calculate scale to fit in container (max 600px width)
+            const maxWidth = 600;
+            const scale = Math.min(maxWidth / sheetData.width, maxWidth / sheetData.height);
+            canvas.width = sheetData.width * scale;
+            canvas.height = sheetData.height * scale;
+            
+            const ctx = canvas.getContext('2d');
+            drawSheet(ctx, sheetData.width, sheetData.height, placements, scale, colorMap, palette);
+            
+            sheetDiv.appendChild(canvas);
+            container.appendChild(sheetDiv);
+        });
+
+        // Show results
+        document.getElementById('statsContainer').style.display = 'block';
+        document.getElementById('visualizationContainerWrapper').style.display = 'block';
+    }
+
+    // Draw sheet on canvas
+    function drawSheet(ctx, sheetWidth, sheetHeight, placements, scale, colorMap, palette) {
+        // Clear canvas
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        
+        // Draw stock sheet outline
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(0, 0, sheetWidth * scale, sheetHeight * scale);
+        
+        // Draw placements
+        let colorIndex = Object.keys(colorMap).length;
+        
+        placements.forEach(function(placement) {
+            const x = placement.x * scale;
+            const y = placement.y * scale;
+            const width = placement.width * scale;
+            const height = placement.height * scale;
+            const sizeKey = `${placement.width.toFixed(2)}x${placement.height.toFixed(2)}`;
+            
+            if (!colorMap[sizeKey]) {
+                colorMap[sizeKey] = palette[colorIndex % palette.length];
+                colorIndex++;
+            }
+            const color = colorMap[sizeKey];
+            
+            // Draw rectangle
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, width, height);
+            
+            // Draw border
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(x, y, width, height);
+            
+            // Draw label
+            ctx.fillStyle = '#000';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'center';
+            const labelX = x + width / 2;
+            const labelY = y + height / 2;
+            ctx.fillText(`${placement.width.toFixed(0)}×${placement.height.toFixed(0)}`, labelX, labelY - 5);
+            if (placement.rotated) {
+                ctx.fillText('(R)', labelX, labelY + 10);
+            }
+        });
+    }
+
+    // Show error
+    function showError(message) {
+        document.getElementById('errorMessage').textContent = message;
+        document.getElementById('errorContainer').style.display = 'block';
+    }
+});
+</script>
 {% endblock %}
