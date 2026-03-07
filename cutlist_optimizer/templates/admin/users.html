@@ -96,6 +96,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form id="createUserForm" method="POST" action="{{ url_for('admin.create_user') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="modal-header">
                     <h5 class="modal-title" id="createUserModalLabel">{{ _('Create New User') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -147,6 +148,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form id="editUserForm" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editUserModalLabel">{{ _('Edit User') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -250,6 +252,7 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token() }}'
                         }
                     })
                         .then(function (response) {

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session
 from flask_login import LoginManager
 from flask_babel import Babel, gettext as _
+from flask_wtf.csrf import CSRFProtect, CSRFError
 
 from cutlist_optimizer.lib import config
 from cutlist_optimizer.lib import flask_util
@@ -23,6 +24,8 @@ def create_app():
 
     app = Flask(__name__)
     app.config.from_object(config)
+    csrf = CSRFProtect()
+    csrf.init_app(app)
     
     def get_locale():
         """Get the locale for the current request"""
@@ -74,6 +77,15 @@ def create_app():
     # Register error handlers for common HTTP errors
     # In development mode, let Flask handle errors natively for better debugging
     if config.CONTEXT != 'dev':
+        @app.errorhandler(CSRFError)
+        def handle_csrf_error(e):
+            return render_template(
+                'error.html',
+                error_code=400,
+                error_name='Invalid Request',
+                error_description='Security token missing or invalid. Please retry.'
+            ), 400
+
         @app.errorhandler(404)
         def page_not_found(e):
             return render_template('error.html',

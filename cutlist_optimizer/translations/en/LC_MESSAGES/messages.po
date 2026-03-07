@@ -7,25 +7,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-01 19:49+0200\n"
+"POT-Creation-Date: 2026-03-07 12:21+0100\n"
 "PO-Revision-Date: 2025-07-07 15:40+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.8.0\n"
 
-#: cutlist_optimizer/templates/base.html:17
+#: cutlist_optimizer/templates/base.html:16
 msgid "Cutlist Optimizer"
 msgstr ""
 
 #: cutlist_optimizer/templates/base.html:22
 msgid ""
-"Nath Standalone\n"
-"      Flask Template"
+"Cutlist\n"
+"      Optimizer"
 msgstr ""
 
 #: cutlist_optimizer/templates/base.html:44
@@ -33,7 +33,7 @@ msgid "Example"
 msgstr ""
 
 #: cutlist_optimizer/templates/base.html:47
-#: cutlist_optimizer/templates/login.html:14
+#: cutlist_optimizer/templates/login.html:15
 msgid "Login"
 msgstr ""
 
@@ -82,20 +82,20 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:183
+#: cutlist_optimizer/templates/base.html:182
 msgid "Switch to light mode"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:186
+#: cutlist_optimizer/templates/base.html:185
 msgid "Switch to dark mode"
 msgstr ""
 
-#: cutlist_optimizer/templates/login.html:9
+#: cutlist_optimizer/templates/login.html:10
 msgid "User ID"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:110
-#: cutlist_optimizer/templates/login.html:13
+#: cutlist_optimizer/templates/admin/users.html:111
+#: cutlist_optimizer/templates/login.html:14
 msgid "Password"
 msgstr ""
 
@@ -240,6 +240,7 @@ msgstr ""
 
 #: cutlist_optimizer/templates/admin/tasks.html:213
 #: cutlist_optimizer/templates/admin/tasks.html:232
+#: cutlist_optimizer/templates/dashboard/home.html:127
 msgid "Loading..."
 msgstr ""
 
@@ -261,7 +262,7 @@ msgid "Users Management"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/users.html:18
-#: cutlist_optimizer/templates/admin/users.html:100
+#: cutlist_optimizer/templates/admin/users.html:101
 msgid "Create New User"
 msgstr ""
 
@@ -270,32 +271,32 @@ msgid "Users List"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/users.html:35
-#: cutlist_optimizer/templates/admin/users.html:105
-#: cutlist_optimizer/templates/admin/users.html:157
+#: cutlist_optimizer/templates/admin/users.html:106
+#: cutlist_optimizer/templates/admin/users.html:159
 msgid "Username"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/users.html:36
-#: cutlist_optimizer/templates/admin/users.html:115
-#: cutlist_optimizer/templates/admin/users.html:167
+#: cutlist_optimizer/templates/admin/users.html:116
+#: cutlist_optimizer/templates/admin/users.html:169
 msgid "First Name"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/users.html:37
-#: cutlist_optimizer/templates/admin/users.html:119
-#: cutlist_optimizer/templates/admin/users.html:171
+#: cutlist_optimizer/templates/admin/users.html:120
+#: cutlist_optimizer/templates/admin/users.html:173
 msgid "Last Name"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/users.html:38
-#: cutlist_optimizer/templates/admin/users.html:123
-#: cutlist_optimizer/templates/admin/users.html:175
+#: cutlist_optimizer/templates/admin/users.html:124
+#: cutlist_optimizer/templates/admin/users.html:177
 msgid "Email"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/users.html:39
-#: cutlist_optimizer/templates/admin/users.html:127
-#: cutlist_optimizer/templates/admin/users.html:179
+#: cutlist_optimizer/templates/admin/users.html:128
+#: cutlist_optimizer/templates/admin/users.html:181
 msgid "Roles"
 msgstr ""
 
@@ -319,55 +320,193 @@ msgstr ""
 msgid "Activate"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:133
-#: cutlist_optimizer/templates/admin/users.html:185
+#: cutlist_optimizer/templates/admin/users.html:134
+#: cutlist_optimizer/templates/admin/users.html:187
 msgid "Hold Ctrl/Cmd to select multiple roles"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:137
-#: cutlist_optimizer/templates/admin/users.html:189
+#: cutlist_optimizer/templates/admin/users.html:138
+#: cutlist_optimizer/templates/admin/users.html:191
 msgid "Cancel"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:138
+#: cutlist_optimizer/templates/admin/users.html:139
 msgid "Create User"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:151
+#: cutlist_optimizer/templates/admin/users.html:153
 msgid "Edit User"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:162
+#: cutlist_optimizer/templates/admin/users.html:164
 msgid "New Password"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:164
+#: cutlist_optimizer/templates/admin/users.html:166
 msgid "Leave blank to keep current password"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:190
+#: cutlist_optimizer/templates/admin/users.html:192
 msgid "Update User"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:235
+#: cutlist_optimizer/templates/admin/users.html:237
 msgid "Failed to load user data"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:246
+#: cutlist_optimizer/templates/admin/users.html:248
 msgid "Are you sure you want to deactivate this user?"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:246
+#: cutlist_optimizer/templates/admin/users.html:248
 msgid "Are you sure you want to activate this user?"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:265
-#: cutlist_optimizer/templates/admin/users.html:270
+#: cutlist_optimizer/templates/admin/users.html:268
+#: cutlist_optimizer/templates/admin/users.html:273
 msgid "Failed to update user status"
 msgstr ""
 
 #: cutlist_optimizer/templates/dashboard/home.html:5
-msgid "Welcome to the Dashboard"
+msgid "Optimize your cutting layout to minimize waste"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:14
+msgid "Statistics"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:19
+msgid "Sheets Used:"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:23
+msgid "Pieces Placed:"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:27
+msgid "Efficiency:"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:31
+msgid "Waste:"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:35
+msgid "Saved Cutlist ID:"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:47
+#: cutlist_optimizer/templates/doc/index.html:96
+#: cutlist_optimizer/templates/doc/index.html:147
+msgid "Configuration"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:53
+msgid "Saved Cutlists"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:56
+#: cutlist_optimizer/templates/dashboard/home.html:300
+msgid "Select saved cutlist"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:59
+msgid "Load"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:62
+msgid "Saved locally in this browser"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:69
+msgid "Stock Sheets"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:74
+msgid "Add Stock Sheet"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:82
+msgid "Pieces to Cut"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:87
+msgid "Add Piece"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:98
+msgid "Save cutlist"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:101
+msgid "Cutlist name"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:105
+msgid "Optimize"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:115
+msgid "Layout Visualization"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:129
+msgid "Optimizing layout..."
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:145
+#: cutlist_optimizer/templates/dashboard/home.html:169
+msgid "Width"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:148
+#: cutlist_optimizer/templates/dashboard/home.html:172
+msgid "Height"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:151
+#: cutlist_optimizer/templates/dashboard/home.html:175
+msgid "Qty"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:222
+msgid "Please select a saved cutlist"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:227
+msgid "Saved cutlist not found"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:304
+msgid "Cutlist"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:365
+msgid "Please add at least one stock sheet"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:388
+msgid "Please add at least one piece to cut"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:416
+msgid "Optimization failed"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:454
+msgid "Some pieces could not be placed on available stock sheets."
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:494
+msgid "Sheet"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:495
+msgid "Efficiency"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:496
+msgid "Waste"
 msgstr ""
 
 #: cutlist_optimizer/templates/doc/index.html:79
@@ -388,11 +527,6 @@ msgstr ""
 msgid "Database"
 msgstr ""
 
-#: cutlist_optimizer/templates/doc/index.html:96
-#: cutlist_optimizer/templates/doc/index.html:147
-msgid "Configuration"
-msgstr ""
-
 #: cutlist_optimizer/templates/doc/index.html:99
 #: cutlist_optimizer/templates/doc/index.html:159
 msgid "Deployment"
@@ -404,8 +538,8 @@ msgstr ""
 
 #: cutlist_optimizer/templates/doc/index.html:115
 msgid ""
-"This documentation provides information about the Nath Standalone Flask "
-"Template application, its features, and how to use it."
+"This documentation provides information about the Cutlist Optimizer "
+"application, its features, and how to use it."
 msgstr ""
 
 #: cutlist_optimizer/templates/doc/index.html:118
@@ -524,7 +658,7 @@ msgstr ""
 #~ msgstr "Password"
 
 #~ msgid "Welcome to the Dashboard"
-#~ msgstr "Welcome to the Dashboard"
+#~ msgstr ""
 
 #~ msgid "Documentation"
 #~ msgstr ""
@@ -560,5 +694,17 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Update Roles"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Nath Standalone\n"
+#~ "      Flask Template"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This documentation provides information about"
+#~ " the Nath Standalone Flask Template "
+#~ "application, its features, and how to"
+#~ " use it."
 #~ msgstr ""
 

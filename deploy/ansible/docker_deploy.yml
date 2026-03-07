@@ -3,7 +3,7 @@
 
 - name: Deploy cutlist_optimizer using Docker
   hosts: "{{ target_host }}"
-  remote_user: nath
+  remote_user: root
   become: yes
   vars:
     deploy_action: "{{ deploy_action }}"
