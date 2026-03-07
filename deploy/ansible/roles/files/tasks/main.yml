@@ -24,8 +24,8 @@
     openssl req -x509 -nodes -newkey rsa:2048 -sha256 -days 825
     -keyout /opt/cutlist_optimizer_data/ssl/cutopt-selfsigned.key
     -out /opt/cutlist_optimizer_data/ssl/cutopt-selfsigned.crt
-    -subj "/C=FR/ST=IDF/L=Paris/O=Nath/OU=IT/CN=cutlist.nath-server.home"
-    -addext "subjectAltName=DNS:cutlist.nath-server.home"
+    -subj "/C=FR/ST=IDF/L=Paris/O=Nath/OU=IT/CN=cutopt.nath-server.home"
+    -addext "subjectAltName=DNS:cutopt.nath-server.home"
   args:
     creates: /opt/cutlist_optimizer_data/ssl/cutopt-selfsigned.crt
   when: context == 'prod'

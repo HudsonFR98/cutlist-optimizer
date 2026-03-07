@@ -68,7 +68,7 @@ deploy_prod:
   stage: prod
   <<: *deploy_via_ansible
   variables:
-    SSH_HOST: cutlist.nath-server.home
+    SSH_HOST: cutopt.nath-server.home
     BUILD_DATE: $CI_PIPELINE_CREATED_AT
     CONTEXT: prod
     POSTGRES_PASSWORD: $PROD_POSTGRES_PASSWORD
@@ -81,7 +81,7 @@ deploy_prod:
     ADMIN_USER_EMAIL: $PROD_ADMIN_USER_EMAIL
   environment:
     name: prod
-    url: https://cutlist.nath-server.home
+    url: https://cutopt.nath-server.home
   needs:
     - build_docker
   tags:
