@@ -10,17 +10,20 @@
     mode: '0755'
   with_items:
     - /var/log/cutlist_optimizer
+    - /var/backups/cutlist_optimizer
     - /opt/cutlist_optimizer_data
+    - /opt/cutlist_optimizer_data/ssl
+    - /opt/cutlist_optimizer_data/postgresql/15/main
     - /var/log/nginx
     - /etc/letsencrypt
     - /var/www/html
-    - /var/backup
+
 - name: Set log directory permissions for Docker container
   file:
     path: /var/log/cutlist_optimizer
     state: directory
-    owner: "1000"  # UID of web user in container
-    group: "1000"  # GID of web user in container
+    owner: "1000"
+    group: "1000"
     mode: '0775'
     recurse: yes
 
@@ -36,8 +39,17 @@
   file:
     path: /opt/cutlist_optimizer_data
     state: directory
-    owner: "1000"  # UID of web user in container
-    group: "1000"  # GID of web user in container
+    owner: "1000"
+    group: "1000"
+    mode: '0775'
+    recurse: yes
+
+- name: Set PostgreSQL data directory permissions
+  file:
+    path: /opt/cutlist_optimizer_data/postgresql/15/main
+    state: directory
+    owner: "999"
+    group: "999"
     mode: '0775'
     recurse: yes
 
@@ -45,14 +57,14 @@
   file:
     path: /var/log/nginx
     state: directory
-    owner: "101"  # Nginx user
-    group: "101"  # Nginx group
+    owner: "101"
+    group: "101"
     mode: '0775'
     recurse: yes
 
 - name: Set backup directory permissions for Docker container
   file:
-    path: /var/backup
+    path: /var/backups/cutlist_optimizer
     state: directory
     owner: "1000"
     group: "1000"

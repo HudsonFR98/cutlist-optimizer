@@ -77,6 +77,18 @@ def main():
     db_host = get_database_host(context)
     os.environ['DB_IP'] = db_host
     
+    os.environ.setdefault('POSTGRES_USER', 'web')
+    os.environ.setdefault('POSTGRES_PASSWORD', 'cutopt2025_x')
+    os.environ.setdefault('CUTOPT_DB_NAME', 'cutopt')
+    os.environ.setdefault('SECRET_KEY', 'test-secret-key')
+    os.environ.setdefault('TELEGRAM_BOT_TOKEN', 'test-token')
+    os.environ.setdefault('TELEGRAM_CHAT_ID', '0')
+    os.environ.setdefault('ADMIN_USER_USERNAME', 'admin')
+    os.environ.setdefault('ADMIN_USER_PASSWORD', 'admin123')
+    os.environ.setdefault('ADMIN_USER_FIRST_NAME', 'Admin')
+    os.environ.setdefault('ADMIN_USER_LAST_NAME', 'User')
+    os.environ.setdefault('ADMIN_USER_EMAIL', 'admin@example.com')
+
     # Step 3: Create temporary directories to avoid permission issues
     temp_dir = tempfile.mkdtemp(prefix='cutlist_optimizertest_')
     cache_dir = os.path.join(temp_dir, 'pytest_cache')

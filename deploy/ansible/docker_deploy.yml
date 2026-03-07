@@ -6,16 +6,33 @@
   remote_user: nath
   become: yes
   vars:
-    action: "{{ action | default('deploy') }}"
-    context: "{{ context | default('demo') }}"
+    deploy_action: "{{ deploy_action }}"
+    context: "{{ context }}"
     docker_image: "{{ docker_image }}"
-    app_name: "cutopt"  # Short name for cutlist_optimizer
+    app_name: "cutopt"
     container_name: "{{ app_name }}_app_{{ context }}"
     nginx_container_name: "{{ app_name }}_nginx_{{ context }}"
     db_container_name: "{{ app_name }}_db_{{ context }}"
     redis_container_name: "{{ app_name }}_redis_{{ context }}"
     network_name: "{{ app_name }}_network_{{ context }}"
-    db_host: "{{ db_host | default('localhost') }}"
+    db_host: "{{ db_host }}"
+
+  pre_tasks:
+    - name: Build environment configuration
+      set_fact:
+        env_config:
+          pg_user: "{{ lookup('vars', 'postgres_user') }}"
+          pg_password: "{{ lookup('vars', context + '_postgres_password') }}"
+          pg_db: "{{ lookup('vars', 'postgres_db') }}"
+          cutopt_db_name: "{{ lookup('vars', context + '_cutopt_db_name') }}"
+          secret_key: "{{ lookup('vars', context + '_secret_key') }}"
+          telegram_bot_token: "{{ lookup('vars', context + '_telegram_bot_token') }}"
+          telegram_chat_id: "{{ lookup('vars', context + '_telegram_chat_id') }}"
+          admin_user_username: "{{ lookup('vars', 'admin_user_username') }}"
+          admin_user_password: "{{ lookup('vars', context + '_admin_user_password') }}"
+          admin_user_first_name: "{{ lookup('vars', 'admin_user_first_name') }}"
+          admin_user_last_name: "{{ lookup('vars', 'admin_user_last_name') }}"
+          admin_user_email: "{{ lookup('vars', 'admin_user_email') }}"
 
   roles:
     - docker

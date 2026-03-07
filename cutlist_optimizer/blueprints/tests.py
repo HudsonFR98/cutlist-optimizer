@@ -3,15 +3,24 @@ import os
 from flask import Blueprint, render_template, abort, jsonify
 from cutlist_optimizer.lib import config
 from cutlist_optimizer.lib.flask_util import login_required
+from cutlist_optimizer.lib.telegram import send_telegram_message
 
 test_output = Blueprint('test_output', __name__)
 log = logging.getLogger(__name__)
 
 
 @test_output.route('/simple')
+@login_required
 def simple():
     raise Exception('Test exception')
     return jsonify({'message': 'Hello, World!'})
+
+
+@test_output.route('/telegram')
+@login_required
+def telegram():
+    send_telegram_message('Hello, World!')
+    return jsonify({'message': 'Telegram message sent'})
 
 
 @test_output.route('/output')

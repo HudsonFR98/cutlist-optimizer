@@ -7,21 +7,17 @@ until pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB"; do
     sleep 2
 done
 
-# Check if the cutopt database exists
-DB_EXISTS=$(psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" -tAc "SELECT 1 FROM pg_database WHERE datname = 'cutopt'")
+# Check if the application database exists
+DB_EXISTS=$(psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" -tAc "SELECT 1 FROM pg_database WHERE datname = '${CUTOPT_DB_NAME}'")
 
-# Create the cutopt database if it doesn't exist
+# Create the application database if it doesn't exist
 if [ -z "$DB_EXISTS" ]; then
-    echo "Creating database cutopt..."
-    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" -c "CREATE DATABASE cutopt;"
+    echo "Creating database ${CUTOPT_DB_NAME}..."
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" -c "CREATE DATABASE ${CUTOPT_DB_NAME};"
     echo "Waiting for database to be fully initialized..."
     sleep 5
 else
-    echo "Database cutopt already exists."
+    echo "Database ${CUTOPT_DB_NAME} already exists."
 fi
-
-# Connect to the cutopt database and run the reset.sql script
-echo "Running initialization script..."
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "cutopt" -f /docker-entrypoint-initdb.d/init.sql
 
 echo "Database initialization completed successfully."

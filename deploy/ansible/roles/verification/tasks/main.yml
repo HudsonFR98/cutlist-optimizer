@@ -13,8 +13,13 @@
     container: "{{ container_name }}"
     command: >
       bash -c "CUTLIST_OPTIMIZER_CONTEXT=test DB_IP={{ db_container_name }}
-      /opt/env3/cutlist_optimizer/bin/python
-      cutlist_optimizer/tests/run_tests.py"
+      POSTGRES_USER={{ env_config.pg_user }} POSTGRES_PASSWORD={{ env_config.pg_password }}
+      CUTOPT_DB_NAME={{ env_config.cutopt_db_name }} SECRET_KEY={{ env_config.secret_key }}
+      TELEGRAM_BOT_TOKEN={{ env_config.telegram_bot_token }} TELEGRAM_CHAT_ID={{ env_config.telegram_chat_id }}
+      ADMIN_USER_USERNAME={{ env_config.admin_user_username }} ADMIN_USER_PASSWORD={{ env_config.admin_user_password }}
+      ADMIN_USER_FIRST_NAME={{ env_config.admin_user_first_name }} ADMIN_USER_LAST_NAME={{ env_config.admin_user_last_name }}
+      ADMIN_USER_EMAIL={{ env_config.admin_user_email }}
+      /opt/env3/cutlist_optimizer/bin/python cutlist_optimizer/tests/run_tests.py"
   register: pytest_result
   when: context == 'test'
 

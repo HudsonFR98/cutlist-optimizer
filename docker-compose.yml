@@ -7,6 +7,8 @@ services:
     container_name: cutopt_app_dev
     ports:
       - "8084:8080"
+    env_file:
+      - .env
     environment:
       - CUTLIST_OPTIMIZER_CONTEXT=dev
       - DB_IP=cutopt_db_dev
@@ -17,8 +19,10 @@ services:
         condition: service_healthy
     volumes:
       - ./:/opt/cutlist_optimizer:cached
-      - app_logs:/var/log/cutlist_optimizer
+      - ./logs:/var/log/cutlist_optimizer
       - ./backups:/var/backup
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: always
     networks:
       - cutopt_network_dev
@@ -26,10 +30,8 @@ services:
   db:
     image: postgres:15
     container_name: cutopt_db_dev
-    environment:
-      - POSTGRES_USER=web
-      - POSTGRES_PASSWORD=cutopt2025_x
-      - POSTGRES_DB=postgres
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./cutlist_optimizer/tests/reset.sql:/docker-entrypoint-initdb.d/init.sql:ro

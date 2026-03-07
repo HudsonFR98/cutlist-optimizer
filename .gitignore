@@ -1,6 +1,7 @@
 .vagrant
 .pytest_cache
 .vscode
+.cursor
 .coverage
 cutlist_optimizer.egg-info
 data

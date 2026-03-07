@@ -1,7 +1,4 @@
 variables:
-  CUTLIST_OPTIMIZER_CONTEXT: test
-  DB_IP: localhost
-  PGPASSWORD: cutopt2025_x
   DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
 
 stages:
@@ -9,106 +6,83 @@ stages:
   - docker
   - prod
 
-# Reusable job templates
-.ssh_setup_template: &ssh_setup_template
-  image: python:3.10
+.deploy_via_ansible: &deploy_via_ansible
+  image: $CI_REGISTRY_IMAGE/python:3.11-slim
   before_script:
-    - apt update && apt install -y openssh-client
-    - mkdir -p ~/.ssh
-    - cp /mnt/ssh/* ~/.ssh/
-    - chmod 600 ~/.ssh/id_rsa
-    - chmod 644 ~/.ssh/known_hosts
-    - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
-    - pip install ansible
-  tags:
-    - docker-runner
+    - apt-get update
+    - apt-get install -y --no-install-recommends openssh-client
+    - |
+      mkdir -p ~/.ssh
+      chmod 700 ~/.ssh
+      cp /runner-ssh/id_rsa ~/.ssh/id_rsa
+      chmod 600 ~/.ssh/id_rsa
+      export ANSIBLE_PRIVATE_KEY_FILE=~/.ssh/id_rsa
+      ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+      chmod 644 ~/.ssh/known_hosts
+  script:
+    - python3 deploy/ansible_deploy.py --action deploy --env $CONTEXT --docker-image $DOCKER_IMAGE --docker-registry $CI_REGISTRY_IMAGE --registry-username $CI_REGISTRY_USER --registry-password $CI_REGISTRY_PASSWORD --container-registry-server $CI_REGISTRY --dependency-proxy-server $CI_REGISTRY --dependency-proxy-username $CI_REGISTRY_USER --dependency-proxy-password $CI_REGISTRY_PASSWORD --postgres-user $POSTGRES_USER --postgres-password $POSTGRES_PASSWORD --postgres-db $POSTGRES_DB --cutopt-db-name $CUTOPT_DB_NAME --secret-key $SECRET_KEY --telegram-bot-token $TELEGRAM_BOT_TOKEN --telegram-chat-id $TELEGRAM_CHAT_ID --admin-user-username "${ADMIN_USER_USERNAME:-admin}" --admin-user-password "$ADMIN_USER_PASSWORD" --admin-user-first-name "${ADMIN_USER_FIRST_NAME:-Admin}" --admin-user-last-name "${ADMIN_USER_LAST_NAME:-User}" --admin-user-email "${ADMIN_USER_EMAIL:-admin@example.com}"
 
 populate_dependency_proxy:
   stage: populate-proxy
-  image: docker:28.1.1
-  services:
-    - name: docker:28.1.1-dind
-      alias: docker
-      command: ["--insecure-registry=nath-server.local:8124"]
-  variables:
-    DOCKER_HOST: tcp://docker:2375
-    DOCKER_TLS_CERTDIR: ""
+  image: $CI_REGISTRY_IMAGE/docker:28.1.1
   before_script:
-    - echo "$CI_DEPENDENCY_PROXY_PASSWORD" | docker login $CI_DEPENDENCY_PROXY_SERVER -u $CI_DEPENDENCY_PROXY_USER --password-stdin
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY -u "$CI_REGISTRY_USER" --password-stdin
   script:
-    - echo "Populating dependency proxy with nath used images..."
-    - docker pull ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/python:3.11-slim
-    - docker pull ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/python:3.10
-    - docker pull ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:28.1.1
-    - docker pull ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:28.1.1-dind
-    - docker pull ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/postgres:15
-    - docker pull ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/nginx:alpine
-    - docker pull ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/redis:7-alpine
-    - docker pull ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/alpine:latest
-    - echo "Dependency proxy population completed!"
+    - |
+      echo "Populating project registry with images used in CI..."
+      IMAGES="python:3.11-slim docker:28.1.1 docker:28.1.1-dind postgres:15 nginx:alpine redis:7-alpine alpine:latest"
+      for img in $IMAGES; do
+        target="$CI_REGISTRY_IMAGE/${img#*/}"
+        echo "Pulling $img from Docker Hub..."
+        docker pull "$img"
+        echo "Tagging as $target..."
+        docker tag "$img" "$target"
+        echo "Pushing $target to project registry..."
+        docker push "$target"
+      done
+      echo "Project registry population completed"
   only:
     - master
     - tags
   when: manual
   tags:
-    - docker-runner
+    - docker
 
 build_docker:
   stage: docker
-  # Option A (requires step 1): keep pulling job image via Dependency Proxy
-  image: docker:28.1.1
-  services:
-    - name: docker:28.1.1-dind
-      alias: docker
-      command:
-        - "--insecure-registry=nath-server.local:8124"
-        - "--insecure-registry=nath-server.local:8127"
-  variables:
-    DOCKER_HOST: tcp://docker:2375
-    DOCKER_TLS_CERTDIR: ""
+  image: $CI_REGISTRY_IMAGE/docker:28.1.1
   before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "http://$CI_REGISTRY"
-    - echo "$CI_DEPENDENCY_PROXY_PASSWORD" | docker login "http://$CI_DEPENDENCY_PROXY_SERVER" -u "$CI_DEPENDENCY_PROXY_USER" --password-stdin
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - echo "$CI_DEPENDENCY_PROXY_PASSWORD" | docker login $CI_DEPENDENCY_PROXY_SERVER -u $CI_DEPENDENCY_PROXY_USER --password-stdin
   script:
     - docker info
-    - docker build --build-arg BASE_IMAGE=${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/python:3.11-slim -t $DOCKER_IMAGE .
+    - docker build --build-arg BASE_IMAGE=$CI_REGISTRY_IMAGE/python:3.11-slim -t $DOCKER_IMAGE .
     - docker push $DOCKER_IMAGE
   only:
     - master
     - tags
   tags:
-    - docker-runner
+    - docker
 
 deploy_prod:
   stage: prod
-  <<: *ssh_setup_template
+  <<: *deploy_via_ansible
   variables:
-    SSH_HOST: nath-server.local
+    SSH_HOST: cutlist.nath-server.home
     BUILD_DATE: $CI_PIPELINE_CREATED_AT
-  script:
-    - python3 deploy/ansible_deploy.py --action deploy --env prod --docker-image $DOCKER_IMAGE --docker-registry $CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX --registry-username $CI_REGISTRY_USER --registry-password $CI_REGISTRY_PASSWORD --container-registry-server $CI_REGISTRY --dependency-proxy-server $CI_DEPENDENCY_PROXY_SERVER --dependency-proxy-username $CI_DEPENDENCY_PROXY_USER --dependency-proxy-password $CI_DEPENDENCY_PROXY_PASSWORD
-  when: manual
+    CONTEXT: prod
+    POSTGRES_PASSWORD: $PROD_POSTGRES_PASSWORD
+    CUTOPT_DB_NAME: $PROD_CUTOPT_DB_NAME
+    SECRET_KEY: $PROD_SECRET_KEY
+    ADMIN_USER_PASSWORD: $PROD_ADMIN_USER_PASSWORD
+    ADMIN_USER_USERNAME: $PROD_ADMIN_USER_USERNAME
+    ADMIN_USER_FIRST_NAME: $PROD_ADMIN_USER_FIRST_NAME
+    ADMIN_USER_LAST_NAME: $PROD_ADMIN_USER_LAST_NAME
+    ADMIN_USER_EMAIL: $PROD_ADMIN_USER_EMAIL
   environment:
     name: prod
-    url: http://nath-server.local:8084/
+    url: https://cutlist.nath-server.home
   needs:
-    - build_docker #could also need pytest
+    - build_docker
   tags:
-    - docker-runner
-
-update_prod:
-  stage: prod
-  <<: *ssh_setup_template
-  variables:
-    SSH_HOST: nath-server.local
-    BUILD_DATE: $CI_PIPELINE_CREATED_AT
-  script:
-    - python3 deploy/ansible_deploy.py --action update --env prod --docker-image $DOCKER_IMAGE --docker-registry $CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX --registry-username $CI_REGISTRY_USER --registry-password $CI_REGISTRY_PASSWORD --container-registry-server $CI_REGISTRY --dependency-proxy-server $CI_DEPENDENCY_PROXY_SERVER --dependency-proxy-username $CI_DEPENDENCY_PROXY_USER --dependency-proxy-password $CI_DEPENDENCY_PROXY_PASSWORD
-  when: manual
-  environment:
-    name: prod
-    url: http://nath-server.local:8084/
-  needs:
-    - build_docker #could also need pytest
-  tags:
-    - docker-runner
+    - docker
