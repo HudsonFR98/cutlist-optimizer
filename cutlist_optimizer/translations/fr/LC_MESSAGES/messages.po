@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-07 12:21+0100\n"
+"POT-Creation-Date: 2026-03-12 09:42+0100\n"
 "PO-Revision-Date: 2025-07-07 15:40+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -24,11 +24,8 @@ msgstr "Optimiseur de listes de coupe"
 
 #: cutlist_optimizer/templates/base.html:22
 msgid ""
-"Cutlist\n"
-"      Optimizer"
-msgstr ""
-"Liste de coupes\n"
-"      Optimiseur"
+"Cutlist Optimizer"
+msgstr "Optimiseur de listes de coupe"
 
 #: cutlist_optimizer/templates/base.html:44
 msgid "Example"
@@ -543,8 +540,8 @@ msgid ""
 "This documentation provides information about the Cutlist Optimizer "
 "application, its features, and how to use it."
 msgstr ""
-"Cette documentation présente l'application Optimiseur de listes de coupe, "
-"ses fonctionnalités et son utilisation."
+"Cette documentation présente l'application Optimiseur de listes de coupe,"
+" ses fonctionnalités et son utilisation."
 
 #: cutlist_optimizer/templates/doc/index.html:118
 msgid "Note"
