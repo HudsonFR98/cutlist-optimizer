@@ -37,15 +37,6 @@
 
     <div class="collapse navbar-collapse" id="navbarColor02" style="margin-left: 20px;">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            {{ _('Example') }}
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ url_for('auth.login') }}">{{ _('Login') }}</a>
-          </div>
-        </li>
         {% if CONTEXT == 'test' %}
         <li class="nav-item dropdown active">
           <a class="nav-link dropdown-toggle" href="#" id="testDropdown" role="button" data-bs-toggle="dropdown"

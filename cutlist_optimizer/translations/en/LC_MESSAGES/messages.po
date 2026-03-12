@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-12 09:42+0100\n"
+"POT-Creation-Date: 2026-03-12 09:52+0100\n"
 "PO-Revision-Date: 2025-07-07 15:40+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -19,74 +19,60 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 
 #: cutlist_optimizer/templates/base.html:16
+#: cutlist_optimizer/templates/base.html:22
 msgid "Cutlist Optimizer"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:22
-msgid ""
-"Cutlist\n"
-"      Optimizer"
-msgstr ""
-
 #: cutlist_optimizer/templates/base.html:44
-msgid "Example"
-msgstr ""
-
-#: cutlist_optimizer/templates/base.html:47
-#: cutlist_optimizer/templates/login.html:15
-msgid "Login"
-msgstr ""
-
-#: cutlist_optimizer/templates/base.html:54
 msgid "Tests"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:57
+#: cutlist_optimizer/templates/base.html:47
 msgid "Coverage"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:58
+#: cutlist_optimizer/templates/base.html:48
 msgid "Test Output"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:66
+#: cutlist_optimizer/templates/base.html:56
 msgid "Administration"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:69
+#: cutlist_optimizer/templates/base.html:59
 msgid "Users"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/tasks.html:3
-#: cutlist_optimizer/templates/base.html:70
+#: cutlist_optimizer/templates/base.html:60
 msgid "Async Tasks"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:71
+#: cutlist_optimizer/templates/base.html:61
 msgid "Logs"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:78
+#: cutlist_optimizer/templates/base.html:68
 msgid "Logout"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:83
+#: cutlist_optimizer/templates/base.html:73
 msgid "Help"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:87
+#: cutlist_optimizer/templates/base.html:77
 msgid "Toggle theme"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:96
+#: cutlist_optimizer/templates/base.html:86
 msgid "Language"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:182
+#: cutlist_optimizer/templates/base.html:172
 msgid "Switch to light mode"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:185
+#: cutlist_optimizer/templates/base.html:175
 msgid "Switch to dark mode"
 msgstr ""
 
@@ -97,6 +83,10 @@ msgstr ""
 #: cutlist_optimizer/templates/admin/users.html:111
 #: cutlist_optimizer/templates/login.html:14
 msgid "Password"
+msgstr ""
+
+#: cutlist_optimizer/templates/login.html:15
+msgid "Login"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/logs.html:3
@@ -628,7 +618,7 @@ msgstr ""
 #~ msgstr "Cutlist Optimizer"
 
 #~ msgid "Example"
-#~ msgstr "Example"
+#~ msgstr ""
 
 #~ msgid "Login"
 #~ msgstr "Login"
@@ -706,5 +696,10 @@ msgstr ""
 #~ " the Nath Standalone Flask Template "
 #~ "application, its features, and how to"
 #~ " use it."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Cutlist\n"
+#~ "      Optimizer"
 #~ msgstr ""
 
