@@ -614,6 +614,51 @@ msgstr ""
 msgid "CI/CD pipeline integration"
 msgstr ""
 
+#: cutlist_optimizer/templates/dashboard/home.html
+msgid "Export on A4"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html
+msgid "No optimization result to export. Please run an optimization first."
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html
+msgid "Generating PDF..."
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html
+msgid "PDF export failed"
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+msgid "Cutlist layout — real size A4 export"
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+msgid "Assembly plan"
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+msgid ""
+"Print at real size (scale 1:1, no fit-to-page). Trim each page along the"
+" crop marks, then tape the pages together by number."
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+#, python-format
+msgid "Sheet %(num)d — %(width)s × %(height)s mm — %(pages)d pages"
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+#, python-format
+msgid "Sheet %(sheet)d/%(total_sheets)d — Row %(row)d/%(rows)d — Column %(col)d/%(cols)d"
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+#, python-format
+msgid "Page %(page)d/%(total)d"
+msgstr ""
+
 #~ msgid "Cutlist Optimizer"
 #~ msgstr "Cutlist Optimizer"
 

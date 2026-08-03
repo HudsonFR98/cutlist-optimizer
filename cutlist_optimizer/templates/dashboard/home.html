@@ -111,8 +111,11 @@
             <!-- Visualization -->
             <div id="visualizationContainerWrapper" style="display: none;">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0"><i class="fas fa-drafting-compass"></i> {{ _('Layout Visualization') }}</h5>
+                        <button type="button" class="btn btn-sm btn-outline-primary" id="exportA4Btn">
+                            <i class="fas fa-print"></i> {{ _('Export on A4') }}
+                        </button>
                     </div>
                     <div class="card-body">
                         <div id="visualizationContainer">
@@ -191,6 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let pieceCounter = 0;
     let stockSheetCounter = 0;
     let lastRequestData = null;
+    let lastResultData = null;
 
     // Add initial stock sheet and piece
     addStockSheet();
@@ -234,6 +238,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('optimizeForm').addEventListener('submit', function(e) {
         e.preventDefault();
         optimizeCutlist();
+    });
+
+    // Export on A4 button handler
+    document.getElementById('exportA4Btn').addEventListener('click', function() {
+        exportOnA4();
     });
 
     // Add stock sheet function
@@ -431,6 +440,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Display results
     function displayResults(data) {
+        // Keep the result for the A4 export
+        lastResultData = data;
+
         // Update statistics
         document.getElementById('statSheetsUsed').textContent = data.statistics.total_sheets_used;
         document.getElementById('statPiecesPlaced').textContent = data.statistics.total_pieces_placed;
@@ -564,6 +576,56 @@ document.addEventListener('DOMContentLoaded', function() {
             if (placement.rotated) {
                 ctx.fillText('(R)', labelX, labelY + 10);
             }
+        });
+    }
+
+    // Export the current layout as a real-size (1:1) multi-page A4 PDF
+    function exportOnA4() {
+        if (!lastResultData || !lastResultData.sheets || !lastResultData.placements) {
+            showError('{{ _("No optimization result to export. Please run an optimization first.") }}');
+            return;
+        }
+
+        const button = document.getElementById('exportA4Btn');
+        const originalContent = button.innerHTML;
+        button.disabled = true;
+        button.innerHTML = '<span class="spinner-border spinner-border-sm"></span> {{ _("Generating PDF...") }}';
+
+        fetch('{{ url_for("rest.export_a4_pdf") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                sheets: lastResultData.sheets,
+                placements: lastResultData.placements
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => {
+                    throw new Error(err.description || '{{ _("PDF export failed") }}');
+                });
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'cutlist_layout_a4.pdf';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+            showError(error.message);
+        })
+        .finally(() => {
+            button.disabled = false;
+            button.innerHTML = originalContent;
         });
     }
 

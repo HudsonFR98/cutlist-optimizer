@@ -622,6 +622,56 @@ msgstr "Ansible pour le déploiement en production"
 msgid "CI/CD pipeline integration"
 msgstr "Intégration de la chaîne CI/CD"
 
+#: cutlist_optimizer/templates/dashboard/home.html
+msgid "Export on A4"
+msgstr "Exporter en A4"
+
+#: cutlist_optimizer/templates/dashboard/home.html
+msgid "No optimization result to export. Please run an optimization first."
+msgstr ""
+"Aucun résultat d'optimisation à exporter. Veuillez d'abord lancer une "
+"optimisation."
+
+#: cutlist_optimizer/templates/dashboard/home.html
+msgid "Generating PDF..."
+msgstr "Génération du PDF..."
+
+#: cutlist_optimizer/templates/dashboard/home.html
+msgid "PDF export failed"
+msgstr "L'export PDF a échoué"
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+msgid "Cutlist layout — real size A4 export"
+msgstr "Plan de découpe — export A4 taille réelle"
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+msgid "Assembly plan"
+msgstr "Plan d'assemblage"
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+msgid ""
+"Print at real size (scale 1:1, no fit-to-page). Trim each page along the"
+" crop marks, then tape the pages together by number."
+msgstr ""
+"Imprimez à taille réelle (échelle 1:1, sans ajustement à la page). "
+"Découpez chaque page le long des traits de coupe, puis assemblez les "
+"pages par numéro."
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+#, python-format
+msgid "Sheet %(num)d — %(width)s × %(height)s mm — %(pages)d pages"
+msgstr "Panneau %(num)d — %(width)s × %(height)s mm — %(pages)d pages"
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+#, python-format
+msgid "Sheet %(sheet)d/%(total_sheets)d — Row %(row)d/%(rows)d — Column %(col)d/%(cols)d"
+msgstr "Panneau %(sheet)d/%(total_sheets)d — Ligne %(row)d/%(rows)d — Colonne %(col)d/%(cols)d"
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py
+#, python-format
+msgid "Page %(page)d/%(total)d"
+msgstr "Page %(page)d/%(total)d"
+
 #~ msgid "Total Users"
 #~ msgstr ""
 

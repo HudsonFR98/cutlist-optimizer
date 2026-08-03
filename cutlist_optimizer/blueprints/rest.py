@@ -1,11 +1,14 @@
 """ webservices """
 
+import io
 import logging
 
-from flask import request, Blueprint, abort, jsonify
+from flask import request, Blueprint, abort, jsonify, send_file
 from flask_login import current_user
+from werkzeug.exceptions import HTTPException
 from cutlist_optimizer import dao
 from cutlist_optimizer.lib.cutlist_optimizer import CutlistOptimizer, Piece, StockSheet
+from cutlist_optimizer.lib.a4_pdf_exporter import A4PdfExporter
 
 
 rest = Blueprint('rest', __name__)
@@ -144,6 +147,73 @@ def optimize_cutlist():
         abort(400, description=f"Invalid numeric value: {str(e)}")
     except Exception as e:
         log.error(f"Error in optimize_cutlist: {e}", exc_info=True)
+        abort(500, description=f"Internal server error: {str(e)}")
+
+
+@rest.route('/export_a4', methods=["POST"])
+def export_a4_pdf():
+    """
+    Export an optimization result as a real-size (1:1) multi-page A4 PDF.
+
+    Each stock sheet is tiled over as many A4 pages as needed so the printed
+    pages can be trimmed and taped together to rebuild the layout at real size.
+
+    Expected JSON payload (the 'sheets' and 'placements' arrays returned
+    by the /rest/optimize endpoint):
+    {
+        "sheets": [
+            {"index": 0, "width": 535.0, "height": 1000.0}
+        ],
+        "placements": [
+            {"x": 0.0, "y": 0.0, "width": 200.0, "height": 300.0,
+             "rotated": false, "sheet_index": 0}
+        ]
+    }
+
+    Returns the PDF file as an attachment.
+    """
+    try:
+        data = request.get_json()
+
+        if not data:
+            abort(400, description="No JSON data provided")
+
+        sheets = data.get('sheets')
+        placements = data.get('placements')
+
+        if not isinstance(sheets, list) or not sheets:
+            abort(400, description="sheets must be a non-empty list")
+        if not isinstance(placements, list):
+            abort(400, description="placements must be a list")
+
+        for idx, sheet in enumerate(sheets):
+            if 'index' not in sheet or 'width' not in sheet or 'height' not in sheet:
+                abort(400, description=f"Sheet {idx} must have index, width and height")
+            if float(sheet['width']) <= 0 or float(sheet['height']) <= 0:
+                abort(400, description=f"Sheet {idx}: width and height must be positive")
+
+        for idx, placement in enumerate(placements):
+            for field in ('x', 'y', 'width', 'height', 'sheet_index'):
+                if field not in placement:
+                    abort(400, description=f"Placement {idx} must have {field}")
+
+        exporter = A4PdfExporter()
+        pdf_bytes = exporter.generate(sheets, placements)
+
+        return send_file(
+            io.BytesIO(pdf_bytes),
+            mimetype='application/pdf',
+            as_attachment=True,
+            download_name='cutlist_layout_a4.pdf'
+        )
+
+    except HTTPException:
+        raise
+    except ValueError as e:
+        log.error(f"Value error in export_a4_pdf: {e}")
+        abort(400, description=f"Invalid numeric value: {str(e)}")
+    except Exception as e:
+        log.error(f"Error in export_a4_pdf: {e}", exc_info=True)
         abort(500, description=f"Internal server error: {str(e)}")
 
 
