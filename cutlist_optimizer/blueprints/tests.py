@@ -10,14 +10,11 @@ log = logging.getLogger(__name__)
 
 
 @test_output.route('/simple')
-@login_required
 def simple():
     raise Exception('Test exception')
     return jsonify({'message': 'Hello, World!'})
 
-
 @test_output.route('/telegram')
-@login_required
 def telegram():
     send_telegram_message('Hello, World!')
     return jsonify({'message': 'Telegram message sent'})
@@ -41,7 +38,7 @@ def output():
         HTML page with test output or 404 if not in test context
     """
     # Only allow access in test context
-    if config.CONTEXT not in ['test', 'dev']:
+    if config.CONTEXT not in ['integration', 'dev']:
         abort(404)
     
     # Try to read the last test output from various possible locations

@@ -20,4 +20,5 @@ else
     echo "Database ${CUTOPT_DB_NAME} already exists."
 fi
 
+
 echo "Database initialization completed successfully."

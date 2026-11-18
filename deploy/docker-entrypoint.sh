@@ -12,8 +12,10 @@ require_env() {
 # Function to run as web user (only if we're not already web user)
 run_as_web() {
     if [ "$(id -u)" = "1000" ]; then
+        # We're already running as web user
         eval "$1"
     else
+        # Switch to web user
         su - web -c "$1"
     fi
 }
@@ -28,6 +30,7 @@ DB_HOST="${DB_IP}"
 DB_USER="${POSTGRES_USER}"
 DB_PASSWORD="${POSTGRES_PASSWORD}"
 DB_NAME="${CUTOPT_DB_NAME}"
+
 
 # Wait for the cutopt database to be ready
 echo "Waiting for database ${DB_NAME} to be ready on ${DB_HOST}..."
@@ -56,11 +59,14 @@ run_as_web "cd /opt/cutlist_optimizer && \
     /opt/env3/cutlist_optimizer/bin/pip install -r deploy/requirements.txt && \
     /opt/env3/cutlist_optimizer/bin/alembic upgrade head"
 
+
 # Determine which server to use based on context
 if [ "$CUTLIST_OPTIMIZER_CONTEXT" = "dev" ]; then
     echo "Starting Flask development server with hot reloading..."
+    # Use Flask development server for hot reloading in dev mode
     exec /opt/env3/cutlist_optimizer/bin/python cutlist_optimizer_app.py
 else
     echo "Starting Gunicorn production server..."
+    # Use Gunicorn for integration, validation, and production
     exec /opt/env3/cutlist_optimizer/bin/gunicorn --bind 0.0.0.0:8080 --log-level=debug --capture-output --enable-stdio-inheritance cutlist_optimizer_app:app
 fi

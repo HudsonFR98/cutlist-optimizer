@@ -27,16 +27,16 @@ def get_database_host(context):
     Get the appropriate database host based on the environment context.
     
     Args:
-        context (str): The environment context (dev, test, demo, prod)
+        context (str): The environment context (dev, integration, validation, prod)
     
     Returns:
         str: Database host name following the new naming scheme
     """
     if context == 'dev':
         # Development environment uses external database specified by DB_IP
-        return os.environ.get('DB_IP', 'cutopt_db_dev')
+        return os.environ.get('DB_IP', 'db')
     else:
-        # Test, demo, and prod environments use the new container naming scheme
+        # Integration, validation, and prod use the container naming scheme
         return f'cutopt_db_{context}'
 
 
@@ -61,13 +61,13 @@ def main():
         int: Exit code from pytest (0 for success, non-zero for failure)
     
     Environment Variables Set:
-        CUTLIST_OPTIMIZER_CONTEXT: Set to 'test' for test environment
+        CUTLIST_OPTIMIZER_CONTEXT: Context the suite runs in (integration on CI)
         DB_IP: Set to appropriate database host based on context
         COVERAGE_FILE: Points to temporary coverage data file
         PYTEST_CACHE_DIR: Points to temporary pytest cache directory
     """
-    # Step 1: Get context from environment or default to 'test'
-    context = os.environ.get('CUTLIST_OPTIMIZER_CONTEXT', 'test')
+    # Step 1: Get context from environment or default to integration
+    context = os.environ.get('CUTLIST_OPTIMIZER_CONTEXT', 'integration')
     print(f"Running tests in context: {context}")
     
     # Step 2: Set environment variables for test execution
@@ -77,18 +77,6 @@ def main():
     db_host = get_database_host(context)
     os.environ['DB_IP'] = db_host
     
-    os.environ.setdefault('POSTGRES_USER', 'web')
-    os.environ.setdefault('POSTGRES_PASSWORD', 'cutopt2025_x')
-    os.environ.setdefault('CUTOPT_DB_NAME', 'cutopt')
-    os.environ.setdefault('SECRET_KEY', 'test-secret-key')
-    os.environ.setdefault('TELEGRAM_BOT_TOKEN', 'test-token')
-    os.environ.setdefault('TELEGRAM_CHAT_ID', '0')
-    os.environ.setdefault('ADMIN_USER_USERNAME', 'admin')
-    os.environ.setdefault('ADMIN_USER_PASSWORD', 'admin123')
-    os.environ.setdefault('ADMIN_USER_FIRST_NAME', 'Admin')
-    os.environ.setdefault('ADMIN_USER_LAST_NAME', 'User')
-    os.environ.setdefault('ADMIN_USER_EMAIL', 'admin@example.com')
-
     # Step 3: Create temporary directories to avoid permission issues
     temp_dir = tempfile.mkdtemp(prefix='cutlist_optimizertest_')
     cache_dir = os.path.join(temp_dir, 'pytest_cache')
@@ -115,6 +103,8 @@ def main():
         '-v',                                    # Verbose output
         'cutlist_optimizer/tests/'           # Test directory to run
     ]
+    cmd.extend(sys.argv[1:])
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     
     # Step 7: Display execution information
     print("Running tests with command:", ' '.join(cmd))
@@ -133,7 +123,7 @@ def main():
     # Use Popen to get real-time output while also capturing it
     process = subprocess.Popen(
         cmd, 
-        cwd='/opt/cutlist_optimizer', 
+        cwd=repo_root, 
         stdout=subprocess.PIPE, 
         stderr=subprocess.PIPE,
         text=True,
@@ -181,8 +171,8 @@ def main():
     
     result = Result(result, result_stdout, result_stderr)
     
-    # Step 9: Save test output to file for web interface (only in test context)
-    if context == 'test':
+    # Step 9: Save test output to file for web interface (integration and dev)
+    if context in ('integration', 'dev'):
         test_output_file = '/opt/cutlist_optimizer_data/test_output.log'
         try:
             with open(test_output_file, 'w', encoding='utf-8') as f:

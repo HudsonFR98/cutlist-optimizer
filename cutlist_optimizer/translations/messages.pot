@@ -8,14 +8,249 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-12 09:52+0100\n"
+"POT-Creation-Date: 2026-11-18 09:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: cutlist_optimizer/blueprints/admin.py:54
+msgid "Error loading tasks data. Please check database connection."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:230
+msgid "Error loading logs"
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:255
+msgid "Error loading users data. Please check database connection."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:270
+msgid "This setting only applies in the validation context."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:275
+msgid "Validation reviewer guest login enabled."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:277
+msgid "Validation reviewer guest login disabled."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:298
+msgid "Username and password are required."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:303
+#: cutlist_optimizer/blueprints/admin.py:371
+msgid "Username already exists."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:328
+msgid "User created successfully."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:333
+msgid "Error creating user. Please try again."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:354
+msgid "User ID is required."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:360 cutlist_optimizer/dao/user.py:33
+#: cutlist_optimizer/dao/user.py:50
+msgid "User not found."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:365
+msgid "Username is required."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:394
+msgid "User updated successfully."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:399
+msgid "Error updating user. Please try again."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:534
+msgid "Error loading roles data. Please check database connection."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:548
+msgid "Role created successfully."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:554
+msgid "Error creating role. Please try again."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:570
+msgid "Role updated successfully."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:573
+#: cutlist_optimizer/blueprints/admin.py:592
+msgid "Role ID is required."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:578
+msgid "Error updating role. Please try again."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:589
+msgid "Role deleted successfully."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:597
+msgid "Error deleting role. Please try again."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:634
+msgid "Error loading permissions data. Please check database connection."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:647
+msgid "Permission created successfully."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:653
+msgid "Error creating permission. Please try again."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:667
+msgid "Permission updated successfully."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:670
+#: cutlist_optimizer/blueprints/admin.py:689
+msgid "Permission ID is required."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:675
+msgid "Error updating permission. Please try again."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:686
+msgid "Permission deleted successfully."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/admin.py:694
+msgid "Error deleting permission. Please try again."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/auth.py:36
+msgid "User account is inactive"
+msgstr ""
+
+#: cutlist_optimizer/blueprints/auth.py:42
+msgid "Invalid username or password"
+msgstr ""
+
+#: cutlist_optimizer/blueprints/auth.py:57
+msgid "Reviewer account is not available."
+msgstr ""
+
+#: cutlist_optimizer/blueprints/auth.py:71
+msgid "Please sign in again"
+msgstr ""
+
+#: cutlist_optimizer/dao/permission.py:28
+msgid ""
+"Permission name must start with a letter and contain only lowercase "
+"letters, digits, or underscores."
+msgstr ""
+
+#: cutlist_optimizer/dao/permission.py:32
+msgid "A permission with this name already exists."
+msgstr ""
+
+#: cutlist_optimizer/dao/permission.py:46
+#: cutlist_optimizer/dao/permission.py:55
+msgid "Permission not found."
+msgstr ""
+
+#: cutlist_optimizer/dao/permission.py:57
+msgid "System permissions cannot be deleted."
+msgstr ""
+
+#: cutlist_optimizer/dao/permission.py:59
+msgid "This permission is still assigned to one or more roles."
+msgstr ""
+
+#: cutlist_optimizer/dao/role.py:32
+msgid "One of the selected permissions does not exist."
+msgstr ""
+
+#: cutlist_optimizer/dao/role.py:46 cutlist_optimizer/dao/role.py:75
+#: cutlist_optimizer/dao/role.py:95
+msgid "Role not found."
+msgstr ""
+
+#: cutlist_optimizer/dao/role.py:55 cutlist_optimizer/dao/role.py:78
+msgid "Role name is required."
+msgstr ""
+
+#: cutlist_optimizer/dao/role.py:57 cutlist_optimizer/dao/role.py:83
+msgid "A role with this name already exists."
+msgstr ""
+
+#: cutlist_optimizer/dao/role.py:80
+msgid "The admin role cannot be renamed."
+msgstr ""
+
+#: cutlist_optimizer/dao/role.py:97
+msgid "The admin role cannot be deleted."
+msgstr ""
+
+#: cutlist_optimizer/dao/role.py:99
+msgid "This role is still assigned to one or more users."
+msgstr ""
+
+#: cutlist_optimizer/dao/user.py:52
+msgid "This user has no API token."
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py:97
+msgid "Cutlist layout — real size A4 export"
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py:146
+msgid "Assembly plan"
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py:150
+msgid ""
+"Print at real size (scale 1:1, no fit-to-page). Trim each page along the "
+"crop marks, then tape the pages together by number."
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py:172
+#, python-format
+msgid "Sheet %(num)d — %(width)s × %(height)s mm — %(pages)d pages"
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py:247
+#, python-format
+msgid ""
+"Sheet %(sheet)d/%(total_sheets)d — Row %(row)d/%(rows)d — Column "
+"%(col)d/%(cols)d"
+msgstr ""
+
+#: cutlist_optimizer/lib/a4_pdf_exporter.py:252
+#, python-format
+msgid "Page %(page)d/%(total)d"
+msgstr ""
+
+#: cutlist_optimizer/lib/api_auth.py:30
+msgid "Invalid or missing API token"
+msgstr ""
 
 #: cutlist_optimizer/templates/base.html:16
 #: cutlist_optimizer/templates/base.html:22
@@ -38,54 +273,78 @@ msgstr ""
 msgid "Administration"
 msgstr ""
 
+#: cutlist_optimizer/templates/admin/roles.html:36
 #: cutlist_optimizer/templates/base.html:59
 msgid "Users"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/tasks.html:3
+#: cutlist_optimizer/templates/admin/permissions.html:41
+#: cutlist_optimizer/templates/admin/roles.html:3
+#: cutlist_optimizer/templates/admin/roles.html:10
+#: cutlist_optimizer/templates/admin/users.html:70
+#: cutlist_optimizer/templates/admin/users.html:177
+#: cutlist_optimizer/templates/admin/users.html:230
 #: cutlist_optimizer/templates/base.html:60
+msgid "Roles"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:3
+#: cutlist_optimizer/templates/admin/permissions.html:10
+#: cutlist_optimizer/templates/admin/roles.html:37
+#: cutlist_optimizer/templates/admin/roles.html:105
+#: cutlist_optimizer/templates/admin/roles.html:150
+#: cutlist_optimizer/templates/base.html:61
+msgid "Permissions"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/tasks.html:3
+#: cutlist_optimizer/templates/base.html:62
 msgid "Async Tasks"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:61
+#: cutlist_optimizer/templates/base.html:65
 msgid "Logs"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:68
+#: cutlist_optimizer/templates/base.html:72
 msgid "Logout"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:73
+#: cutlist_optimizer/templates/base.html:77
 msgid "Help"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:77
+#: cutlist_optimizer/templates/base.html:81
 msgid "Toggle theme"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:86
+#: cutlist_optimizer/templates/base.html:90
 msgid "Language"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:172
+#: cutlist_optimizer/templates/base.html:178
 msgid "Switch to light mode"
 msgstr ""
 
-#: cutlist_optimizer/templates/base.html:175
+#: cutlist_optimizer/templates/base.html:181
 msgid "Switch to dark mode"
 msgstr ""
 
-#: cutlist_optimizer/templates/login.html:10
+#: cutlist_optimizer/templates/login.html:9
 msgid "User ID"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:111
-#: cutlist_optimizer/templates/login.html:14
+#: cutlist_optimizer/templates/admin/users.html:160
+#: cutlist_optimizer/templates/login.html:13
 msgid "Password"
 msgstr ""
 
-#: cutlist_optimizer/templates/login.html:15
+#: cutlist_optimizer/templates/login.html:14
 msgid "Login"
+msgstr ""
+
+#: cutlist_optimizer/templates/login.html:20
+msgid "Connect as reviewer"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/logs.html:3
@@ -95,6 +354,8 @@ msgid "Application Logs"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/logs.html:3
+#: cutlist_optimizer/templates/admin/permissions.html:3
+#: cutlist_optimizer/templates/admin/roles.html:3
 #: cutlist_optimizer/templates/admin/tasks.html:3
 #: cutlist_optimizer/templates/admin/users.html:3
 msgid "Admin"
@@ -111,6 +372,127 @@ msgstr ""
 
 #: cutlist_optimizer/templates/admin/logs.html:29
 msgid "No logs available"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:18
+#: cutlist_optimizer/templates/admin/permissions.html:98
+#: cutlist_optimizer/templates/admin/permissions.html:116
+msgid "Create Permission"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:24
+msgid ""
+"Permission names cannot be renamed after creation; they are used in "
+"application code."
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:31
+msgid "Permissions List"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:38
+#: cutlist_optimizer/templates/admin/permissions.html:103
+#: cutlist_optimizer/templates/admin/permissions.html:135
+#: cutlist_optimizer/templates/admin/roles.html:34
+#: cutlist_optimizer/templates/admin/roles.html:97
+#: cutlist_optimizer/templates/admin/roles.html:139
+msgid "Name"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:39
+#: cutlist_optimizer/templates/admin/permissions.html:110
+#: cutlist_optimizer/templates/admin/permissions.html:139
+#: cutlist_optimizer/templates/admin/roles.html:35
+#: cutlist_optimizer/templates/admin/roles.html:101
+#: cutlist_optimizer/templates/admin/roles.html:146
+#: cutlist_optimizer/templates/admin/tasks.html:99
+msgid "Description"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:40
+msgid "Type"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:42
+#: cutlist_optimizer/templates/admin/roles.html:38
+#: cutlist_optimizer/templates/admin/tasks.html:104
+#: cutlist_optimizer/templates/admin/users.html:73
+msgid "Actions"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:52
+msgid "System"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:54
+msgid "Custom"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:65
+#: cutlist_optimizer/templates/admin/roles.html:59
+#: cutlist_optimizer/templates/admin/users.html:109
+msgid "Edit"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:70
+msgid "Are you sure you want to delete this permission?"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:75
+#: cutlist_optimizer/templates/admin/roles.html:69
+msgid "Delete"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:106
+#: cutlist_optimizer/templates/admin/permissions.html:107
+msgid "Lowercase letter, then letters, digits or underscores"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:115
+#: cutlist_optimizer/templates/admin/permissions.html:144
+#: cutlist_optimizer/templates/admin/roles.html:119
+#: cutlist_optimizer/templates/admin/roles.html:164
+#: cutlist_optimizer/templates/admin/users.html:187
+#: cutlist_optimizer/templates/admin/users.html:240
+msgid "Cancel"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:129
+msgid "Edit Permission"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/permissions.html:145
+msgid "Update Permission"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/roles.html:18
+#: cutlist_optimizer/templates/admin/roles.html:92
+#: cutlist_optimizer/templates/admin/roles.html:120
+msgid "Create Role"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/roles.html:27
+msgid "Roles List"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/roles.html:64
+msgid "Are you sure you want to delete this role?"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/roles.html:133
+msgid "Edit Role"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/roles.html:142
+msgid "The admin role name cannot be changed."
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/roles.html:165
+msgid "Update Role"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/roles.html:199
+msgid "Failed to load role data"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/tasks.html:10
@@ -144,10 +526,6 @@ msgstr ""
 msgid "Task Name"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/tasks.html:99
-msgid "Description"
-msgstr ""
-
 #: cutlist_optimizer/templates/admin/tasks.html:100
 msgid "Schedule"
 msgstr ""
@@ -155,7 +533,7 @@ msgstr ""
 #: cutlist_optimizer/templates/admin/tasks.html:101
 #: cutlist_optimizer/templates/admin/tasks.html:133
 #: cutlist_optimizer/templates/admin/tasks.html:183
-#: cutlist_optimizer/templates/admin/users.html:40
+#: cutlist_optimizer/templates/admin/users.html:72
 msgid "Status"
 msgstr ""
 
@@ -167,13 +545,8 @@ msgstr ""
 msgid "Next Run"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/tasks.html:104
-#: cutlist_optimizer/templates/admin/users.html:41
-msgid "Actions"
-msgstr ""
-
 #: cutlist_optimizer/templates/admin/tasks.html:114
-#: cutlist_optimizer/templates/admin/users.html:58
+#: cutlist_optimizer/templates/admin/users.html:97
 msgid "Active"
 msgstr ""
 
@@ -229,11 +602,12 @@ msgstr ""
 
 #: cutlist_optimizer/templates/admin/tasks.html:213
 #: cutlist_optimizer/templates/admin/tasks.html:232
-#: cutlist_optimizer/templates/dashboard/home.html:127
+#: cutlist_optimizer/templates/dashboard/home.html:130
 msgid "Loading..."
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/tasks.html:217
+#: cutlist_optimizer/templates/admin/users.html:270
 msgid "Close"
 msgstr ""
 
@@ -250,109 +624,166 @@ msgstr ""
 msgid "Users Management"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:18
-#: cutlist_optimizer/templates/admin/users.html:101
-msgid "Create New User"
+#: cutlist_optimizer/templates/admin/users.html:19
+msgid "Validation access"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:28
-msgid "Users List"
+#: cutlist_optimizer/templates/admin/users.html:21
+msgid ""
+"When enabled, visitors on this validation instance sign in as the "
+"reviewer without a password until they log out. They can also use Connect"
+" as reviewer on the login page."
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:35
-#: cutlist_optimizer/templates/admin/users.html:106
-#: cutlist_optimizer/templates/admin/users.html:159
-msgid "Username"
+#: cutlist_optimizer/templates/admin/users.html:32
+msgid "Allow passwordless reviewer login"
 msgstr ""
 
 #: cutlist_optimizer/templates/admin/users.html:36
-#: cutlist_optimizer/templates/admin/users.html:116
-#: cutlist_optimizer/templates/admin/users.html:169
+msgid "Save"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:49
+#: cutlist_optimizer/templates/admin/users.html:150
+msgid "Create New User"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:59
+msgid "Users List"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:66
+#: cutlist_optimizer/templates/admin/users.html:155
+#: cutlist_optimizer/templates/admin/users.html:208
+#: cutlist_optimizer/templates/admin/users.html:256
+msgid "Username"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:67
+#: cutlist_optimizer/templates/admin/users.html:165
+#: cutlist_optimizer/templates/admin/users.html:218
 msgid "First Name"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:37
-#: cutlist_optimizer/templates/admin/users.html:120
-#: cutlist_optimizer/templates/admin/users.html:173
+#: cutlist_optimizer/templates/admin/users.html:68
+#: cutlist_optimizer/templates/admin/users.html:169
+#: cutlist_optimizer/templates/admin/users.html:222
 msgid "Last Name"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:38
-#: cutlist_optimizer/templates/admin/users.html:124
-#: cutlist_optimizer/templates/admin/users.html:177
+#: cutlist_optimizer/templates/admin/users.html:69
+#: cutlist_optimizer/templates/admin/users.html:173
+#: cutlist_optimizer/templates/admin/users.html:226
 msgid "Email"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:39
-#: cutlist_optimizer/templates/admin/users.html:128
-#: cutlist_optimizer/templates/admin/users.html:181
-msgid "Roles"
+#: cutlist_optimizer/templates/admin/users.html:71
+#: cutlist_optimizer/templates/admin/users.html:117
+#: cutlist_optimizer/templates/admin/users.html:252
+msgid "API Token"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:60
+#: cutlist_optimizer/templates/admin/users.html:92
+#: cutlist_optimizer/templates/admin/users.html:325
+msgid "No token"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:99
 msgid "Left"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:62
+#: cutlist_optimizer/templates/admin/users.html:101
 msgid "Inactive"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:69
-msgid "Edit"
-msgstr ""
-
-#: cutlist_optimizer/templates/admin/users.html:75
+#: cutlist_optimizer/templates/admin/users.html:124
 msgid "Deactivate"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:77
+#: cutlist_optimizer/templates/admin/users.html:126
 msgid "Activate"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:134
-#: cutlist_optimizer/templates/admin/users.html:187
+#: cutlist_optimizer/templates/admin/users.html:183
+#: cutlist_optimizer/templates/admin/users.html:236
 msgid "Hold Ctrl/Cmd to select multiple roles"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:138
-#: cutlist_optimizer/templates/admin/users.html:191
-msgid "Cancel"
-msgstr ""
-
-#: cutlist_optimizer/templates/admin/users.html:139
+#: cutlist_optimizer/templates/admin/users.html:188
 msgid "Create User"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:153
+#: cutlist_optimizer/templates/admin/users.html:202
 msgid "Edit User"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:164
+#: cutlist_optimizer/templates/admin/users.html:213
 msgid "New Password"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:166
+#: cutlist_optimizer/templates/admin/users.html:215
 msgid "Leave blank to keep current password"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:192
+#: cutlist_optimizer/templates/admin/users.html:241
 msgid "Update User"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:237
+#: cutlist_optimizer/templates/admin/users.html:259
+msgid "Copy this token now. It will not be shown again."
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:263
+#: cutlist_optimizer/templates/admin/users.html:332
+msgid "Copy"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:269
+msgid "Revoke"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:271
+msgid "Generate Token"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:315
 msgid "Failed to load user data"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:248
+#: cutlist_optimizer/templates/admin/users.html:326
+msgid "Current token prefix:"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:327
+msgid "Generating a new token will replace the existing one. Continue?"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:328
+msgid "Revoke this API token? The user will no longer be able to call the API."
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:329
+msgid "Failed to generate API token"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:330
+msgid "Failed to revoke API token"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:331
+msgid "Copied"
+msgstr ""
+
+#: cutlist_optimizer/templates/admin/users.html:433
 msgid "Are you sure you want to deactivate this user?"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:248
+#: cutlist_optimizer/templates/admin/users.html:433
 msgid "Are you sure you want to activate this user?"
 msgstr ""
 
-#: cutlist_optimizer/templates/admin/users.html:268
-#: cutlist_optimizer/templates/admin/users.html:273
+#: cutlist_optimizer/templates/admin/users.html:453
+#: cutlist_optimizer/templates/admin/users.html:458
 msgid "Failed to update user status"
 msgstr ""
 
@@ -395,7 +826,7 @@ msgid "Saved Cutlists"
 msgstr ""
 
 #: cutlist_optimizer/templates/dashboard/home.html:56
-#: cutlist_optimizer/templates/dashboard/home.html:300
+#: cutlist_optimizer/templates/dashboard/home.html:309
 msgid "Select saved cutlist"
 msgstr ""
 
@@ -439,63 +870,79 @@ msgstr ""
 msgid "Layout Visualization"
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:129
-msgid "Optimizing layout..."
+#: cutlist_optimizer/templates/dashboard/home.html:117
+msgid "Export on A4"
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:145
-#: cutlist_optimizer/templates/dashboard/home.html:169
-msgid "Width"
+#: cutlist_optimizer/templates/dashboard/home.html:132
+msgid "Optimizing layout..."
 msgstr ""
 
 #: cutlist_optimizer/templates/dashboard/home.html:148
 #: cutlist_optimizer/templates/dashboard/home.html:172
-msgid "Height"
+msgid "Width"
 msgstr ""
 
 #: cutlist_optimizer/templates/dashboard/home.html:151
 #: cutlist_optimizer/templates/dashboard/home.html:175
+msgid "Height"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:154
+#: cutlist_optimizer/templates/dashboard/home.html:178
 msgid "Qty"
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:222
+#: cutlist_optimizer/templates/dashboard/home.html:226
 msgid "Please select a saved cutlist"
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:227
+#: cutlist_optimizer/templates/dashboard/home.html:231
 msgid "Saved cutlist not found"
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:304
+#: cutlist_optimizer/templates/dashboard/home.html:313
 msgid "Cutlist"
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:365
+#: cutlist_optimizer/templates/dashboard/home.html:374
 msgid "Please add at least one stock sheet"
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:388
+#: cutlist_optimizer/templates/dashboard/home.html:397
 msgid "Please add at least one piece to cut"
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:416
+#: cutlist_optimizer/templates/dashboard/home.html:425
 msgid "Optimization failed"
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:454
+#: cutlist_optimizer/templates/dashboard/home.html:466
 msgid "Some pieces could not be placed on available stock sheets."
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:494
+#: cutlist_optimizer/templates/dashboard/home.html:506
 msgid "Sheet"
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:495
+#: cutlist_optimizer/templates/dashboard/home.html:507
 msgid "Efficiency"
 msgstr ""
 
-#: cutlist_optimizer/templates/dashboard/home.html:496
+#: cutlist_optimizer/templates/dashboard/home.html:508
 msgid "Waste"
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:585
+msgid "No optimization result to export. Please run an optimization first."
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:592
+msgid "Generating PDF..."
+msgstr ""
+
+#: cutlist_optimizer/templates/dashboard/home.html:608
+msgid "PDF export failed"
 msgstr ""
 
 #: cutlist_optimizer/templates/doc/index.html:79
@@ -611,50 +1058,5 @@ msgstr ""
 
 #: cutlist_optimizer/templates/doc/index.html:164
 msgid "CI/CD pipeline integration"
-msgstr ""
-
-#: cutlist_optimizer/templates/dashboard/home.html
-msgid "Export on A4"
-msgstr ""
-
-#: cutlist_optimizer/templates/dashboard/home.html
-msgid "No optimization result to export. Please run an optimization first."
-msgstr ""
-
-#: cutlist_optimizer/templates/dashboard/home.html
-msgid "Generating PDF..."
-msgstr ""
-
-#: cutlist_optimizer/templates/dashboard/home.html
-msgid "PDF export failed"
-msgstr ""
-
-#: cutlist_optimizer/lib/a4_pdf_exporter.py
-msgid "Cutlist layout — real size A4 export"
-msgstr ""
-
-#: cutlist_optimizer/lib/a4_pdf_exporter.py
-msgid "Assembly plan"
-msgstr ""
-
-#: cutlist_optimizer/lib/a4_pdf_exporter.py
-msgid ""
-"Print at real size (scale 1:1, no fit-to-page). Trim each page along the"
-" crop marks, then tape the pages together by number."
-msgstr ""
-
-#: cutlist_optimizer/lib/a4_pdf_exporter.py
-#, python-format
-msgid "Sheet %(num)d — %(width)s × %(height)s mm — %(pages)d pages"
-msgstr ""
-
-#: cutlist_optimizer/lib/a4_pdf_exporter.py
-#, python-format
-msgid "Sheet %(sheet)d/%(total_sheets)d — Row %(row)d/%(rows)d — Column %(col)d/%(cols)d"
-msgstr ""
-
-#: cutlist_optimizer/lib/a4_pdf_exporter.py
-#, python-format
-msgid "Page %(page)d/%(total)d"
 msgstr ""
 

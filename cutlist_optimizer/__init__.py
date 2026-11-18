@@ -64,7 +64,7 @@ def create_app():
     
     # Start the task scheduler only in the main process
     # In development mode with reloader, this prevents duplicate schedulers
-    # In production environments (test, demo, prod), always start the scheduler
+    # In deployed environments (integration, validation, prod), always start the scheduler
     import os
     if config.CONTEXT == 'dev':
         # In dev mode, only start if not in reloader process
@@ -232,10 +232,10 @@ def create_app():
     app.register_blueprint(doc, url_prefix='/doc/')
     app.register_blueprint(i18n, url_prefix='/i18n/')
     app.register_blueprint(admin, url_prefix='/admin/')
-    # Register coverage blueprint only in test context
-    if config.CONTEXT in ['test', 'dev']:
+    app.register_blueprint(rest, url_prefix='/rest')
+    # Register coverage blueprint only in integration and local dev
+    if config.CONTEXT in ['integration', 'dev']:
         app.register_blueprint(coverage, url_prefix='/coverage/')
     app.register_blueprint(test_output, url_prefix='/tests/')
-    app.register_blueprint(rest, url_prefix='/rest')
 
     return app

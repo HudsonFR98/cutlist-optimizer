@@ -4,21 +4,28 @@ services:
     container_name: {{ container_name }}
     restart: always
     environment:
-      CUTLIST_OPTIMIZER_CONTEXT: "{{ context }}"
-      DB_IP: "{{ db_container_name }}"
-      POSTGRES_USER: "{{ env_config.pg_user }}"
-      POSTGRES_PASSWORD: "{{ env_config.pg_password }}"
-      POSTGRES_DB: "{{ env_config.pg_db }}"
-      CUTOPT_DB_NAME: "{{ env_config.cutopt_db_name }}"
-      SECRET_KEY: "{{ env_config.secret_key }}"
-      TELEGRAM_BOT_TOKEN: "{{ env_config.telegram_bot_token }}"
-      TELEGRAM_CHAT_ID: "{{ env_config.telegram_chat_id }}"
-      ADMIN_USER_USERNAME: "{{ env_config.admin_user_username }}"
-      ADMIN_USER_PASSWORD: "{{ env_config.admin_user_password }}"
-      ADMIN_USER_FIRST_NAME: "{{ env_config.admin_user_first_name }}"
-      ADMIN_USER_LAST_NAME: "{{ env_config.admin_user_last_name }}"
-      ADMIN_USER_EMAIL: "{{ env_config.admin_user_email }}"
-      BUILD_DATE: "{{ ansible_date_time.iso8601 | regex_replace('T', '.') | regex_replace(':', '.') | regex_replace('-', '.') | regex_replace('Z', '') }}"
+      CUTLIST_OPTIMIZER_CONTEXT: {{ context }}
+      DB_IP: {{ db_container_name }}
+      POSTGRES_USER: {{ env_config.pg_user }}
+      POSTGRES_PASSWORD: {{ env_config.pg_password }}
+      POSTGRES_DB: {{ env_config.pg_db }}
+      CUTOPT_DB_NAME: {{ env_config.cutopt_db_name }}
+      SECRET_KEY: {{ env_config.secret_key }}
+      TELEGRAM_BOT_TOKEN: {{ env_config.telegram_bot_token }}
+      TELEGRAM_CHAT_ID: {{ env_config.telegram_chat_id }}
+      ADMIN_USER_USERNAME: {{ env_config.admin_user_username }}
+      ADMIN_USER_PASSWORD: {{ env_config.admin_user_password }}
+      ADMIN_USER_FIRST_NAME: {{ env_config.admin_user_first_name }}
+      ADMIN_USER_LAST_NAME: {{ env_config.admin_user_last_name }}
+      ADMIN_USER_EMAIL: {{ env_config.admin_user_email }}
+{% if env_config.reviewer_user_username and env_config.reviewer_user_password %}
+      REVIEWER_USER_USERNAME: {{ env_config.reviewer_user_username }}
+      REVIEWER_USER_PASSWORD: {{ env_config.reviewer_user_password }}
+      REVIEWER_USER_FIRST_NAME: {{ env_config.reviewer_user_first_name }}
+      REVIEWER_USER_LAST_NAME: {{ env_config.reviewer_user_last_name }}
+      REVIEWER_USER_EMAIL: {{ env_config.reviewer_user_email }}
+{% endif %}
+      BUILD_DATE: {{ ansible_date_time.iso8601 | regex_replace('T', '.') | regex_replace(':', '.') | regex_replace('-', '.') | regex_replace('Z', '') }}
     volumes:
       - /var/log/cutlist_optimizer:/var/log/cutlist_optimizer
       - /opt/cutlist_optimizer_data:/opt/cutlist_optimizer_data
@@ -36,18 +43,18 @@ services:
     container_name: {{ db_container_name }}
     restart: always
     ports:
-      - "5437:5432"
+      - "5433:5432"
     environment:
-      POSTGRES_USER: "{{ env_config.pg_user }}"
-      POSTGRES_PASSWORD: "{{ env_config.pg_password }}"
-      POSTGRES_DB: "{{ env_config.pg_db }}"
-      CUTOPT_DB_NAME: "{{ env_config.cutopt_db_name }}"
+      POSTGRES_USER: {{ env_config.pg_user }}
+      POSTGRES_PASSWORD: {{ env_config.pg_password }}
+      POSTGRES_DB: {{ env_config.pg_db }}
+      CUTOPT_DB_NAME: {{ env_config.cutopt_db_name }}
     volumes:
       - /opt/cutlist_optimizer_data/postgresql/15/main:/var/lib/postgresql/data
       - /opt/cutlist_optimizer_data/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
     command: postgres -c 'max_connections=100'
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U \"{{ env_config.pg_user }}\" -d \"{{ env_config.cutopt_db_name }}\""]
+      test: ["CMD-SHELL", "pg_isready -U {{ env_config.pg_user }} -d {{ env_config.cutopt_db_name }}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -71,10 +78,9 @@ services:
     container_name: {{ nginx_container_name }}
     restart: always
     ports:
-      - "443:443"
+      - "80:80"
     volumes:
       - /opt/cutlist_optimizer_data/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - /opt/cutlist_optimizer_data/ssl:/etc/nginx/ssl:ro
       - /var/log/nginx:/var/log/nginx
     depends_on:
       - app
@@ -85,3 +91,4 @@ networks:
   cutopt_network:
     name: {{ network_name }}
     driver: bridge
+

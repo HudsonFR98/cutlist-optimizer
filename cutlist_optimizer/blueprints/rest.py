@@ -3,12 +3,13 @@
 import io
 import logging
 
-from flask import request, Blueprint, abort, jsonify, send_file
+from flask import request, Blueprint, abort, jsonify, send_file, g
 from flask_login import current_user
 from werkzeug.exceptions import HTTPException
 from cutlist_optimizer import dao
-from cutlist_optimizer.lib.cutlist_optimizer import CutlistOptimizer, Piece, StockSheet
 from cutlist_optimizer.lib.a4_pdf_exporter import A4PdfExporter
+from cutlist_optimizer.lib.api_auth import token_required
+from cutlist_optimizer.lib.cutlist_optimizer import CutlistOptimizer, Piece, StockSheet
 
 
 rest = Blueprint('rest', __name__)
@@ -217,10 +218,13 @@ def export_a4_pdf():
         abort(500, description=f"Internal server error: {str(e)}")
 
 
-# @rest.route('/test', methods=["GET"])
-# def get_test():
-#     """ Exemple """
-
-#     gene_id = request.values.get('gene_id')
-#     gene = dao.get_gene(gene_id)
-#     return jsonify(gene.to_json())
+@rest.route('/test', methods=['GET'])
+@token_required
+def get_test():
+    """Authenticated probe: who the API token belongs to."""
+    user = g.api_user
+    return jsonify({
+        'ok': True,
+        'user': user.ide,
+        'user_id': user.id,
+    })
