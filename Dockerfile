@@ -53,6 +53,8 @@ RUN /opt/env3/cutlist_optimizer/bin/pip install --upgrade pip setuptools \
     && /opt/env3/cutlist_optimizer/bin/pip install -r deploy/requirements.txt \
     && /opt/env3/cutlist_optimizer/bin/pip install -e .
 
+ENV PATH="/opt/env3/cutlist_optimizer/bin:${PATH}"
+
 # Expose port
 EXPOSE 8080
 

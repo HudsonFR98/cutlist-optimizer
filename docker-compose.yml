@@ -1,17 +1,20 @@
-# Docker Compose file format version 3.8 for compatibility with Docker Compose 2.35.1
-version: '3.8'
+# Project name prefixes containers, volumes, and networks (e.g. cutopt-prod, cutopt-dev).
+# Set CUTLIST_OPTIMIZER_CONTEXT in .env (dev, prod, validation, …).
+name: "cutopt-${CUTLIST_OPTIMIZER_CONTEXT:-dev}"
 
 services:
   app:
     build: .
-    container_name: cutopt_app_dev
+    container_name: "cutopt_app_${CUTLIST_OPTIMIZER_CONTEXT:-dev}"
     ports:
       - "8084:8080"
     env_file:
       - .env
     environment:
-      - CUTLIST_OPTIMIZER_CONTEXT=dev
-      - DB_IP=cutopt_db_dev
+      # Same value as in .env; default dev if missing (drives lib/_config.py and container names below).
+      CUTLIST_OPTIMIZER_CONTEXT: ${CUTLIST_OPTIMIZER_CONTEXT:-dev}
+      DB_IP: db
+      PATH: /opt/env3/cutlist_optimizer/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     depends_on:
       db:
         condition: service_healthy
@@ -24,12 +27,10 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: always
-    networks:
-      - cutopt_network_dev
 
   db:
     image: postgres:15
-    container_name: cutopt_db_dev
+    container_name: "cutopt_db_${CUTLIST_OPTIMIZER_CONTEXT:-dev}"
     env_file:
       - .env
     volumes:
@@ -45,12 +46,10 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    networks:
-      - cutopt_network_dev
 
   redis:
     image: redis:7-alpine
-    container_name: cutopt_redis_dev
+    container_name: "cutopt_redis_${CUTLIST_OPTIMIZER_CONTEXT:-dev}"
     ports:
       - "6382:6379"
     restart: always
@@ -59,8 +58,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    networks:
-      - cutopt_network_dev
 
 volumes:
   postgres_data:
@@ -70,6 +67,7 @@ volumes:
       type: none
       o: bind
       device: ./logs
+
 networks:
-  cutopt_network_dev:
-    driver: bridge
+  default:
+    name: "cutopt_network_${CUTLIST_OPTIMIZER_CONTEXT:-dev}"

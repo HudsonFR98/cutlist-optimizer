@@ -22,4 +22,4 @@ else
 fi
 
 echo "Development environment setup complete!"
-echo "You can now run: docker compose up --build" 
+echo "You can now run: docker compose up --build"

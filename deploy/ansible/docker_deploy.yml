@@ -3,13 +3,13 @@
 
 - name: Deploy cutlist_optimizer using Docker
   hosts: "{{ target_host }}"
-  remote_user: root
+  remote_user: "{{ ansible_user | default('Nath') }}"
   become: yes
   vars:
     deploy_action: "{{ deploy_action }}"
     context: "{{ context }}"
     docker_image: "{{ docker_image }}"
-    app_name: "cutopt"
+    app_name: "cutopt"  # Short name for cutlist_optimizer
     container_name: "{{ app_name }}_app_{{ context }}"
     nginx_container_name: "{{ app_name }}_nginx_{{ context }}"
     db_container_name: "{{ app_name }}_db_{{ context }}"
@@ -33,6 +33,13 @@
           admin_user_first_name: "{{ lookup('vars', 'admin_user_first_name') }}"
           admin_user_last_name: "{{ lookup('vars', 'admin_user_last_name') }}"
           admin_user_email: "{{ lookup('vars', 'admin_user_email') }}"
+          # Optional on every environment. Empty when the CI variables are unset;
+          # the app creates the reviewer user only when username and password are both set.
+          reviewer_user_username: "{{ lookup('vars', 'reviewer_user_username', default='') }}"
+          reviewer_user_password: "{{ lookup('vars', context + '_reviewer_user_password', default='') }}"
+          reviewer_user_first_name: "{{ lookup('vars', 'reviewer_user_first_name', default='') }}"
+          reviewer_user_last_name: "{{ lookup('vars', 'reviewer_user_last_name', default='') }}"
+          reviewer_user_email: "{{ lookup('vars', 'reviewer_user_email', default='') }}"
 
   roles:
     - docker
