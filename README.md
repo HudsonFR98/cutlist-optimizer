@@ -1,6 +1,10 @@
 CUTLIST_OPTIMIZER
 ============================
 
+**Cutlist Optimizer** helps plan sheet-goods cuts: define stock panel sizes and parts to cut, run an optimizer to reduce waste, and review placement statistics and layout visualization.
+
+![Cut list configuration on the validation environment](docs/preview-validation.png)
+---
 
 # Technical documentation for the Cutlist Optimizer Application
 
