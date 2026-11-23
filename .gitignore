@@ -2,6 +2,7 @@
 .pytest_cache
 .vscode
 .coverage
+.env
 cutlist_optimizer.egg-info
 data
 celerybeat-schedule

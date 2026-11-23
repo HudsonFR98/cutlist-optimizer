@@ -261,7 +261,7 @@ On a deployed integration VM, CI runs the app suite with `deploy/ansible/run_tes
 
 ## GitLab CI/CD
 
-`.gitlab-ci.yml` stages, in order: `docker`, `integration`, `validation`, `prod`.
+`.gitlab-ci.yml` stages, in order: `docker`, `integration`, `validation`, `prod`, `github`. `push_github` is manual and runs after `test_integration` only (not validation or prod).
 
 1. **docker** — build and push the app image (`build_docker`) on every branch and merge request.
 2. **integration** — allocate a Pi-hole IP, create the VM with Terraform, deploy with Ansible, run pytest in the container, then destroy the VM. `INTEGRATION_KEEP_VM=true` makes that destroy manual.
